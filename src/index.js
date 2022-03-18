@@ -5,10 +5,8 @@ import App from "App";
 import "style.css";
 
 ReactDOM.render(
-  <StrictMode>
-    <Router>
-      <App />
-    </Router>
-  </StrictMode>,
+  <Router>
+    <App />
+  </Router>,
   document.getElementById("root")
 );

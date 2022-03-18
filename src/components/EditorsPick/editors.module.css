@@ -1,0 +1,135 @@
+.editorsPick {
+  padding: 0 3%;
+}
+
+.tab {
+  margin: 20px 0;
+  margin-bottom: 0;
+}
+
+.enterActive {
+  transform: scale(1);
+  opacity: 1;
+  transition: all 1500ms cubic-bezier(1.55, -0.55, 0.265, 0.68);
+}
+
+.exitActive {
+  transform: scale(0.8);
+  opacity: 0.9;
+  transition: all 1500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.thumb {
+  display: flex;
+  flex-flow: column;
+  height: 400px;
+  background: url(../../assets/images/four.jpg) no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.category {
+  transform: rotateZ(-90deg) translate(-170px, -20px);
+  position: absolute;
+  color: white;
+}
+
+.authorInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 20px;
+  margin-left: auto;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.name {
+  color: White;
+  font-size: 1rem;
+}
+
+.info {
+  display: flex;
+  flex-flow: column;
+  height: fit-content;
+  padding: 0 3%;
+  background-color: var(--secondary);
+}
+
+.date h3,
+.date h4 {
+  color: var(--highlight);
+}
+
+.date h4 {
+  font-weight: normal;
+}
+
+.date {
+  margin-top: 20px;
+}
+
+.wrapTp {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  margin: 20px 0;
+  min-height: 150px;
+}
+
+.title {
+  color: white;
+}
+
+.postPreview {
+  color: var(--highlight);
+}
+.navigate {
+  display: flex;
+  align-items: center;
+  background-color: var(--secondary);
+  padding: 3%;
+  height: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.readMore {
+  width: 100px;
+  background: none;
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: left;
+  margin: 20px 0;
+  cursor: pointer;
+
+  transition: all 250ms ease-in;
+}
+.readMore:hover {
+  background-color: var(--highlight);
+  border-radius: 3px;
+  padding: 0 3%;
+}
+.circularBtnWrap {
+  display: flex;
+  justify-content: space-between;
+
+  min-width: 70px;
+  margin-left: auto;
+}
+
+.circularBtn {
+  width: 15px;
+  border: none;
+  height: 15px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}

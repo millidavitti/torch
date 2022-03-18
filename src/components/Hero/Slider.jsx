@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import hero from "components/Hero/hero.module.css";
-import Slide from "components/Hero/Slide";
 import { Circle } from "phosphor-react";
-function Slider() {
+import Slide from "components/Hero/Slide";
+
+function Slider(props) {
+  const { css } = props;
   const slidesInfo = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
 
   const [max, setMax] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(1);
   const [slides, setSlides] = useState([]);
 
-  function getSlide(currentSlide) {
+  function getSlide(current) {
     slides.forEach((slide, index) => {
-      slide.style.transform = `translateX(${100 * (index - currentSlide)}%)`;
+      slide.style.transform = `translateX(${100 * (index - current)}%)`;
     });
   }
   function slideThru() {
@@ -21,26 +22,24 @@ function Slider() {
   }
 
   useEffect(() => {
-    const slides = document.querySelectorAll(`.${hero.slide}`);
+    const slides = document.querySelectorAll(`.${css.slide}`);
     slides.forEach((slide, index) => {
       slide.style.transform = `translateX(${100 * index}%)`;
     });
     setMax(slides.length);
     setSlides(slides);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const renderSlides = slidesInfo.map((slide) => (
-    <Slide key={slide.id} id={slide.id} hero={hero} />
+  const renderSlides = slidesInfo?.map((slide) => (
+    <Slide key={slide.id} id={slide.id} css={css} Fn={slideThru} />
   ));
+
   return (
-    <section className={hero.hero}>
-      <div className={hero.slider}>
-        <div className={hero.slides}>{renderSlides}</div>
-        <Circle className={hero.slideBtn} onClick={slideThru}>
-          {currentSlide ? currentSlide : max}
-        </Circle>
-      </div>
-    </section>
+    <div className={css.slider}>
+      <div className={css.slides}>{renderSlides}</div>
+      <Circle className={css.slideBtn} onClick={slideThru} />
+    </div>
   );
 }
 

@@ -1,21 +1,20 @@
 import React from "react";
+import ReadMore from "components/Reuse/ReadMore";
 
 import one from "assets/images/one.jpg";
+import Date from "components/Reuse/Date";
 function Slide(props) {
-  const { hero, id } = props;
+  const { css, id } = props;
 
   return (
-    <div className={hero.slide}>
-      <img src={one} alt='fire' className={hero.thumbNail} />
-      <div className={hero.contentInfo}>
-        <div className={hero.date}>
-          <h3>Date</h3>
-          <h4>Mar 6, 2019</h4>
-        </div>
-        <h2 className={hero.title}>
+    <div className={css.slide}>
+      <img src={one} alt='' className={css.thumbNail} />
+      <div className={css.contentInfo}>
+        <Date css={css.date} date={"Mar 6, 2019"} />
+        <h2 className={css.title}>
           {id} Every Level Of Your Life Will Demand A Different You!
         </h2>
-        <button className={hero.readMore}>Read More</button>
+        <ReadMore />
       </div>
     </div>
   );

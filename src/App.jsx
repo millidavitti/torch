@@ -4,12 +4,14 @@ import React from "react";
 // Components
 import Header from "components/Navigation/Header";
 import Hero from "components/Hero/Hero";
+import EditorsPick from "components/EditorsPick/EditorsPick";
 
 export default function App() {
   return (
     <main className='container'>
       <Header />
       <Hero />
+      <EditorsPick />
     </main>
   );
 }

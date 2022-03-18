@@ -3,15 +3,12 @@
   margin-top: 20px;
 }
 .slider {
-  /* min-height: 400px; */
   position: relative;
-  overflow: hidden;
-
-  height: 630px;
-  max-width: 400px;
+  min-height: 700px;
+  max-width: 600px;
+  overflow-x: hidden;
 }
 .slides {
-  /* display: flex; */
   position: relative;
 }
 
@@ -43,10 +40,11 @@ h4 {
 }
 .date h4 {
   font-weight: normal;
+  margin: 10px 0;
 }
 
 .title {
-  margin: 10px 0;
+  margin: 20px 0;
   color: var(--secondary);
 }
 
@@ -61,14 +59,12 @@ h4 {
   border: 1px solid var(--highlight);
   position: relative;
   cursor: pointer;
-
-  transform: outline 700ms ease-in-out;
 }
 
 .readMore::after {
   content: "";
   width: 30px;
-  height: 3px;
+  height: 2px;
   margin: 10px 0;
   background-color: var(--highlight);
   position: absolute;
@@ -78,7 +74,7 @@ h4 {
 }
 
 .readMore:hover {
-  outline: 2px solid black;
+  border: 1px solid black;
   color: black;
 }
 
@@ -91,4 +87,33 @@ h4 {
   bottom: 0;
   cursor: pointer;
   margin-left: 3%;
+}
+
+.post {
+  margin: 20px 0;
+}
+
+.postHead {
+  text-align: right;
+}
+
+.postThumb {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.authorInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.name {
+  font-size: 1rem;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
 }
