@@ -1,32 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import Author from "components/Reuse/Author";
 import Date from "components/Reuse/Date";
-import three from "assets/images/three.jpg";
 
 import TitlePreview from "components/Reuse/TitlePreview";
 function EditorTab(props) {
-  const { css, author, category, title, preview, btns } = props;
+  const [show, setShow] = useState({ shown: false });
+  const { css, author, category, title, preview, btns, src, thumb } = props;
+
+  const sho = {
+    transform: show.shown ? "translate(0)" : "translate(100px)",
+  };
+
+  const head = {
+    opacity: show.shown ? 1 : 0,
+  };
+
+  console.log(show);
   return (
     <div className={css.tab}>
-      <div className={css.thumb}>
+      <div
+        className={css.thumbWrap}
+        onClick={() => setShow((pre) => ({ ...pre, shown: !pre.shown }))}
+        onMouseOut={() => setShow((pre) => ({ ...pre, shown: false }))}
+      >
+        <img src={thumb} alt={title} className={css.thumb} />
         <Author
           cssWrap={css.authorInfo}
           cssAvatar={css.avatar}
           cssName={css.name}
-          src={three}
           name={author}
+          src={src}
+          sho={sho}
+          head={head}
         />
         <h2 className={css.category}>{category}</h2>
       </div>
 
       <div className={css.info}>
-        <Date css={css.date} date={"Mar 6, 2019"} />
+        <Date css={css.date} date={"Mar 6, 2019"} head={true} />
         <TitlePreview
           cssWrap={css.wrapTp}
           cssTitle={css.title}
           cssPreview={css.postPreview}
           title={title}
           preview={preview}
+          href={"https://google.com"}
         />
       </div>
       <div className={css.navigate}>

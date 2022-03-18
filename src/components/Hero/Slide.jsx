@@ -10,7 +10,7 @@ function Slide(props) {
     <div className={css.slide}>
       <img src={one} alt='' className={css.thumbNail} />
       <div className={css.contentInfo}>
-        <Date css={css.date} date={"Mar 6, 2019"} />
+        <Date css={css.date} date={"Mar 6, 2019"} head={true} />
         <h2 className={css.title}>
           {id} Every Level Of Your Life Will Demand A Different You!
         </h2>

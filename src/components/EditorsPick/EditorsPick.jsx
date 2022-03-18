@@ -1,9 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
-// import three from "assets/images/three.jpg";
+import three from "assets/images/three.jpg";
 
-// import five from "assets/images/five.jpg";
-// import six from "assets/images/six.jpg";
+import five from "assets/images/five.jpg";
+import six from "assets/images/six.jpg";
 
 import editors from "components/EditorsPick/editors.module.css";
 
@@ -19,6 +19,7 @@ function EditorsPick() {
       author: "Donald Abua",
       category: "Fashion",
       date: "Jan 17, 2019",
+      src: three,
       title: "Every Level Of Your Life Will Demand A Different You!",
       preview:
         "Fashion ipsum dolor sit amet consectetur adipisicing elit. Autem corrupti ad impedit? Incidunt, corrupti sequi.",
@@ -30,7 +31,9 @@ function EditorsPick() {
       author: "Vegan Bake",
       category: "Ganja",
       date: "Dec 16, 2020",
-      title: "Every Level Of Your Life Will Demand A Different You!",
+      src: five,
+      title:
+        "We Are All in the Gutter, but Some of Us Are Looking at the Stars",
       preview:
         "Ganja ipsum dolor sit amet consectetur adipisicing elit. Autem corrupti ad impedit? Incidunt, corrupti sequi.",
       isActive: false,
@@ -40,17 +43,19 @@ function EditorsPick() {
       author: "Ukwun Abua ",
       category: "Drums",
       date: "Mar 28, 2020",
-      title: "Every Level Of Your Life Will Demand A Different You!",
+      src: six,
+      title: "That Which Does Not Kill Us Makes Us Stronger",
       preview:
         "David ipsum dolor sit amet consectetur adipisicing elit. Autem corrupti ad impedit? Incidunt, corrupti sequi.",
       isActive: false,
     },
   ];
 
-  const [idd, setIdd] = useState(1);
   const [picks, setPicks] = useState(array);
-  const renderBtns = array.map(({ id }) => (
-    <CircularBtn key={id} id={id} Fn={switchPicks} />
+  const [idd, setIdd] = useState(1);
+
+  const renderBtns = picks.map(({ id, isActive }) => (
+    <CircularBtn key={id} id={id} Fn={switchPicks} isActive={isActive} />
   ));
 
   function switchPicks(id) {
@@ -64,19 +69,26 @@ function EditorsPick() {
     );
   }
 
+  const pick = picks.find((pick) => pick.id === idd);
+
   return (
     <section className={editors.editorsPick}>
-      <SectionHeader text={`Editor's Pick`} />
+      <SectionHeader
+        text={`Editor's Pick`}
+        description='Lorem ipsum dolor sit amet adipisicing elit.'
+      />
       <SwitchTransition>
         <CSSTransition key={idd} timeout={1500} classNames={editors}>
           <EditorTab
             css={editors}
-            author={picks[idd - 1].author}
-            category={picks[idd - 1].category}
-            date={picks[idd - 1].date}
-            title={picks[idd - 1].title}
-            preview={picks[idd - 1].preview}
+            author={pick.author}
+            category={pick.category}
+            date={pick.date}
+            title={pick.title}
+            preview={pick.preview}
             btns={renderBtns}
+            src={six}
+            thumb={pick.src}
           />
         </CSSTransition>
       </SwitchTransition>
@@ -85,35 +97,3 @@ function EditorsPick() {
 }
 
 export default EditorsPick;
-/*<CSSTransition
-  in={true}
-  timeout={500}
-  classNames={editors.tab}
-  unmountOnExit={true}
->
-   <div className={editors.tab}>
-          <div className={editors.thumb}>
-            <Author
-              cssWrap={editors.authorInfo}
-              cssAvatar={editors.avatar}
-              cssName={editors.name}
-              src={three}
-              name='Vegan Bake'
-            />
-            <h2 className={editors.category}>Fashion</h2>
-          </div>
-          <div className={editors.info}>
-            <Date css={editors.date} />
-            <TitlePreview
-              cssWrap={editors.wrapTp}
-              cssTitle={editors.title}
-              cssPreview={editors.postPreview}
-              title='Every Level Of Your Life Will Demand A Different You!'
-              preview='Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem
-            corrupti ad impedit? Incidunt, corrupti sequi.'
-            />
-          </div>
-        </div> 
-</CSSTransition>;
-
-*/
