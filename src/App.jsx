@@ -23,6 +23,7 @@ import health from "components/Reuse/CSS/health.module.css";
 import latest from "components/Reuse/CSS/latest.module.css";
 import Author from "components/Reuse/Author";
 import Date from "components/Reuse/Date";
+import AuthCard from "components/AuthorCard/AuthCard";
 
 export default function App() {
   return (
@@ -151,6 +152,7 @@ export default function App() {
           <ReadMore href={"https://google.com"} />
         </div>
       </section>
+      <AuthCard />
     </main>
   );
 }

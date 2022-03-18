@@ -50,8 +50,12 @@
 }
 
 .category {
-  transform: rotateZ(-90deg) translate(-170px, -20px);
+  margin: auto 0;
   position: absolute;
+  inset: 0;
+  width: fit-content;
+  height: fit-content;
+  transform: rotateZ(-90deg);
 
   color: white;
   z-index: 3;
@@ -154,9 +158,9 @@
   transition: all 250ms ease-in;
 }
 .readMore:hover {
-  background-color: var(--highlight);
+  border: 1px solid var(--highlight);
   border-radius: 3px;
-  padding: 0 5px;
+  padding: 3px 5px;
 }
 .circularBtnWrap {
   display: flex;
