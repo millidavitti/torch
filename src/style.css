@@ -62,9 +62,8 @@ header {
   width: 70%;
   height: 100vh;
   background-color: var(--main);
-  z-index: 2;
+  z-index: 200;
   gap: 20px;
-
   transform: translateX(-150px);
   opacity: 0;
   pointer-events: none;
@@ -98,6 +97,7 @@ header {
   display: flex;
   flex-flow: column;
   height: 100%;
+  max-height: 500px;
 }
 
 .mobile-items-wrap ul {
@@ -117,7 +117,7 @@ header {
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.76);
-  z-index: 1;
+  z-index: 100;
 
   opacity: 0;
   pointer-events: none;

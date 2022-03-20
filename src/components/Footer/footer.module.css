@@ -1,0 +1,73 @@
+.footer {
+  display: flex;
+  flex-flow: column;
+  min-height: 150px;
+  padding: 0 3%;
+  /* background-color: crimson; */
+}
+.mail,
+.phoneNum {
+  display: flex;
+  gap: 10px;
+  margin: 0 auto;
+}
+
+figcaption {
+  margin: auto;
+}
+
+.at,
+.phone {
+  margin: auto;
+}
+
+.contact {
+  display: flex;
+  width: 100%;
+  min-height: 30px;
+}
+
+.logo {
+  margin: auto;
+}
+
+.socials {
+  display: flex;
+  height: 30px;
+  /* outline: auto; */
+}
+
+.socialWrap {
+  display: flex;
+  justify-content: space-around;
+  width: 120px;
+  margin: auto;
+}
+
+.facebook {
+  cursor: pointer;
+}
+
+.twitter {
+  cursor: pointer;
+}
+
+.globe {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 700px) {
+  .footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .footer * {
+    margin: auto;
+  }
+
+  .contact {
+    flex-flow: column;
+    gap: 15px;
+  }
+}
