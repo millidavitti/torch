@@ -7,7 +7,7 @@ import { ReactComponent as Logo } from "assets/logo.svg";
 function Header() {
   const [menuItems] = useState([
     { id: 1, to: "/", text: "Home" },
-    { id: 2, to: "/", text: "Category" },
+    { id: 2, to: "category", text: "Category" },
     { id: 3, to: "/", text: "Author" },
     { id: 4, to: "/", text: "Archive" },
   ]);

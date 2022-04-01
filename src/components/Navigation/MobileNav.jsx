@@ -19,7 +19,7 @@ function MobileNav(props) {
   const hideOverlay = !mobileMenuState.isClosed ? "hide-overlay" : "";
 
   const renderMenuItems = menuItems.map((item) => (
-    <MobileMenuItem key={item.id} id={item.id} to={item.to} text={item.text} />
+    <MobileMenuItem key={item.id} id={item.id} to={item.to} text={item.text} Fn={closeMenu}/>
   ));
 
   return (
