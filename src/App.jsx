@@ -5,13 +5,9 @@ import Category from "Routes/Category";
 import Home from "Routes/Home";
 import Footer from "components/Footer/Footer";
 
-
-
-
-
 export default function App() {
   return (
-  <>
+  <main className='container'>
   <Header/>
     <Routes>
       <Route path="/" element={<Home/>}/>
@@ -19,6 +15,6 @@ export default function App() {
       <Route path='*' element="What are doing here?" />
     </Routes>
   <Footer />
-  </>
+  </main>
   );
 }

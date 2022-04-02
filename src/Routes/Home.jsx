@@ -25,10 +25,11 @@ import health from "components/Reuse/CSS/health.module.css";
 import latest from "components/Reuse/CSS/latest.module.css";
 import authCard from "components/AuthorCard/authCard.module.css";
 import reuse from "components/Reuse/reuse.module.css";
+import Thumbnail from 'components/Reuse/Thumbnail';
 
 function Home() {
   return (
-    <main className='container'>
+    <>
       <div className={reuse.max}>
         <Hero />
         <EditorsPick />
@@ -38,6 +39,7 @@ function Home() {
             description='Lorem ipsum dolor sit amet adipisicing elit.'
           />
           <TitlePreview
+          css={travel}
             cssWrap={travel.wrapTp}
             cssTitle={travel.title}
             cssPreview={travel.postPreview}
@@ -48,10 +50,10 @@ function Home() {
             href={"https://google.com"}
           />
           <ReadMore />
-          <img src={five} alt='' className={travel.thumb} />
+          <Thumbnail src={five} css={travel} href={'https://google.com'}/>
           <div className={travel.flexRow}>
             <div>
-              <img src={six} alt='' className={travel.thumb} />
+              <Thumbnail src={six} css={travel} href={'https://google.com'}/>
               <TitlePreview
                 cssWrap={travel.wrapTp}
                 cssTitle={travel.title}
@@ -62,7 +64,7 @@ function Home() {
             </div>
             <div>
               
-              <img src={seven} alt='' className={travel.thumb} />
+              <Thumbnail src={seven} css={travel} href={'https://google.com'}/>
               <TitlePreview
                 cssWrap={travel.wrapTp}
                 cssTitle={travel.title}
@@ -80,7 +82,7 @@ function Home() {
             text='Health News'
             description='Lorem ipsum dolor sit amet adipisicing elit.'
           />
-          <img src={eight} alt='' className={health.thumb} />
+          <Thumbnail src={eight} css={travel} href={'https://google.com'}/>
           <Author
             cssWrap={health.wrapAuth}
             cssAvatar={health.avatar}
@@ -140,6 +142,7 @@ function Home() {
           />
           <div className={latest.thumbWrap}>
             <img src={nine} alt='' className={latest.thumb} />
+            <a href={'https://google.com'}> </a>
             <Author
               cssWrap={latest.wrapAuth}
               cssAvatar={latest.avatar}
@@ -160,6 +163,7 @@ function Home() {
               preview={
                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius et non aliquam dolor numquam assumenda."
               }
+              href={'https://google.com'}
             />
             <ReadMore href={"https://google.com"} />
           </div>
@@ -173,7 +177,7 @@ function Home() {
           />
         </section>
       </div>
-    </main>
+    </>
   )
 }
 

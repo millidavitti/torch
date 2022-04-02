@@ -5,9 +5,14 @@
 .thumbWrap {
   display: flex;
   position: relative;
-
+outline: auto;
   margin: 20px 0;
   height: 400px;
+}
+
+.thumbWrap a{
+  position: absolute;
+  inset: 0;
 }
 
 .thumb {

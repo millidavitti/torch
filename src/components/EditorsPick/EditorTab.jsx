@@ -15,7 +15,6 @@ function EditorTab(props) {
     opacity: show.shown ? 1 : 0,
   };
 
-  console.log(show);
   return (
     <div className={css.tab}>
       <div

@@ -1,5 +1,5 @@
 import React from "react";
-import css from "components/Reuse/readmore.module.css";
+import css from "components/Reuse/CSS/readmore.module.css";
 
 function ReadMore(props) {
   const { href } = props;
