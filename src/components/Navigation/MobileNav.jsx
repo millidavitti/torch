@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { List, XCircle, FacebookLogo, TwitterLogo } from "phosphor-react";
 
 import MobileMenuItem from "components/Navigation/MobileMenuItem";
+import DropDown from "./DropDown";
 
 function MobileNav(props) {
   const { Logo, menuItems } = props;
@@ -13,14 +14,16 @@ function MobileNav(props) {
 
   function closeMenu() {
     setMobileMenuState((pre) => ({ ...pre, isClosed: !pre.isClosed }));
+     
   }
 
   const show = mobileMenuState.isClosed ? "" : "show";
   const hideOverlay = !mobileMenuState.isClosed ? "hide-overlay" : "";
 
-  const renderMenuItems = menuItems.map((item) => (
-    <MobileMenuItem key={item.id} id={item.id} to={item.to} text={item.text} Fn={closeMenu}/>
-  ));
+  const renderMenuItems = menuItems.map((item) => {
+    const {id, to,text, isDropDown} =item
+    return <MobileMenuItem key={id} id={item.id} to={to} text={text} closeMenu={closeMenu} menu={id} DropDown={DropDown} isDropDown={isDropDown}/>
+  });
 
   return (
     <nav className='mobile-nav'>
@@ -37,7 +40,8 @@ function MobileNav(props) {
           <XCircle className='close' weight='thin' onClick={closeMenu} />
         </div>
         <div className='mobile-items-wrap'>
-          <ul>{renderMenuItems}</ul>
+          <ul>{renderMenuItems}
+          </ul>
         </div>
       </div>
       <div className={`overlay ${hideOverlay}`}></div>

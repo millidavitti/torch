@@ -6,10 +6,10 @@ import DeskItems from "components/Navigation/DeskItems";
 import { ReactComponent as Logo } from "assets/logo.svg";
 function Header() {
   const [menuItems] = useState([
-    { id: 1, to: "/", text: "Home" },
-    { id: 2, to: "category", text: "Category" },
-    { id: 3, to: "/", text: "Author" },
-    { id: 4, to: "/", text: "Archive" },
+    { id: 1, to: "/", text: "Home", isDropDown:false },
+    { id: 2, to: "category", text: "Category", isDropDown:true },
+    { id: 3, to: "/", text: "Author", isDropDown:false },
+    { id: 4, to: "/", text: "Archive", isDropDown:false },
   ]);
   return (
     <header>

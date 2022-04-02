@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function MobileMenuItem(props) {
-  const { to, text, Fn } = props;
+  const [showDrop, setShowDrop] = useState(false)
 
+  const { to, text, closeMenu, menu, DropDown, isDropDown } = props;
+
+  function drop(event){
+    const {target} = event
+    const targetMenu = target.closest("li[data-menu='2']")
+    if(!targetMenu )return
+    setShowDrop(pre=>!pre)
+    ;
+  }
+   const callBackLogic= isDropDown?drop:closeMenu;
+const pStyle={color: 'var(--secondary)',
+  fontSize: '1.3rem', cursor:'pointer'}
+
+  
   return (
-    <li className='mobile-menu-item'>
-      <Link to={to} onClick={Fn}>{text}</Link>
+    <li className='mobile-menu-item' data-menu={menu} onClick={drop} >
+      {isDropDown?<p style={pStyle}>{text}</p>:<Link to={to} onClick={callBackLogic}>{text}</Link>}
+      {showDrop && <DropDown closeMenu={closeMenu}/>}
     </li>
   );
 }

@@ -47,6 +47,12 @@ header {
   width: 100%;
 }
 
+.drop-down{
+  padding: 10px;
+  height: 100px;
+  background-color: white;
+}
+
 .ham {
   margin-left: auto;
   cursor: pointer;
@@ -54,6 +60,7 @@ header {
 }
 
 .mobile-menu-items {
+  overflow: auto;
   position: fixed;
   display: flex;
   flex-flow: column;
@@ -164,6 +171,17 @@ header {
 
     transition: all 200ms ease-in;
   }
+
+  .drop-down{
+    z-index: 2;
+    position: absolute;
+    width: 200px;
+    top:50px;
+    left: 0;
+    height:auto;
+    min-height:100px;
+    box-shadow: 2px 0px 7px rgba(0, 0, 0, 0.13);
+}
 
   .desk-menu-item:hover {
     background-color: var(--highlight);
