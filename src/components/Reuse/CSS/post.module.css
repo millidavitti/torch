@@ -1,7 +1,19 @@
-.post {
+.postWrap {
 	padding: 0 3%;
 	margin: 40px 0;
 	position: relative;
+}
+.singlePost {
+	/* padding: 0 3%; */
+	margin: 10px 0;
+	/* outline: auto; */
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.158);
+}
+
+.singlePostHead {
+	color: var(--accent);
+	font-size: 1rem;
+	margin: 20px 0;
 }
 
 .thumbWrap {
@@ -22,6 +34,14 @@
 	object-fit: cover;
 	position: absolute;
 	inset: 0;
+}
+
+.singlePostThumb {
+	width: 100%;
+	height: 400px;
+	/* margin-top: 20px; */
+	object-fit: cover;
+	object-position: center;
 }
 
 .wrapAuth {
@@ -50,6 +70,7 @@
 	justify-content: space-between;
 	margin: 20px 0;
 	gap: 20px;
+	/* outline: auto; */
 	height: fit-content;
 }
 
@@ -75,11 +96,15 @@
 	margin-top: 10px;
 }
 
+.info {
+	padding: 15px;
+}
+
 @media screen and (min-width: 769px) {
 	.flex {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: 30px;
+		gap: 10px 20px;
 	}
 
 	.info {

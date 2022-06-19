@@ -28,6 +28,7 @@ import health from "components/Reuse/CSS/health.module.css";
 import post from "components/Reuse/CSS/post.module.css";
 import authCard from "components/AuthorCard/authCard.module.css";
 import Thumbnail from "components/Reuse/Thumbnail";
+import Margin from "components/Reuse/Margin";
 
 function Home() {
 	return (
@@ -40,28 +41,32 @@ function Home() {
 					text='Travel News'
 					description='Lorem ipsum dolor sit amet adipisicing elit.'
 				/>
-				<TitlePreview
-					css={travel}
-					cssWrap={travel.wrapTp}
-					cssTitle={travel.title}
-					cssPreview={travel.postPreview}
-					title={"That Which Does Not Kill Us Makes Us Stronger"}
-					preview={
-						"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius et non aliquam dolor facere quam ducimus officia perspiciatis numquam assumenda."
-					}
-					href={"https://google.com"}
-				/>
-				<ReadMore />
+				<Margin>
+					<TitlePreview
+						css={travel}
+						cssWrap={post.wrapTp}
+						cssTitle={post.title}
+						cssPreview={post.postPreview}
+						title={
+							"That Which Does Not Kill Us Makes Us Stronger"
+						}
+						preview={
+							"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius et non aliquam dolor facere quam ducimus officia perspiciatis numquam assumenda."
+						}
+						href={"https://google.com"}
+					/>
+					<ReadMore />
+				</Margin>
 				<Thumbnail
 					src={five}
-					css={travel}
+					css={post}
 					href={"https://google.com"}
 				/>
 				<div className={travel.flexRow}>
 					<div>
 						<Thumbnail
 							src={six}
-							css={travel}
+							css={post}
 							href={"https://google.com"}
 						/>
 						<TitlePreview
@@ -69,7 +74,7 @@ function Home() {
 							cssTitle={travel.title}
 							cssPreview={travel.postPreview}
 							title={
-								"He Who Has a Why to Live Can Bear Almost Any How"
+								"He Who Has a Why to Live Can Bear Almost Any Anything"
 							}
 							href={"https://google.com"}
 						/>
@@ -77,7 +82,7 @@ function Home() {
 					<div>
 						<Thumbnail
 							src={seven}
-							css={travel}
+							css={post}
 							href={"https://google.com"}
 						/>
 						<TitlePreview
@@ -98,35 +103,37 @@ function Home() {
 					text='Health News'
 					description='Lorem ipsum dolor sit amet adipisicing elit.'
 				/>
-				<PostFlex>
-					<Thumbnail
-						src={eight}
-						css={travel}
-						href={"https://google.com"}
-					/>
-					<PostInfo>
-						<Author
-							cssWrap={health.wrapAuth}
-							cssAvatar={health.avatar}
-							cssName={health.name}
-							name='Desmond Abua'
-							src={six}
-						/>
-						<TitlePreview
-							cssWrap={health.wrapTp}
-							cssTitle={health.title}
-							cssPreview={health.postPreview}
-							title={
-								"If You Don’t Stand for Something You Will Fall for Anything"
-							}
-							preview={
-								"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius et non aliquam dolor facere quam ducimus officia perspiciatis numquam assumenda."
-							}
+				<Margin>
+					<PostFlex>
+						<Thumbnail
+							src={eight}
+							css={post}
 							href={"https://google.com"}
 						/>
-						<ReadMore />
-					</PostInfo>
-				</PostFlex>
+						<PostInfo>
+							<Author
+								cssWrap={health.wrapAuth}
+								cssAvatar={health.avatar}
+								cssName={health.name}
+								name='Desmond Abua'
+								src={six}
+							/>
+							<TitlePreview
+								cssWrap={health.wrapTp}
+								cssTitle={health.title}
+								cssPreview={health.postPreview}
+								title={
+									"If You Don’t Stand for Something You Will Fall for Anything"
+								}
+								preview={
+									"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius et non aliquam dolor facere quam ducimus officia perspiciatis numquam assumenda."
+								}
+								href={"https://google.com"}
+							/>
+							<ReadMore />
+						</PostInfo>
+					</PostFlex>
+				</Margin>
 				<div className={health.postList}>
 					<div>
 						<TitlePreview

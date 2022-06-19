@@ -1,26 +1,27 @@
-import React from "react";
-// Component
-import Post from "components/Reuse/Post";
-import AuthCard from "components/AuthorCard/AuthCard";
-import Author from "components/Reuse/Author";
-import Date from "components/Reuse/Date";
-import TitlePreview from "components/Reuse/TitlePreview";
-import ReadMore from "components/Reuse/ReadMore";
-import TrendingPost from "components/Reuse/TrendingPost";
-import TopTrend from "components/Reuse/TopTrend";
-import PostWrap from "components/Reuse/PostWrap";
-import PostFlex from "components/Reuse/PostFlex";
-import PostInfo from "components/Reuse/PostInfo";
-import Container from "components/Reuse/Container";
-
 // Assets
 import nine from "assets/images/nine.jpg";
 import ten from "assets/images/ten.jpg";
+import four from "assets/images/four.jpg";
+import AuthCard from "components/AuthorCard/AuthCard";
+import Author from "components/Reuse/Author";
+import Container from "components/Reuse/Container";
 // Css
-import post from "components/Reuse/CSS/post.module.css";
 import category from "components/Reuse/CSS/category.module.css";
+import post from "components/Reuse/CSS/post.module.css";
+import Date from "components/Reuse/Date";
+// Component
+import Post from "components/Reuse/Post";
+import PostFlex from "components/Reuse/PostFlex";
+import PostInfo from "components/Reuse/PostInfo";
+import PostWrap from "components/Reuse/PostWrap";
+import ReadMore from "components/Reuse/ReadMore";
+import TitlePreview from "components/Reuse/TitlePreview";
+import TopTrend from "components/Reuse/TopTrend";
+import TrendingPost from "components/Reuse/TrendingPost";
+import Thumbnail from "components/Reuse/Thumbnail";
+import React from "react";
 
-function Category() {
+export default function Category() {
 	return (
 		<Container>
 			<PostWrap>
@@ -58,15 +59,135 @@ function Category() {
 					</PostInfo>
 				</PostFlex>
 			</PostWrap>
-
-			<PostFlex>
-				<Post css={category} />
-				<Post css={category} />
-				<Post css={category} />
-				<Post css={category} />
-				<Post css={category} />
-				<Post css={category} />
-			</PostFlex>
+			<PostWrap>
+				<PostFlex>
+					<Post>
+						<Thumbnail
+							src={four}
+							css={post}
+							href={"https://google.com"}
+							alt={"me"}
+						/>
+						<PostInfo>
+							<Date date={"Mar 4, 2019"} head={false} />
+							<h2 className={post.singlePostHead}>
+								Fashion
+							</h2>
+							<TitlePreview
+								cssWrap={post.wrapTp}
+								cssTitle={post.title}
+								cssPreview={post.postPreview}
+								title={"New Post"}
+								preview={
+									"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+								}
+								href='https://google.com'
+							/>
+							<ReadMore href={"https://google.com"} />
+						</PostInfo>
+					</Post>
+					<Post>
+						<Thumbnail
+							src={four}
+							css={post}
+							href={"https://google.com"}
+							alt={"me"}
+						/>
+						<PostInfo>
+							<Date date={"Mar 4, 2019"} head={false} />
+							<h2 className={post.singlePostHead}>
+								Fashion
+							</h2>
+							<TitlePreview
+								cssWrap={post.wrapTp}
+								cssTitle={post.title}
+								cssPreview={post.postPreview}
+								title={"New Post"}
+								preview={
+									"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+								}
+								href='https://google.com'
+							/>
+							<ReadMore href={"https://google.com"} />
+						</PostInfo>
+					</Post>
+					<Post>
+						<Thumbnail
+							src={four}
+							css={post}
+							href={"https://google.com"}
+							alt={"me"}
+						/>
+						<PostInfo>
+							<Date date={"Mar 4, 2019"} head={false} />
+							<h2 className={post.singlePostHead}>
+								Fashion
+							</h2>
+							<TitlePreview
+								cssWrap={post.wrapTp}
+								cssTitle={post.title}
+								cssPreview={post.postPreview}
+								title={"New Post"}
+								preview={
+									"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+								}
+								href='https://google.com'
+							/>
+							<ReadMore href={"https://google.com"} />
+						</PostInfo>
+					</Post>
+					<Post>
+						<Thumbnail
+							src={four}
+							css={post}
+							href={"https://google.com"}
+							alt={"me"}
+						/>
+						<PostInfo>
+							<Date date={"Mar 4, 2019"} head={false} />
+							<h2 className={post.singlePostHead}>
+								Fashion
+							</h2>
+							<TitlePreview
+								cssWrap={post.wrapTp}
+								cssTitle={post.title}
+								cssPreview={post.postPreview}
+								title={"New Post"}
+								preview={
+									"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+								}
+								href='https://google.com'
+							/>
+							<ReadMore href={"https://google.com"} />
+						</PostInfo>
+					</Post>
+					<Post>
+						<Thumbnail
+							src={four}
+							css={post}
+							href={"https://google.com"}
+							alt={"me"}
+						/>
+						<PostInfo>
+							<Date date={"Mar 4, 2019"} head={false} />
+							<h2 className={post.singlePostHead}>
+								Fashion
+							</h2>
+							<TitlePreview
+								cssWrap={post.wrapTp}
+								cssTitle={post.title}
+								cssPreview={post.postPreview}
+								title={"New Post"}
+								preview={
+									"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+								}
+								href='https://google.com'
+							/>
+							<ReadMore href={"https://google.com"} />
+						</PostInfo>
+					</Post>
+				</PostFlex>
+			</PostWrap>
 			<AuthCard
 				name={"Donald Abua"}
 				description={
@@ -85,14 +206,3 @@ function Category() {
 		</Container>
 	);
 }
-/*   <TitlePrev cssWrap={category.wrapTp}>
-          <h2 className={category.title}>
-            <a href="#"> </a>
-            Pinketh effect on men
-          </h2>
-          <p className={category.postPreview}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-            quas veniam quia aspernatur culpa quibusdam!+
-          </p>
-        </TitlePrev> */
-export default Category;

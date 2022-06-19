@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 // Components
 import MobileNav from "components/Navigation/MobileNav";
 import DeskItems from "components/Navigation/DeskItems";
@@ -13,7 +15,9 @@ export default function Header() {
 	]);
 	return (
 		<header>
-			<Logo className='logo' />
+			<Link to='/'>
+				<Logo className='logo' />
+			</Link>
 			<MobileNav Logo={Logo} menuItems={menuItems} />
 			<DeskItems menuItems={menuItems} />
 		</header>
