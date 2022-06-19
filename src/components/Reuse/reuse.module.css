@@ -1,24 +1,24 @@
 .sectionHeader {
-  font-weight: 700;
-  font-size: 2rem;
+	font-weight: 700;
+	font-size: 2rem;
 }
 
 .sectioDescription {
-  border-left: 2px solid var(--accent);
-  color: var(--highlight);
-  font-size: 0.8rem;
-  font-weight: normal;
-  padding-left: 3%;
+	border-left: 2px solid var(--accent);
+	color: var(--highlight);
+	font-size: 0.8rem;
+	font-weight: normal;
+	padding-left: 3%;
 }
 
 .max {
-  max-width: 900px;
-  margin: 0 auto;
+	max-width: 900px;
+	margin: 0 auto;
 }
 
 @media screen and (min-width: 770px) {
-  .max {
-    max-width: 1000px;
-    margin: 0 auto;
-  }
+	.max {
+		max-width: 1000px;
+		margin: 0 auto;
+	}
 }
