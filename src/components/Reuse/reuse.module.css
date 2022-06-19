@@ -1,6 +1,8 @@
 .sectionHeader {
 	font-weight: 700;
 	font-size: 2rem;
+	margin-bottom: 10px;
+	color: var(--secondary);
 }
 
 .sectioDescription {
@@ -8,7 +10,7 @@
 	color: var(--highlight);
 	font-size: 0.8rem;
 	font-weight: normal;
-	padding-left: 3%;
+	padding-left: 10px;
 }
 
 .max {

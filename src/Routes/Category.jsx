@@ -10,6 +10,7 @@ import TrendingPost from "components/Reuse/TrendingPost";
 import TopTrend from "components/Reuse/TopTrend";
 import PostWrap from "components/Reuse/PostWrap";
 import PostFlex from "components/Reuse/PostFlex";
+import PostInfo from "components/Reuse/PostInfo";
 import Container from "components/Reuse/Container";
 
 // Assets
@@ -35,7 +36,7 @@ function Category() {
 							src={ten}
 						/>
 					</div>
-					<div className={post.info}>
+					<PostInfo>
 						<Date
 							css={post.date}
 							date={"Dec 16, 3020"}
@@ -54,7 +55,7 @@ function Category() {
 							href={"https://google.com"}
 						/>
 						<ReadMore href={"https://google.com"} />
-					</div>
+					</PostInfo>
 				</PostFlex>
 			</PostWrap>
 

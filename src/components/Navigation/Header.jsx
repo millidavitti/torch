@@ -4,7 +4,7 @@ import MobileNav from "components/Navigation/MobileNav";
 import DeskItems from "components/Navigation/DeskItems";
 
 import { ReactComponent as Logo } from "assets/logo.svg";
-function Header() {
+export default function Header() {
 	const [menuItems] = useState([
 		{ id: 1, to: "/", text: "Home", isDropDown: false },
 		{ id: 2, to: "category", text: "Category", isDropDown: true },
@@ -19,5 +19,3 @@ function Header() {
 		</header>
 	);
 }
-
-export default Header;

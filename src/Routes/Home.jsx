@@ -35,7 +35,7 @@ function Home() {
 			<Hero />
 			<EditorsPick />
 			{/* Travel News */}
-			<section className={travel.travel}>
+			<PostWrap>
 				<SectionHeader
 					text='Travel News'
 					description='Lorem ipsum dolor sit amet adipisicing elit.'
@@ -91,9 +91,9 @@ function Home() {
 						/>
 					</div>
 				</div>
-			</section>
+			</PostWrap>
 			{/* Health News */}
-			<section className={health.health}>
+			<PostWrap>
 				<SectionHeader
 					text='Health News'
 					description='Lorem ipsum dolor sit amet adipisicing elit.'
@@ -174,7 +174,7 @@ function Home() {
 						/>
 					</div>
 				</div>
-			</section>
+			</PostWrap>
 			{/* Latest News */}
 			<PostWrap>
 				<SectionHeader
