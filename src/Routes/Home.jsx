@@ -29,6 +29,7 @@ import post from "components/Reuse/CSS/post.module.css";
 import authCard from "components/AuthorCard/authCard.module.css";
 import Thumbnail from "components/Reuse/Thumbnail";
 import Margin from "components/Reuse/Margin";
+import Post from "components/Reuse/Post";
 
 function Home() {
 	return (
@@ -224,6 +225,7 @@ function Home() {
 					</PostInfo>
 				</PostFlex>
 			</PostWrap>
+
 			<section className={authCard.container}>
 				<AuthCard
 					name={"Davitti Vegan"}

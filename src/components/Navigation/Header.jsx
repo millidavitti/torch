@@ -13,6 +13,7 @@ export default function Header() {
 		{ id: 3, to: "/", text: "Author", isDropDown: false },
 		{ id: 4, to: "/", text: "Archive", isDropDown: false },
 	]);
+
 	return (
 		<header>
 			<Link to='/'>

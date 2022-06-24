@@ -1,14 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
 
-
-function DropDown(props) {
-    const {closeMenu}=props
-  return (
-    <div className='drop-down'>
-    <Link to='category' onClick={closeMenu}>Fashion</Link>
-    </div>
-  )
+export default function DropDown({ children }) {
+	return <div className='drop-down'>{children}</div>;
 }
-
-export default DropDown

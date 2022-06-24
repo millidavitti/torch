@@ -3,7 +3,7 @@ import { List, XCircle, FacebookLogo, TwitterLogo } from "phosphor-react";
 
 import MobileMenuItem from "components/Navigation/MobileMenuItem";
 
-function MobileNav(props) {
+export default function MobileNav(props) {
 	const { Logo, menuItems } = props;
 
 	const [mobileMenuState, setMobileMenuState] = useState({ isClosed: true });
@@ -64,5 +64,3 @@ function MobileNav(props) {
 		</nav>
 	);
 }
-
-export default MobileNav;

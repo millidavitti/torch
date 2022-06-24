@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
+import DropMenu from "./DropMenu";
 
 function MobileMenuItem(props) {
 	const [showDrop, setShowDrop] = useState(false);
@@ -13,23 +14,29 @@ function MobileMenuItem(props) {
 		if (!targetMenu) return;
 		setShowDrop((pre) => !pre);
 	}
-	const callBackLogic = isDropDown ? drop : closeMenu;
+
 	const pStyle = {
 		color: "var(--secondary)",
 		fontSize: "1.3rem",
 		cursor: "pointer",
 	};
 
+	const obj = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
+
+	const drops = obj.map(({ id }) => (
+		<DropMenu key={id} closeMenu={closeMenu} />
+	));
+
 	return (
 		<li className='mobile-menu-item' data-menu={menu} onClick={drop}>
 			{isDropDown ? (
 				<p style={pStyle}>{text}</p>
 			) : (
-				<Link to={to} onClick={callBackLogic}>
+				<Link to={to} onClick={closeMenu}>
 					{text}
 				</Link>
 			)}
-			{showDrop && <DropDown closeMenu={closeMenu} />}
+			{showDrop && <DropDown>{drops}</DropDown>}
 		</li>
 	);
 }
