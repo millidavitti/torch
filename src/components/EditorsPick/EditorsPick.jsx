@@ -12,7 +12,7 @@ import EditorTab from "./EditorTab";
 
 import CircularBtn from "./CircularBtn";
 
-function EditorsPick() {
+export default function EditorsPick() {
 	const array = [
 		{
 			id: 1,
@@ -113,5 +113,3 @@ function EditorsPick() {
 		</section>
 	);
 }
-
-export default EditorsPick;

@@ -1,14 +1,15 @@
 import React from "react";
+import post from "components/Reuse/CSS/post.module.css";
 
 export default function TitlePreview(props) {
-	const { cssWrap, cssTitle, cssPreview, title, preview, href } = props;
+	const { title, preview, href } = props;
 	return (
-		<div className={cssWrap}>
-			<h2 className={cssTitle}>
+		<div className={post.wrapTp}>
+			<h2 className={post.title}>
 				<a href={href}> </a>
 				{title}
 			</h2>
-			<p className={cssPreview}>{preview}</p>
+			<p className={post.postPreview}>{preview}</p>
 		</div>
 	);
 }

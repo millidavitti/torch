@@ -3,6 +3,7 @@ import Author from "components/Reuse/Author";
 import Date from "components/Reuse/Date";
 
 import TitlePreview from "components/Reuse/TitlePreview";
+import PostInfo from "components/Reuse/PostInfo";
 export default function EditorTab(props) {
 	const [show, setShow] = useState({ shown: false });
 	const { css, author, category, title, preview, btns, src, thumb } = props;
@@ -41,15 +42,15 @@ export default function EditorTab(props) {
 
 			<div className={css.info}>
 				<Date css={css.date} date={"Mar 6, 2019"} head={true} />
-				<TitlePreview
-					cssWrap={css.wrapTp}
-					cssTitle={css.title}
-					cssPreview={css.postPreview}
-					title={title}
-					preview={preview}
-					href={"https://google.com"}
-				/>
+				<div className={css.wrapTp}>
+					<h2 className={css.title}>
+						<a href='https://google.com'> </a>
+						{title}
+					</h2>
+					<p className={css.postPreview}>{preview}</p>
+				</div>
 			</div>
+
 			<div className={css.navigate}>
 				<button className={css.readMore}>Read More</button>
 				<div className={css.circularBtnWrap}>{btns}</div>

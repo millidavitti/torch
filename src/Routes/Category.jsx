@@ -74,9 +74,6 @@ export default function Category() {
 								Fashion
 							</h2>
 							<TitlePreview
-								cssWrap={post.wrapTp}
-								cssTitle={post.title}
-								cssPreview={post.postPreview}
 								title={"New Post"}
 								preview={
 									"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
@@ -124,9 +121,6 @@ export default function Category() {
 								Fashion
 							</h2>
 							<TitlePreview
-								cssWrap={post.wrapTp}
-								cssTitle={post.title}
-								cssPreview={post.postPreview}
 								title={"New Post"}
 								preview={
 									"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"

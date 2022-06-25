@@ -14,6 +14,10 @@ import PostInfo from "components/Reuse/PostInfo";
 import PostWrap from "components/Reuse/PostWrap";
 import Container from "components/Reuse/Container";
 import PostFlex from "components/Reuse/PostFlex";
+import Thumbnail from "components/Reuse/Thumbnail";
+import Margin from "components/Reuse/Margin";
+import Post from "components/Reuse/Post";
+
 // Assets
 import five from "assets/images/five.jpg";
 import six from "assets/images/six.jpg";
@@ -27,11 +31,9 @@ import travel from "components/Reuse/CSS/travel.module.css";
 import health from "components/Reuse/CSS/health.module.css";
 import post from "components/Reuse/CSS/post.module.css";
 import authCard from "components/AuthorCard/authCard.module.css";
-import Thumbnail from "components/Reuse/Thumbnail";
-import Margin from "components/Reuse/Margin";
-import Post from "components/Reuse/Post";
 
-function Home() {
+export default function Home() {
+	window.scrollTo(0, 0);
 	return (
 		<Container>
 			<Hero />
@@ -44,10 +46,6 @@ function Home() {
 				/>
 				<Margin>
 					<TitlePreview
-						css={travel}
-						cssWrap={post.wrapTp}
-						cssTitle={post.title}
-						cssPreview={post.postPreview}
 						title={
 							"That Which Does Not Kill Us Makes Us Stronger"
 						}
@@ -120,9 +118,6 @@ function Home() {
 								src={six}
 							/>
 							<TitlePreview
-								cssWrap={health.wrapTp}
-								cssTitle={health.title}
-								cssPreview={health.postPreview}
 								title={
 									"If You Don’t Stand for Something You Will Fall for Anything"
 								}
@@ -210,9 +205,6 @@ function Home() {
 							head={true}
 						/>
 						<TitlePreview
-							cssWrap={post.wrapTp}
-							cssTitle={post.title}
-							cssPreview={post.postPreview}
 							title={
 								"The Greatest Thing in The World is to Know How to Belong to Oneself"
 							}
@@ -225,7 +217,77 @@ function Home() {
 					</PostInfo>
 				</PostFlex>
 			</PostWrap>
-
+			{/* Others */}
+			<PostWrap>
+				<PostFlex>
+					<Post>
+						<Thumbnail
+							src={nine}
+							css={post}
+							href={"https://google.com"}
+							alt={"me"}
+						/>
+						<PostInfo>
+							<Date date={"Mar 4, 2019"} head={false} />
+							<h2 className={post.singlePostHead}>
+								Fashion
+							</h2>
+							<TitlePreview
+								title={"New Post"}
+								preview={
+									"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+								}
+								href='https://google.com'
+							/>
+							<ReadMore href={"https://google.com"} />
+						</PostInfo>
+					</Post>
+					<Post>
+						<Thumbnail
+							src={nine}
+							css={post}
+							href={"https://google.com"}
+							alt={"me"}
+						/>
+						<PostInfo>
+							<Date date={"Mar 4, 2019"} head={false} />
+							<h2 className={post.singlePostHead}>
+								Fashion
+							</h2>
+							<TitlePreview
+								title={"New Post"}
+								preview={
+									"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+								}
+								href='https://google.com'
+							/>
+							<ReadMore href={"https://google.com"} />
+						</PostInfo>
+					</Post>
+					<Post>
+						<Thumbnail
+							src={nine}
+							css={post}
+							href={"https://google.com"}
+							alt={"me"}
+						/>
+						<PostInfo>
+							<Date date={"Mar 4, 2019"} head={false} />
+							<h2 className={post.singlePostHead}>
+								Fashion
+							</h2>
+							<TitlePreview
+								title={"New Post"}
+								preview={
+									"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+								}
+								href='https://google.com'
+							/>
+							<ReadMore href={"https://google.com"} />
+						</PostInfo>
+					</Post>
+				</PostFlex>
+			</PostWrap>
 			<section className={authCard.container}>
 				<AuthCard
 					name={"Davitti Vegan"}
@@ -237,5 +299,3 @@ function Home() {
 		</Container>
 	);
 }
-
-export default Home;
