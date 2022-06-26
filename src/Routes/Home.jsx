@@ -31,6 +31,7 @@ import travel from "components/Reuse/CSS/travel.module.css";
 import health from "components/Reuse/CSS/health.module.css";
 import post from "components/Reuse/CSS/post.module.css";
 import authCard from "components/AuthorCard/authCard.module.css";
+import Grid from "components/Reuse/Grid";
 
 export default function Home() {
 	window.scrollTo(0, 0);
@@ -45,56 +46,97 @@ export default function Home() {
 					description='Lorem ipsum dolor sit amet adipisicing elit.'
 				/>
 				<Margin>
-					<TitlePreview
-						title={
-							"That Which Does Not Kill Us Makes Us Stronger"
-						}
-						preview={
-							"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius et non aliquam dolor facere quam ducimus officia perspiciatis numquam assumenda."
-						}
-						href={"https://google.com"}
-					/>
-					<ReadMore />
+					<Grid>
+						<div className={travel.mid}>
+							<Margin>
+								<TitlePreview
+									title={
+										"That Which Does Not Kill Us Makes Us Stronger"
+									}
+									preview={
+										"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius et non aliquam dolor facere quam ducimus officia perspiciatis numquam assumenda."
+									}
+									href={"https://google.com"}
+								/>
+								<ReadMore />
+								<Margin>
+									<Thumbnail
+										src={five}
+										css={post}
+										href={"https://google.com"}
+									/>
+								</Margin>
+							</Margin>
+						</div>
+						{/* For Widths Less than 1024px */}
+						<div className={travel.flexRow}>
+							<div>
+								<Thumbnail
+									src={six}
+									css={post}
+									href={"https://google.com"}
+								/>
+								<TitlePreview
+									cssWrap={travel.wrapTp}
+									cssTitle={travel.title}
+									cssPreview={travel.postPreview}
+									title={
+										"He Who Has a Why to Live Can Bear Almost Any Anything"
+									}
+									href={"https://google.com"}
+								/>
+							</div>
+							<div>
+								<Thumbnail
+									src={seven}
+									css={post}
+									href={"https://google.com"}
+								/>
+								<TitlePreview
+									cssWrap={travel.wrapTp}
+									cssTitle={travel.title}
+									cssPreview={travel.postPreview}
+									title={
+										"We Are All in the Gutter, but Some of Us Are Looking at the Stars"
+									}
+									href={"https://google.com"}
+								/>
+							</div>
+						</div>
+						<div className={travel.left}>
+							<Thumbnail
+								src={six}
+								css={post}
+								href={"https://google.com"}
+							/>
+							<TitlePreview
+								cssWrap={travel.wrapTp}
+								cssTitle={travel.title}
+								cssPreview={travel.postPreview}
+								title={
+									"He Who Has a Why to Live Can Bear Almost Any Anything"
+								}
+								href={"https://google.com"}
+							/>
+						</div>
+						<div className={travel.right}>
+							<TitlePreview
+								cssWrap={travel.wrapTp}
+								cssTitle={travel.title}
+								cssPreview={travel.postPreview}
+								title={
+									"We Are All in the Gutter, but Some of Us Are Looking at the Stars"
+								}
+								href={"https://google.com"}
+							/>
+							<Thumbnail
+								src={seven}
+								css={post}
+								href={"https://google.com"}
+							/>
+						</div>
+					</Grid>
 				</Margin>
-				<Thumbnail
-					src={five}
-					css={post}
-					href={"https://google.com"}
-				/>
-				<div className={travel.flexRow}>
-					<div>
-						<Thumbnail
-							src={six}
-							css={post}
-							href={"https://google.com"}
-						/>
-						<TitlePreview
-							cssWrap={travel.wrapTp}
-							cssTitle={travel.title}
-							cssPreview={travel.postPreview}
-							title={
-								"He Who Has a Why to Live Can Bear Almost Any Anything"
-							}
-							href={"https://google.com"}
-						/>
-					</div>
-					<div>
-						<Thumbnail
-							src={seven}
-							css={post}
-							href={"https://google.com"}
-						/>
-						<TitlePreview
-							cssWrap={travel.wrapTp}
-							cssTitle={travel.title}
-							cssPreview={travel.postPreview}
-							title={
-								"We Are All in the Gutter, but Some of Us Are Looking at the Stars"
-							}
-							href={"https://google.com"}
-						/>
-					</div>
-				</div>
 			</PostWrap>
 			{/* Health News */}
 			<PostWrap>

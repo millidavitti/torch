@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import three from "assets/images/three.jpg";
 
@@ -64,29 +64,11 @@ export default function EditorsPick() {
 			),
 		);
 	}
-	const testRef = useRef();
-	useEffect(() => {
-		const nav = testRef.current;
-		const navHeight = nav.getBoundingClientRect().height;
-		// console.log(nav, navHeight);
-
-		const navObserver = new IntersectionObserver(navFunc, {
-			root: null,
-			threshold: 0.05,
-			// rootMargin: `10px`,
-		});
-		navObserver.observe(nav);
-	}, []);
-
-	function navFunc(entries) {
-		const [entry] = entries;
-		// console.log(entry);
-	}
 
 	const pick = picks.find((pick) => pick.id === idd);
 
 	return (
-		<section ref={testRef} className={editors.editorsPick}>
+		<section className={editors.editorsPick}>
 			<SectionHeader
 				text={`Editor's Pick`}
 				description='Lorem ipsum dolor sit amet adipisicing elit.'

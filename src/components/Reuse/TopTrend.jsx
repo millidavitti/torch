@@ -1,8 +1,8 @@
 import React from "react";
-import category from "components/Reuse/CSS/category.module.css";
+import trend from "components/Reuse/CSS/trend.module.css";
 function TopTrend({ children }) {
 	return (
-		<section className={category.topTrending}>
+		<section className={trend.topTrending}>
 			<h2>Top Trending</h2>
 			{children}
 		</section>

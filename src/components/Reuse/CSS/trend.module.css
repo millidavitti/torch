@@ -3,6 +3,12 @@
 	padding: 0 3%;
 }
 
+.date {
+	font-size: 0.8rem;
+	color: var(--highlight);
+	font-weight: normal;
+}
+
 .topTrending > h2 {
 	margin-top: 20px;
 	border-bottom: 1px solid var(--secondary);
@@ -11,10 +17,9 @@
 }
 
 .trendingPosts {
-	display: grid;
-	gap: 10px;
+	display: flex;
+	gap: 20px;
 	padding: 10px 0;
-	grid-template-columns: 1fr 4fr;
 	border-bottom: 2px dotted var(--secondary);
 	margin-top: 10px;
 }
@@ -23,15 +28,14 @@
 	font-size: 1rem;
 }
 
-.trendingPosts .thumb {
+.thumb {
 	width: 70px;
 	height: 70px;
 
-	margin: 0;
 	object-fit: cover;
 }
 
-.trendingPosts .wrapTp {
+.wrapTp {
 	margin: auto 0;
 	margin-bottom: 5px;
 	gap: 0;

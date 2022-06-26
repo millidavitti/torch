@@ -22,7 +22,15 @@
 }
 @media screen and (min-width: 770px) {
 	.max {
-		max-width: 1000px;
+		max-width: 1200px;
 		margin: 0 auto;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(12, 1fr);
+		gap: 10px;
 	}
 }

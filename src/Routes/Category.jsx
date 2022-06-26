@@ -6,7 +6,6 @@ import AuthCard from "components/AuthorCard/AuthCard";
 import Author from "components/Reuse/Author";
 import Container from "components/Reuse/Container";
 // Css
-import category from "components/Reuse/CSS/category.module.css";
 import post from "components/Reuse/CSS/post.module.css";
 import Date from "components/Reuse/Date";
 // Component
@@ -189,13 +188,13 @@ export default function Category() {
 				}
 			/>
 			<TopTrend>
-				<TrendingPost css={category} />
-				<TrendingPost css={category} />
-				<TrendingPost css={category} />
-				<TrendingPost css={category} />
-				<TrendingPost css={category} />
-				<TrendingPost css={category} />
-				<TrendingPost css={category} />
+				<TrendingPost />
+				<TrendingPost />
+				<TrendingPost />
+				<TrendingPost />
+				<TrendingPost />
+				<TrendingPost />
+				<TrendingPost />
 			</TopTrend>
 		</Container>
 	);

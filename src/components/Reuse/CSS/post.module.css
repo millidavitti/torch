@@ -101,6 +101,10 @@
 	padding: 10px 7px;
 }
 
+.test {
+	display: none;
+}
+
 @media screen and (min-width: 500px) {
 	.flex {
 		display: grid;
