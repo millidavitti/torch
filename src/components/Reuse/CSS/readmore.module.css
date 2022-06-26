@@ -1,38 +1,38 @@
 .readMore {
-  width: 120px;
-  padding: 3px 10px;
-  font-size: 1rem;
-  background: none;
-  font-weight: 600;
-  color: var(--highlight);
-  text-align: left;
-  border: 1px solid var(--highlight);
-  position: relative;
-  cursor: pointer;
+	width: 120px;
+	padding: 3px 10px;
+	font-size: 1rem;
+	background: none;
+	font-weight: 600;
+	color: var(--highlight);
+	text-align: left;
+	border: 1px solid var(--highlight);
+	position: relative;
+	cursor: pointer;
 }
 
 .readMore a {
-  position: absolute;
-  inset: 0;
+	position: absolute;
+	inset: 0;
 }
 
 .readMore::after {
-  content: "";
-  width: 30px;
-  height: 2px;
-  margin: 10px 0;
-  background-color: var(--highlight);
-  position: absolute;
-  left: 120px;
-  top: 10%;
-  transform: translateX(-50%);
+	content: "";
+	width: 30px;
+	height: 2px;
+	margin: 10px 0;
+	background-color: var(--highlight);
+	position: absolute;
+	left: 120px;
+	top: 10%;
+	transform: translateX(-50%);
 }
 
 .readMore:hover {
-  border: 1px solid black;
-  color: black;
+	border: 1px solid var(--secondary);
+	color: var(--secondary);
 }
 
 .readMore:hover::after {
-  background-color: black;
+	background-color: var(--secondary);
 }

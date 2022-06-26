@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Category from "Routes/Category";
 import Home from "Routes/Home";
 import Footer from "components/Footer/Footer";
+import PostPage from "Routes/PostPage";
 
 export default function App() {
 	return (

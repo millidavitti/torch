@@ -4,7 +4,7 @@ import footer from "components/Footer/footer.module.css";
 import { ReactComponent as Logo } from "assets/logo.svg";
 import Socials from "components/Reuse/Socials";
 import { Link } from "react-router-dom";
-function Footer() {
+export default function Footer() {
 	return (
 		<footer className={footer.footer}>
 			<div className={footer.contact}>
@@ -17,12 +17,14 @@ function Footer() {
 					<figcaption>+234 805 9739 872</figcaption>
 				</figure>
 			</div>
-			<Link to={"/"} style={{ cursor: "pointer" }}>
-				<Logo className={footer.logo} />
+			<Link
+				to={"/"}
+				className={footer.logo}
+				style={{ cursor: "pointer" }}
+			>
+				<Logo />
 			</Link>
 			<Socials css={footer} showFacebook={true} showTwitter={true} />
 		</footer>
 	);
 }
-
-export default Footer;

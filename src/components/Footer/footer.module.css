@@ -4,7 +4,7 @@
 	min-height: 150px;
 	padding: 0 3%;
 	margin-top: 40px;
-	/* background-color: crimson; */
+	color: var(--secondary);
 }
 .mail,
 .phoneNum {
@@ -31,6 +31,7 @@ figcaption {
 
 .logo {
 	margin: auto;
+	fill: var(--secondary);
 }
 
 .socials {
