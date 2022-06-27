@@ -31,7 +31,6 @@ import ten from "assets/images/ten.jpg";
 import travel from "components/Reuse/CSS/travel.module.css";
 import health from "components/Reuse/CSS/health.module.css";
 import post from "components/Reuse/CSS/post.module.css";
-import reuse from "components/Reuse/reuse.module.css";
 import authCard from "components/AuthorCard/authCard.module.css";
 import Grid from "components/Reuse/Grid";
 import TopTrend from "components/Reuse/TopTrend";

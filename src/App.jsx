@@ -12,7 +12,8 @@ export default function App() {
 			<Header />
 			<Routes>
 				<Route path='/' element={<Home />} />
-				<Route path='category' element={<PostPage />} />
+				<Route path='category' element={<Category />} />
+				<Route path='postpage' element={<PostPage />} />
 				<Route path='*' element='What are you doing here?' />
 			</Routes>
 			<Footer />

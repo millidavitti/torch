@@ -525,6 +525,11 @@ export default function PostPage() {
 									<TrendingPost />
 									<TrendingPost />
 									<TrendingPost />
+									<TrendingPost />
+									<TrendingPost />
+									<TrendingPost />
+									<TrendingPost />
+									<TrendingPost />
 								</TopTrend>
 							</Sticky>
 						</Sidebar>
