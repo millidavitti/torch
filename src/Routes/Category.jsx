@@ -19,6 +19,10 @@ import TopTrend from "components/Reuse/TopTrend";
 import TrendingPost from "components/Reuse/TrendingPost";
 import Thumbnail from "components/Reuse/Thumbnail";
 import React from "react";
+import Grid from "components/Reuse/Grid";
+import GridLeft from "components/Reuse/GridLeft";
+import Sidebar from "components/Reuse/Sidebar";
+import Sticky from "components/Reuse/Sticky";
 
 export default function Category() {
 	return (
@@ -58,144 +62,362 @@ export default function Category() {
 					</PostInfo>
 				</PostFlex>
 			</PostWrap>
-			<PostWrap>
-				<PostFlex>
-					<Post>
-						<Thumbnail
-							src={four}
-							css={post}
-							href={"https://google.com"}
-							alt={"me"}
-						/>
-						<PostInfo>
-							<Date date={"Mar 4, 2019"} head={false} />
-							<h2 className={post.singlePostHead}>
-								Fashion
-							</h2>
-							<TitlePreview
-								title={"New Post"}
-								preview={
-									"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
-								}
-								href='https://google.com'
-							/>
-							<ReadMore href={"https://google.com"} />
-						</PostInfo>
-					</Post>
-					<Post>
-						<Thumbnail
-							src={four}
-							css={post}
-							href={"https://google.com"}
-							alt={"me"}
-						/>
-						<PostInfo>
-							<Date date={"Mar 4, 2019"} head={false} />
-							<h2 className={post.singlePostHead}>
-								Fashion
-							</h2>
-							<TitlePreview
-								cssWrap={post.wrapTp}
-								cssTitle={post.title}
-								cssPreview={post.postPreview}
-								title={"New Post"}
-								preview={
-									"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
-								}
-								href='https://google.com'
-							/>
-							<ReadMore href={"https://google.com"} />
-						</PostInfo>
-					</Post>
-					<Post>
-						<Thumbnail
-							src={four}
-							css={post}
-							href={"https://google.com"}
-							alt={"me"}
-						/>
-						<PostInfo>
-							<Date date={"Mar 4, 2019"} head={false} />
-							<h2 className={post.singlePostHead}>
-								Fashion
-							</h2>
-							<TitlePreview
-								title={"New Post"}
-								preview={
-									"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
-								}
-								href='https://google.com'
-							/>
-							<ReadMore href={"https://google.com"} />
-						</PostInfo>
-					</Post>
-					<Post>
-						<Thumbnail
-							src={four}
-							css={post}
-							href={"https://google.com"}
-							alt={"me"}
-						/>
-						<PostInfo>
-							<Date date={"Mar 4, 2019"} head={false} />
-							<h2 className={post.singlePostHead}>
-								Fashion
-							</h2>
-							<TitlePreview
-								cssWrap={post.wrapTp}
-								cssTitle={post.title}
-								cssPreview={post.postPreview}
-								title={"New Post"}
-								preview={
-									"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
-								}
-								href='https://google.com'
-							/>
-							<ReadMore href={"https://google.com"} />
-						</PostInfo>
-					</Post>
-					<Post>
-						<Thumbnail
-							src={four}
-							css={post}
-							href={"https://google.com"}
-							alt={"me"}
-						/>
-						<PostInfo>
-							<Date date={"Mar 4, 2019"} head={false} />
-							<h2 className={post.singlePostHead}>
-								Fashion
-							</h2>
-							<TitlePreview
-								cssWrap={post.wrapTp}
-								cssTitle={post.title}
-								cssPreview={post.postPreview}
-								title={"New Post"}
-								preview={
-									"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
-								}
-								href='https://google.com'
-							/>
-							<ReadMore href={"https://google.com"} />
-						</PostInfo>
-					</Post>
-				</PostFlex>
-			</PostWrap>
-			<AuthCard
-				name={"Donald Abua"}
-				description={
-					"Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quas veniam quia aspernatur culpa quibusdam!"
-				}
-			/>
-			<TopTrend>
-				<TrendingPost />
-				<TrendingPost />
-				<TrendingPost />
-				<TrendingPost />
-				<TrendingPost />
-				<TrendingPost />
-				<TrendingPost />
-			</TopTrend>
+			<Grid>
+				<GridLeft>
+					<PostWrap>
+						<PostFlex>
+							<Post>
+								<Thumbnail
+									src={four}
+									css={post}
+									href={"https://google.com"}
+									alt={"me"}
+								/>
+								<PostInfo>
+									<Date
+										date={"Mar 4, 2019"}
+										head={false}
+									/>
+									<h2
+										className={
+											post.singlePostHead
+										}
+									>
+										Fashion
+									</h2>
+									<TitlePreview
+										title={"New Post"}
+										preview={
+											"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+										}
+										href='https://google.com'
+									/>
+									<ReadMore
+										href={"https://google.com"}
+									/>
+								</PostInfo>
+							</Post>
+							<Post>
+								<Thumbnail
+									src={four}
+									css={post}
+									href={"https://google.com"}
+									alt={"me"}
+								/>
+								<PostInfo>
+									<Date
+										date={"Mar 4, 2019"}
+										head={false}
+									/>
+									<h2
+										className={
+											post.singlePostHead
+										}
+									>
+										Fashion
+									</h2>
+									<TitlePreview
+										cssWrap={post.wrapTp}
+										cssTitle={post.title}
+										cssPreview={post.postPreview}
+										title={"New Post"}
+										preview={
+											"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+										}
+										href='https://google.com'
+									/>
+									<ReadMore
+										href={"https://google.com"}
+									/>
+								</PostInfo>
+							</Post>
+							<Post>
+								<Thumbnail
+									src={four}
+									css={post}
+									href={"https://google.com"}
+									alt={"me"}
+								/>
+								<PostInfo>
+									<Date
+										date={"Mar 4, 2019"}
+										head={false}
+									/>
+									<h2
+										className={
+											post.singlePostHead
+										}
+									>
+										Fashion
+									</h2>
+									<TitlePreview
+										title={"New Post"}
+										preview={
+											"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+										}
+										href='https://google.com'
+									/>
+									<ReadMore
+										href={"https://google.com"}
+									/>
+								</PostInfo>
+							</Post>
+							<Post>
+								<Thumbnail
+									src={four}
+									css={post}
+									href={"https://google.com"}
+									alt={"me"}
+								/>
+								<PostInfo>
+									<Date
+										date={"Mar 4, 2019"}
+										head={false}
+									/>
+									<h2
+										className={
+											post.singlePostHead
+										}
+									>
+										Fashion
+									</h2>
+									<TitlePreview
+										cssWrap={post.wrapTp}
+										cssTitle={post.title}
+										cssPreview={post.postPreview}
+										title={"New Post"}
+										preview={
+											"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+										}
+										href='https://google.com'
+									/>
+									<ReadMore
+										href={"https://google.com"}
+									/>
+								</PostInfo>
+							</Post>
+							<Post>
+								<Thumbnail
+									src={four}
+									css={post}
+									href={"https://google.com"}
+									alt={"me"}
+								/>
+								<PostInfo>
+									<Date
+										date={"Mar 4, 2019"}
+										head={false}
+									/>
+									<h2
+										className={
+											post.singlePostHead
+										}
+									>
+										Fashion
+									</h2>
+									<TitlePreview
+										cssWrap={post.wrapTp}
+										cssTitle={post.title}
+										cssPreview={post.postPreview}
+										title={"New Post"}
+										preview={
+											"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+										}
+										href='https://google.com'
+									/>
+									<ReadMore
+										href={"https://google.com"}
+									/>
+								</PostInfo>
+							</Post>
+							<Post>
+								<Thumbnail
+									src={four}
+									css={post}
+									href={"https://google.com"}
+									alt={"me"}
+								/>
+								<PostInfo>
+									<Date
+										date={"Mar 4, 2019"}
+										head={false}
+									/>
+									<h2
+										className={
+											post.singlePostHead
+										}
+									>
+										Fashion
+									</h2>
+									<TitlePreview
+										title={"New Post"}
+										preview={
+											"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+										}
+										href='https://google.com'
+									/>
+									<ReadMore
+										href={"https://google.com"}
+									/>
+								</PostInfo>
+							</Post>
+							<Post>
+								<Thumbnail
+									src={four}
+									css={post}
+									href={"https://google.com"}
+									alt={"me"}
+								/>
+								<PostInfo>
+									<Date
+										date={"Mar 4, 2019"}
+										head={false}
+									/>
+									<h2
+										className={
+											post.singlePostHead
+										}
+									>
+										Fashion
+									</h2>
+									<TitlePreview
+										cssWrap={post.wrapTp}
+										cssTitle={post.title}
+										cssPreview={post.postPreview}
+										title={"New Post"}
+										preview={
+											"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+										}
+										href='https://google.com'
+									/>
+									<ReadMore
+										href={"https://google.com"}
+									/>
+								</PostInfo>
+							</Post>
+							<Post>
+								<Thumbnail
+									src={four}
+									css={post}
+									href={"https://google.com"}
+									alt={"me"}
+								/>
+								<PostInfo>
+									<Date
+										date={"Mar 4, 2019"}
+										head={false}
+									/>
+									<h2
+										className={
+											post.singlePostHead
+										}
+									>
+										Fashion
+									</h2>
+									<TitlePreview
+										title={"New Post"}
+										preview={
+											"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+										}
+										href='https://google.com'
+									/>
+									<ReadMore
+										href={"https://google.com"}
+									/>
+								</PostInfo>
+							</Post>
+							<Post>
+								<Thumbnail
+									src={four}
+									css={post}
+									href={"https://google.com"}
+									alt={"me"}
+								/>
+								<PostInfo>
+									<Date
+										date={"Mar 4, 2019"}
+										head={false}
+									/>
+									<h2
+										className={
+											post.singlePostHead
+										}
+									>
+										Fashion
+									</h2>
+									<TitlePreview
+										cssWrap={post.wrapTp}
+										cssTitle={post.title}
+										cssPreview={post.postPreview}
+										title={"New Post"}
+										preview={
+											"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+										}
+										href='https://google.com'
+									/>
+									<ReadMore
+										href={"https://google.com"}
+									/>
+								</PostInfo>
+							</Post>
+							<Post>
+								<Thumbnail
+									src={four}
+									css={post}
+									href={"https://google.com"}
+									alt={"me"}
+								/>
+								<PostInfo>
+									<Date
+										date={"Mar 4, 2019"}
+										head={false}
+									/>
+									<h2
+										className={
+											post.singlePostHead
+										}
+									>
+										Fashion
+									</h2>
+									<TitlePreview
+										cssWrap={post.wrapTp}
+										cssTitle={post.title}
+										cssPreview={post.postPreview}
+										title={"New Post"}
+										preview={
+											"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+										}
+										href='https://google.com'
+									/>
+									<ReadMore
+										href={"https://google.com"}
+									/>
+								</PostInfo>
+							</Post>
+						</PostFlex>
+					</PostWrap>
+					<AuthCard
+						name={"Donald Abua"}
+						description={
+							"Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quas veniam quia aspernatur culpa quibusdam!"
+						}
+					/>
+				</GridLeft>
+
+				<Sidebar>
+					<Sticky>
+						<TopTrend>
+							<TrendingPost />
+							<TrendingPost />
+							<TrendingPost />
+							<TrendingPost />
+							<TrendingPost />
+							<TrendingPost />
+							<TrendingPost />
+						</TopTrend>
+					</Sticky>
+				</Sidebar>
+			</Grid>
 		</Container>
 	);
 }

@@ -33,4 +33,17 @@
 		grid-template-columns: repeat(12, 1fr);
 		gap: 10px;
 	}
+
+	.left {
+		grid-column: 1/9;
+	}
+
+	.sidebar {
+		grid-column: 9/-1;
+	}
+
+	.stick {
+		position: sticky;
+		top: 0;
+	}
 }

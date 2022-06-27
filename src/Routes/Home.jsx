@@ -17,6 +17,7 @@ import PostFlex from "components/Reuse/PostFlex";
 import Thumbnail from "components/Reuse/Thumbnail";
 import Margin from "components/Reuse/Margin";
 import Post from "components/Reuse/Post";
+import TrendingPost from "components/Reuse/TrendingPost";
 
 // Assets
 import five from "assets/images/five.jpg";
@@ -30,8 +31,13 @@ import ten from "assets/images/ten.jpg";
 import travel from "components/Reuse/CSS/travel.module.css";
 import health from "components/Reuse/CSS/health.module.css";
 import post from "components/Reuse/CSS/post.module.css";
+import reuse from "components/Reuse/reuse.module.css";
 import authCard from "components/AuthorCard/authCard.module.css";
 import Grid from "components/Reuse/Grid";
+import TopTrend from "components/Reuse/TopTrend";
+import Sticky from "components/Reuse/Sticky";
+import GridLeft from "components/Reuse/GridLeft";
+import Sidebar from "components/Reuse/Sidebar";
 
 export default function Home() {
 	window.scrollTo(0, 0);
@@ -228,107 +234,153 @@ export default function Home() {
 						"Lorem ipsum dolor sit amet adipisicing elit."
 					}
 				/>
-				<PostFlex>
-					<div className={post.thumbWrap}>
-						<img src={nine} alt='' className={post.thumb} />
-						<a href={"https://google.com"}> </a>
-						<Author
-							cssWrap={post.wrapAuth}
-							cssAvatar={post.avatar}
-							cssName={post.name}
-							name={"Vegan Bake"}
-							src={ten}
-						/>
-					</div>
-					<PostInfo>
-						<Date
-							css={post.date}
-							date={"Dec 16, 3020"}
-							head={true}
-						/>
-						<TitlePreview
-							title={
-								"The Greatest Thing in The World is to Know How to Belong to Oneself"
-							}
-							preview={
-								"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius et non aliquam dolor numquam assumenda."
-							}
-							href={"https://google.com"}
-						/>
-						<ReadMore href={"https://google.com"} />
-					</PostInfo>
-				</PostFlex>
-			</PostWrap>
-			{/* Others */}
-			<PostWrap>
-				<PostFlex>
-					<Post>
-						<Thumbnail
-							src={nine}
-							css={post}
-							href={"https://google.com"}
-							alt={"me"}
-						/>
-						<PostInfo>
-							<Date date={"Mar 4, 2019"} head={false} />
-							<h2 className={post.singlePostHead}>
-								Fashion
-							</h2>
-							<TitlePreview
-								title={"New Post"}
-								preview={
-									"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
-								}
-								href='https://google.com'
-							/>
-							<ReadMore href={"https://google.com"} />
-						</PostInfo>
-					</Post>
-					<Post>
-						<Thumbnail
-							src={nine}
-							css={post}
-							href={"https://google.com"}
-							alt={"me"}
-						/>
-						<PostInfo>
-							<Date date={"Mar 4, 2019"} head={false} />
-							<h2 className={post.singlePostHead}>
-								Fashion
-							</h2>
-							<TitlePreview
-								title={"New Post"}
-								preview={
-									"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
-								}
-								href='https://google.com'
-							/>
-							<ReadMore href={"https://google.com"} />
-						</PostInfo>
-					</Post>
-					<Post>
-						<Thumbnail
-							src={nine}
-							css={post}
-							href={"https://google.com"}
-							alt={"me"}
-						/>
-						<PostInfo>
-							<Date date={"Mar 4, 2019"} head={false} />
-							<h2 className={post.singlePostHead}>
-								Fashion
-							</h2>
-							<TitlePreview
-								title={"New Post"}
-								preview={
-									"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
-								}
-								href='https://google.com'
-							/>
-							<ReadMore href={"https://google.com"} />
-						</PostInfo>
-					</Post>
-				</PostFlex>
+				<Grid>
+					<GridLeft>
+						<PostFlex>
+							<div className={post.thumbWrap}>
+								<img
+									src={nine}
+									alt=''
+									className={post.thumb}
+								/>
+								<a href={"https://google.com"}> </a>
+								<Author
+									cssWrap={post.wrapAuth}
+									cssAvatar={post.avatar}
+									cssName={post.name}
+									name={"Vegan Bake"}
+									src={ten}
+								/>
+							</div>
+							<PostInfo>
+								<Date
+									css={post.date}
+									date={"Dec 16, 3020"}
+									head={true}
+								/>
+								<TitlePreview
+									title={
+										"The Greatest Thing in The World is to Know How to Belong to Oneself"
+									}
+									preview={
+										"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius et non aliquam dolor numquam assumenda."
+									}
+									href={"https://google.com"}
+								/>
+								<ReadMore href={"https://google.com"} />
+							</PostInfo>
+						</PostFlex>
+
+						{/* Others */}
+						<PostFlex>
+							<Post>
+								<Thumbnail
+									src={nine}
+									css={post}
+									href={"https://google.com"}
+									alt={"me"}
+								/>
+								<PostInfo>
+									<Date
+										date={"Mar 4, 2019"}
+										head={false}
+									/>
+									<h2
+										className={
+											post.singlePostHead
+										}
+									>
+										Fashion
+									</h2>
+									<TitlePreview
+										title={"New Post"}
+										preview={
+											"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+										}
+										href='https://google.com'
+									/>
+									<ReadMore
+										href={"https://google.com"}
+									/>
+								</PostInfo>
+							</Post>
+							<Post>
+								<Thumbnail
+									src={nine}
+									css={post}
+									href={"https://google.com"}
+									alt={"me"}
+								/>
+								<PostInfo>
+									<Date
+										date={"Mar 4, 2019"}
+										head={false}
+									/>
+									<h2
+										className={
+											post.singlePostHead
+										}
+									>
+										Fashion
+									</h2>
+									<TitlePreview
+										title={"New Post"}
+										preview={
+											"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+										}
+										href='https://google.com'
+									/>
+									<ReadMore
+										href={"https://google.com"}
+									/>
+								</PostInfo>
+							</Post>
+							<Post>
+								<Thumbnail
+									src={nine}
+									css={post}
+									href={"https://google.com"}
+									alt={"me"}
+								/>
+								<PostInfo>
+									<Date
+										date={"Mar 4, 2019"}
+										head={false}
+									/>
+									<h2
+										className={
+											post.singlePostHead
+										}
+									>
+										Fashion
+									</h2>
+									<TitlePreview
+										title={"New Post"}
+										preview={
+											"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
+										}
+										href='https://google.com'
+									/>
+									<ReadMore
+										href={"https://google.com"}
+									/>
+								</PostInfo>
+							</Post>
+						</PostFlex>
+					</GridLeft>
+					{/* Sidebar */}
+					<Sidebar>
+						<Sticky>
+							<TopTrend>
+								<TrendingPost />
+								<TrendingPost />
+								<TrendingPost />
+								<TrendingPost />
+								<TrendingPost />
+							</TopTrend>
+						</Sticky>
+					</Sidebar>
+				</Grid>
 			</PostWrap>
 			<section className={authCard.container}>
 				<AuthCard

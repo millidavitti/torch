@@ -49,6 +49,10 @@
 	.flexRow {
 		display: none;
 	}
+	.left,
+	.right {
+		display: initial;
+	}
 	.left {
 		grid-column: 1/4;
 		grid-row: 1/2;
