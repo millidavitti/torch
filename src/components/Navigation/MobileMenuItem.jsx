@@ -3,17 +3,10 @@ import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
 import DropMenu from "./DropMenu";
 
-function MobileMenuItem(props) {
+export default function MobileMenuItem(props) {
 	const [showDrop, setShowDrop] = useState(false);
 
-	const { to, text, closeMenu, menu, isDropDown } = props;
-
-	function drop(event) {
-		const { target } = event;
-		const targetMenu = target.closest("li[data-menu='2']");
-		if (!targetMenu) return;
-		setShowDrop((pre) => !pre);
-	}
+	const { to, text, closeMenu, isDropDown } = props;
 
 	const pStyle = {
 		color: "var(--secondary)",
@@ -21,24 +14,30 @@ function MobileMenuItem(props) {
 		cursor: "pointer",
 	};
 
+	// Mock Categories
 	const obj = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
 
 	const drops = obj.map(({ id }) => (
 		<DropMenu key={id} closeMenu={closeMenu} />
 	));
+	//
 
 	return (
-		<li className='mobile-menu-item' data-menu={menu} onClick={drop}>
+		<li className='mobile-menu-item'>
 			{isDropDown ? (
-				<p style={pStyle}>{text}</p>
+				<p
+					style={pStyle}
+					onClick={() => setShowDrop((pre) => !pre)}
+				>
+					{text}
+				</p>
 			) : (
 				<Link to={to} onClick={closeMenu}>
 					{text}
 				</Link>
 			)}
+			{/* For Dropdown Menus */}
 			{showDrop && <DropDown>{drops}</DropDown>}
 		</li>
 	);
 }
-
-export default MobileMenuItem;

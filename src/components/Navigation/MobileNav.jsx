@@ -27,7 +27,6 @@ export default function MobileNav(props) {
 				to={to}
 				text={text}
 				closeMenu={closeMenu}
-				menu={id}
 				isDropDown={isDropDown}
 			/>
 		);
@@ -46,8 +45,14 @@ export default function MobileNav(props) {
 					<div className='logo-socials'>
 						<Logo fill='#273136' width='60px' height='60px' />
 						<div>
-							<FacebookLogo size={30} color='#000000' />
-							<TwitterLogo size={30} color='#000000' />
+							<FacebookLogo
+								size={30}
+								color='var(--secondary)'
+							/>
+							<TwitterLogo
+								size={30}
+								color='var(--secondary)'
+							/>
 						</div>
 					</div>
 					<XCircle

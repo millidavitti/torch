@@ -4,9 +4,7 @@
 	position: relative;
 }
 .singlePost {
-	/* padding: 0 3%; */
 	margin: 10px 0;
-	/* outline: auto; */
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.158);
 }
 
