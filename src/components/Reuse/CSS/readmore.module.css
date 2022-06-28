@@ -11,9 +11,9 @@
 	cursor: pointer;
 }
 
+.readMore a:visited,
 .readMore a {
-	position: absolute;
-	inset: 0;
+	color: var(--highlight);
 }
 
 .readMore::after {
@@ -23,7 +23,7 @@
 	margin: 10px 0;
 	background-color: var(--highlight);
 	position: absolute;
-	left: 120px;
+	left: 110px;
 	top: 10%;
 	transform: translateX(-50%);
 }

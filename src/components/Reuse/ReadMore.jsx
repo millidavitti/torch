@@ -1,14 +1,11 @@
 import React from "react";
-import css from "components/Reuse/CSS/readmore.module.css";
+import readmore from "components/Reuse/CSS/readmore.module.css";
+import { Link } from "react-router-dom";
 
-function ReadMore(props) {
-  const { href } = props;
-  return (
-    <button className={css.readMore}>
-      <a href={href}> </a>
-      Read More
-    </button>
-  );
+export default function ReadMore({ href }) {
+	return (
+		<Link className={readmore.readMore} to='post'>
+			Read More
+		</Link>
+	);
 }
-
-export default ReadMore;

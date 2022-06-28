@@ -24,6 +24,7 @@ import TopTrend from "components/Reuse/TopTrend";
 import TrendingPost from "components/Reuse/TrendingPost";
 
 export default function PostPage() {
+	window.scrollTo(0, 0);
 	return (
 		<Container>
 			<Margin>
