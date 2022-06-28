@@ -80,6 +80,7 @@
 .title {
 	color: var(--secondary);
 	position: relative;
+	font-size: 1.2rem;
 }
 .title a {
 	position: absolute;
@@ -99,11 +100,7 @@
 	padding: 10px 7px;
 }
 
-.test {
-	display: none;
-}
-
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 600px) {
 	.flex {
 		display: grid;
 		grid-template-columns: 1fr 1fr;

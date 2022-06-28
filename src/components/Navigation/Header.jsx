@@ -8,33 +8,30 @@ import { ReactComponent as Logo } from "assets/logo.svg";
 
 export default function Header() {
 	const menuItems = [
-		{ id: 1, to: "/", text: "Home", isDropDown: false, isActive: true },
+		{ id: 1, to: "home", text: "Home", isDropDown: false, isActive: true },
 		{
 			id: 2,
 			to: "category",
 			text: "Categories",
 			isDropDown: true,
-			isActive: false,
 		},
 		{
 			id: 3,
 			to: "/",
 			text: "Author",
 			isDropDown: false,
-			isActive: false,
 		},
 		{
 			id: 4,
 			to: "/",
 			text: "Archive",
 			isDropDown: false,
-			isActive: false,
 		},
 	];
 
 	return (
 		<header>
-			<Link to='/'>
+			<Link to='home'>
 				<Logo className='logo' />
 			</Link>
 			<MobileNav Logo={Logo} menuItems={menuItems} />

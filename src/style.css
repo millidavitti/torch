@@ -52,10 +52,23 @@ header {
 	flex-flow: column;
 	padding: 10px;
 	gap: 20px;
-	/* outline: auto; */
+
 	max-height: 100px;
 	overflow: auto;
 	background-color: white;
+}
+
+.drop-down::-webkit-scrollbar {
+	width: 3px;
+}
+
+.drop-down::-webkit-scrollbar-thumb {
+	background-color: var(--highlight);
+	border-radius: 10px;
+}
+
+.drop-down:hover::-webkit-scrollbar {
+	width: 10px;
 }
 
 .ham {
@@ -192,6 +205,7 @@ header {
 
 	.desk-menu-item:hover {
 		background-color: var(--highlight);
+		color: white;
 	}
 
 	.desk-socials {

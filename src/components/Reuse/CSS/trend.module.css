@@ -13,7 +13,7 @@
 }
 
 .scroll::-webkit-scrollbar-thumb {
-	background-color: rgba(0, 0, 0, 0.219);
+	background-color: var(--highlight);
 	border-radius: 5px;
 }
 
