@@ -188,6 +188,7 @@ header {
 		cursor: pointer;
 		color: var(--secondary);
 		transition: all 150ms ease-in;
+		position: relative;
 	}
 
 	.drop-down {

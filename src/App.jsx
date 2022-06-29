@@ -11,7 +11,7 @@ export default function App() {
 		<main className='container'>
 			<Header />
 			<Routes>
-				<Route path='home' element={<Home />} />
+				<Route path='/' element={<Home />} />
 				<Route path='category' element={<Category />} />
 				<Route path='post' element={<PostPage />} />
 				<Route path='*' element='What are you doing here?' />

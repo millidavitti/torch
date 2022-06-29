@@ -8,24 +8,37 @@ import { ReactComponent as Logo } from "assets/logo.svg";
 
 export default function Header() {
 	const menuItems = [
-		{ id: 1, to: "home", text: "Home", isDropDown: false, isActive: true },
+		{
+			id: 1,
+			to: "/",
+			text: "Home",
+			isDropDown: false,
+			drops: [],
+		},
 		{
 			id: 2,
 			to: "category",
 			text: "Categories",
 			isDropDown: true,
+			drops: [
+				{ id: 1, cat: "Fashion" },
+				{ id: 2, cat: "Travel" },
+				{ id: 3, cat: "Health" },
+			],
 		},
 		{
 			id: 3,
 			to: "/",
 			text: "Author",
 			isDropDown: false,
+			drops: [],
 		},
 		{
 			id: 4,
 			to: "/",
 			text: "Archive",
 			isDropDown: false,
+			drops: [],
 		},
 	];
 

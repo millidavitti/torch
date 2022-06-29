@@ -16,7 +16,6 @@
 .slide {
 	display: inline-block;
 	position: absolute;
-	/* outline: auto; */
 	margin: 20px 0;
 	height: fit-content;
 	transition: all 500ms cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -30,12 +29,12 @@
 }
 
 .contentInfo {
-	/* outline: auto; */
 	padding: 3%;
 }
 
 .date,
 h3,
+h2,
 h4 {
 	color: var(--secondary);
 }

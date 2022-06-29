@@ -18,7 +18,7 @@ export default function Footer() {
 				</figure>
 			</div>
 			<Link
-				to='home'
+				to='/'
 				className={footer.logo}
 				style={{ cursor: "pointer" }}
 			>

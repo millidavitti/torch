@@ -7,10 +7,10 @@ export default function DeskItems(props) {
 	const renderDeskItems = menuItems.map((item) => (
 		<DeskMenuItem
 			key={item.id}
-			id={item.id}
 			to={item.to}
 			text={item.text}
 			isDropDown={item.isDropDown}
+			drops={item.drops}
 		/>
 	));
 

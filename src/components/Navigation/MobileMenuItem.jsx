@@ -6,7 +6,7 @@ import DropMenu from "./DropMenu";
 export default function MobileMenuItem(props) {
 	const [showDrop, setShowDrop] = useState(false);
 
-	const { to, text, closeMenu, isDropDown } = props;
+	const { to, text, closeMenu, isDropDown, drops } = props;
 
 	const pStyle = {
 		color: "var(--secondary)",
@@ -14,30 +14,33 @@ export default function MobileMenuItem(props) {
 		cursor: "pointer",
 	};
 
-	// Mock Categories
-	const obj = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
-
-	const drops = obj.map(({ id }) => (
-		<DropMenu key={id} closeMenu={closeMenu} />
+	const rdrops = drops.map(({ id, cat }) => (
+		<DropMenu key={id} closeMenu={closeMenu} cat={cat} />
 	));
 	//
 
 	return (
-		<li className='mobile-menu-item'>
+		<li
+			style={{
+				display: "flex",
+				alignItem: "center",
+			}}
+		>
 			{isDropDown ? (
-				<p
-					style={pStyle}
-					onClick={() => setShowDrop((pre) => !pre)}
+				<div
+					className='desk-menu-item'
+					onMouseEnter={() => setShowDrop(true)}
+					onMouseLeave={() => setShowDrop(false)}
 				>
 					{text}
-				</p>
+					{/* For Dropdown Menus */}
+					{showDrop && <DropDown>{rdrops}</DropDown>}
+				</div>
 			) : (
-				<Link to={to} onClick={closeMenu}>
+				<Link className='desk-menu-item' to={to}>
 					{text}
 				</Link>
 			)}
-			{/* For Dropdown Menus */}
-			{showDrop && <DropDown>{drops}</DropDown>}
 		</li>
 	);
 }

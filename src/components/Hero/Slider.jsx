@@ -2,18 +2,24 @@ import React, { useEffect, useRef, useState } from "react";
 import { Circle } from "phosphor-react";
 import Slide from "components/Hero/Slide";
 
-function Slider(props) {
+export default function Slider(props) {
 	const { css } = props;
 	const slidesInfo = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
+	// Number Of Slides
 	const [max, setMax] = useState(0);
+	// Current Slide Position
 	const [currentSlide, setCurrentSlide] = useState(1);
+	// Actual Slides
 	const [slides, setSlides] = useState([]);
+	// Slide's DOM Refrence
 	const sld = useRef([]);
 
+	// Makes an array of slide's DOM refrences
 	function sldRefs(el) {
 		if (el && !sld.current.includes(el)) sld.current.push(el);
 	}
 
+	// Gets a particular slide
 	function getSlide(current) {
 		slides.forEach((slide, index) => {
 			slide.style.transform = `translateX(${
@@ -21,6 +27,8 @@ function Slider(props) {
 			}%)`;
 		});
 	}
+
+	// Callback function for navigating the slides
 	function slideThru() {
 		if (currentSlide === max - 1) setCurrentSlide(0);
 		else setCurrentSlide((pre) => pre + 1);
@@ -35,6 +43,7 @@ function Slider(props) {
 		});
 		setMax(slides.length);
 		setSlides(slides);
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
@@ -55,5 +64,3 @@ function Slider(props) {
 		</div>
 	);
 }
-
-export default Slider;

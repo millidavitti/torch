@@ -15,11 +15,12 @@ export default function MobileNav(props) {
 		setMobileMenuState((pre) => ({ ...pre, isClosed: !pre.isClosed }));
 	}
 
+	// Dynamic class logic
 	const show = mobileMenuState.isClosed ? "" : "show";
 	const hideOverlay = !mobileMenuState.isClosed ? "hide-overlay" : "";
 
 	const renderMenuItems = menuItems.map((item) => {
-		const { id, to, text, isDropDown } = item;
+		const { id, to, text, isDropDown, drops } = item;
 		return (
 			<MobileMenuItem
 				key={id}
@@ -28,6 +29,7 @@ export default function MobileNav(props) {
 				text={text}
 				closeMenu={closeMenu}
 				isDropDown={isDropDown}
+				drops={drops}
 			/>
 		);
 	});

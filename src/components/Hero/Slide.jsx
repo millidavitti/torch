@@ -1,8 +1,8 @@
 import React, { forwardRef } from "react";
 import ReadMore from "components/Reuse/ReadMore";
-
 import one from "assets/images/one.jpg";
 import Date from "components/Reuse/Date";
+
 export default forwardRef(function Slide(props, ref) {
 	const { css, id } = props;
 
