@@ -20,24 +20,18 @@ export default function MobileMenuItem(props) {
 	//
 
 	return (
-		<li
-			style={{
-				display: "flex",
-				alignItem: "center",
-			}}
-		>
+		<li className='mobile-menu-item'>
 			{isDropDown ? (
 				<div
-					className='desk-menu-item'
-					onMouseEnter={() => setShowDrop(true)}
-					onMouseLeave={() => setShowDrop(false)}
+					style={pStyle}
+					onClick={() => setShowDrop((pre) => !pre)}
 				>
 					{text}
 					{/* For Dropdown Menus */}
 					{showDrop && <DropDown>{rdrops}</DropDown>}
 				</div>
 			) : (
-				<Link className='desk-menu-item' to={to}>
+				<Link to={to} onClick={closeMenu}>
 					{text}
 				</Link>
 			)}
