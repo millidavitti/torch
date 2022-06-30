@@ -20,16 +20,12 @@ export default function MobileNav(props) {
 	const hideOverlay = !mobileMenuState.isClosed ? "hide-overlay" : "";
 
 	const renderMenuItems = menuItems.map((item) => {
-		const { id, to, text, isDropDown, drops } = item;
 		return (
 			<MobileMenuItem
-				key={id}
+				key={item.id}
 				id={item.id}
-				to={to}
-				text={text}
+				item={item}
 				closeMenu={closeMenu}
-				isDropDown={isDropDown}
-				drops={drops}
 			/>
 		);
 	});

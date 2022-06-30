@@ -5,13 +5,7 @@ import { FacebookLogo, TwitterLogo } from "phosphor-react";
 export default function DeskItems(props) {
 	const { menuItems } = props;
 	const renderDeskItems = menuItems.map((item) => (
-		<DeskMenuItem
-			key={item.id}
-			to={item.to}
-			text={item.text}
-			isDropDown={item.isDropDown}
-			drops={item.drops}
-		/>
+		<DeskMenuItem key={item.id} item={item} />
 	));
 
 	return (

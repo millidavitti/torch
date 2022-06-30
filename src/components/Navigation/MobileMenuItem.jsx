@@ -4,9 +4,11 @@ import DropDown from "./DropDown";
 import DropMenu from "./DropMenu";
 
 export default function MobileMenuItem(props) {
-	const [showDrop, setShowDrop] = useState(false);
+	const { item, closeMenu } = props;
+	const { path, name, isDropDown } = item;
+	let drops;
 
-	const { to, text, closeMenu, isDropDown, drops } = props;
+	const [showDrop, setShowDrop] = useState(false);
 
 	const pStyle = {
 		color: "var(--secondary)",
@@ -14,10 +16,11 @@ export default function MobileMenuItem(props) {
 		cursor: "pointer",
 	};
 
-	const rdrops = drops.map(({ id, cat }) => (
-		<DropMenu key={id} closeMenu={closeMenu} cat={cat} />
-	));
-	//
+	if (isDropDown) {
+		drops = item[item.IDD]?.data.map(({ id, IDN }) => (
+			<DropMenu key={id} closeMenu={closeMenu} IDN={IDN} />
+		));
+	}
 
 	return (
 		<li className='mobile-menu-item'>
@@ -26,13 +29,13 @@ export default function MobileMenuItem(props) {
 					style={pStyle}
 					onClick={() => setShowDrop((pre) => !pre)}
 				>
-					{text}
+					<p>{name}</p>
 					{/* For Dropdown Menus */}
-					{showDrop && <DropDown>{rdrops}</DropDown>}
+					{showDrop && <DropDown>{drops}</DropDown>}
 				</div>
 			) : (
-				<Link to={to} onClick={closeMenu}>
-					{text}
+				<Link to={path} onClick={closeMenu}>
+					{name}
 				</Link>
 			)}
 		</li>

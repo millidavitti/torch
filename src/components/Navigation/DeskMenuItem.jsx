@@ -4,11 +4,17 @@ import DropDown from "./DropDown";
 import DropMenu from "./DropMenu";
 
 export default function DeskMenuItem(props) {
-	const { to, text, isDropDown, drops } = props;
+	const { item } = props;
+	const { path, name, isDropDown } = item;
 	const [showDrop, setShowDrop] = useState(false);
+	let drops;
 
-
-	const rdrops = drops.map(({ id, cat }) => <DropMenu key={id} cat={cat} />);
+	// IDN: IDentification Name
+	if (isDropDown) {
+		drops = item[item.IDD]?.data.map(({ id, IDN }) => (
+			<DropMenu key={id} IDN={IDN} />
+		));
+	}
 
 	return (
 		<li
@@ -23,13 +29,13 @@ export default function DeskMenuItem(props) {
 					onMouseEnter={() => setShowDrop(true)}
 					onMouseLeave={() => setShowDrop(false)}
 				>
-					{text}
+					{name}
 					{/* For Dropdown Menus */}
-					{showDrop && <DropDown>{rdrops}</DropDown>}
+					{showDrop && <DropDown>{drops}</DropDown>}
 				</div>
 			) : (
-				<Link className='desk-menu-item' to={to}>
-					{text}
+				<Link className='desk-menu-item' to={path}>
+					{name}
 				</Link>
 			)}
 		</li>

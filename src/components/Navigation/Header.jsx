@@ -10,35 +10,53 @@ export default function Header() {
 	const menuItems = [
 		{
 			id: 1,
-			to: "/",
-			text: "Home",
+			IDD: "home",
+			path: "/",
+			name: "Home",
 			isDropDown: false,
-			drops: [],
+			categories: { data: [] },
+			archives: { data: [] },
 		},
 		{
 			id: 2,
-			to: "category",
-			text: "Categories",
+			IDD: "categories",
+
+			path: "category",
+			name: "Categories",
 			isDropDown: true,
-			drops: [
-				{ id: 1, cat: "Fashion" },
-				{ id: 2, cat: "Travel" },
-				{ id: 3, cat: "Health" },
-			],
+			categories: {
+				data: [
+					{ id: 1, IDN: "Fashion" },
+					{ id: 2, IDN: "Travel" },
+					{ id: 3, IDN: "Health" },
+					{ id: 4, IDN: "Technology" },
+				],
+			},
+			archives: { data: [] },
 		},
 		{
 			id: 3,
-			to: "/",
-			text: "Author",
+			IDD: "author",
+			path: "/",
+			name: "Author",
 			isDropDown: false,
-			drops: [],
+			categories: { data: [] },
+			archives: { data: [] },
 		},
 		{
 			id: 4,
-			to: "/",
-			text: "Archive",
-			isDropDown: false,
-			drops: [],
+			IDD: "archives",
+			path: "/",
+			name: "Archive",
+			isDropDown: true,
+			categories: { data: [] },
+			archives: {
+				data: [
+					{ id: 1, IDN: 2020 },
+					{ id: 2, IDN: 2021 },
+					{ id: 3, IDN: 2022 },
+				],
+			},
 		},
 	];
 
