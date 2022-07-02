@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
 import DropMenu from "./DropMenu";
 
-export default function DeskMenuItem(props) {
-	const { item } = props;
+export default function DeskMenuItem({ item }) {
 	const { path, name, isDropDown } = item;
 	const [showDrop, setShowDrop] = useState(false);
 	let drops;

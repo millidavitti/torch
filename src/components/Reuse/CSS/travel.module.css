@@ -49,22 +49,24 @@
 	.flexRow {
 		display: none;
 	}
+
 	.left,
 	.right {
 		display: initial;
 	}
+
 	.left {
-		grid-column: 1/4;
+		grid-column: 1/5;
 		grid-row: 1/2;
 	}
 
 	.mid {
-		grid-column: 4/10;
+		grid-column: 5/10;
+		height: 500px;
 	}
 
 	.right {
-		grid-column: 10/-1;
+		grid-column: 10/13;
 		margin-top: auto;
-		margin-bottom: 20px;
 	}
 }

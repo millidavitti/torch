@@ -73,7 +73,7 @@ export default function Home() {
 								</Margin>
 							</Margin>
 						</div>
-						{/* For Widths Less than 1024px */}
+						{/* For Widths < 1024px */}
 						<div className={travel.flexRow}>
 							<div>
 								<Thumbnail
@@ -108,6 +108,7 @@ export default function Home() {
 								/>
 							</div>
 						</div>
+						{/* For Widths >= than 1024px */}
 						<div className={travel.left}>
 							<Thumbnail
 								src={six}

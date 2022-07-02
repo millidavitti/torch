@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
 import DropMenu from "./DropMenu";
 
-export default function MobileMenuItem(props) {
-	const { item, closeMenu } = props;
+export default function MobileMenuItem({ item, closeMenu }) {
 	const { path, name, isDropDown } = item;
 	let drops;
 
