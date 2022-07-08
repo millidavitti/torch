@@ -1,6 +1,8 @@
 .wrap {
 	padding: 0 8px;
 	color: var(--secondary);
+	height: fit-content;
+	min-height: 100vh;
 }
 
 .thumbnail {

@@ -1,12 +1,33 @@
 import React, { useState } from "react";
 import Author from "components/Reuse/Author";
 import Date from "components/Reuse/Date";
+import editors from "components/EditorsPick/editors.module.css";
+import { Link } from "react-router-dom";
 
-import TitlePreview from "components/Reuse/TitlePreview";
-import PostInfo from "components/Reuse/PostInfo";
 export default function EditorTab(props) {
 	const [show, setShow] = useState({ shown: false });
-	const { css, author, category, title, preview, btns, src, thumb } = props;
+	const {
+		btns,
+		pick: {
+			isActive,
+			attributes: {
+				title,
+				snippet,
+				thumb: {
+					data: {
+						attributes: { url },
+					},
+				},
+				categories: {
+					data: [
+						{
+							attributes: { IDN },
+						},
+					],
+				},
+			},
+		},
+	} = props;
 
 	const sho = {
 		transform: show.shown ? "translate(0)" : "translate(100px)",
@@ -17,43 +38,44 @@ export default function EditorTab(props) {
 	};
 
 	return (
-		<div className={css.tab}>
+		<div className={editors.tab}>
 			<div
-				className={css.thumbWrap}
-				onClick={() =>
-					setShow((pre) => ({ ...pre, shown: !pre.shown }))
-				}
-				onMouseOut={() =>
-					setShow((pre) => ({ ...pre, shown: false }))
-				}
+				className={editors.thumbWrap}
+				onClick={() => setShow((pre) => ({ ...pre, shown: !pre.shown }))}
+				onMouseOut={() => setShow((pre) => ({ ...pre, shown: false }))}
 			>
-				<img src={thumb} alt={title} className={css.thumb} />
+				<img
+					src={`http://localhost:1337${url}`}
+					alt={title}
+					className={editors.thumb}
+				/>
 				<Author
-					cssWrap={css.authorInfo}
-					cssAvatar={css.avatar}
-					cssName={css.name}
-					name={author}
-					src={src}
+					cssWrap={editors.authorInfo}
+					cssAvatar={editors.avatar}
+					cssName={editors.name}
+					name={"Vegan Bake"}
+					src={`http://localhost:1337${url}`}
 					sho={sho}
 					head={head}
 				/>
-				<h2 className={css.category}>{category}</h2>
+				<h2 className={editors.category}>{IDN}</h2>
 			</div>
 
-			<div className={css.info}>
-				<Date css={css.date} date={"Mar 6, 2019"} head={true} />
-				<div className={css.wrapTp}>
-					<h2 className={css.title}>
-						<a href='https://google.com'> </a>
-						{title}
-					</h2>
-					<p className={css.postPreview}>{preview}</p>
+			<div className={editors.info}>
+				<Date css={editors.date} date={"Mar 6, 2019"} head={true} />
+				<div className={editors.wrapTp}>
+					<Link to={`post/${3}`}>
+						<h2 className={editors.title}>{title}</h2>
+					</Link>
+					<p className={editors.postPreview}>{snippet}</p>
 				</div>
 			</div>
 
-			<div className={css.navigate}>
-				<button className={css.readMore}>Read More</button>
-				<div className={css.circularBtnWrap}>{btns}</div>
+			<div className={editors.navigate}>
+				<Link to={`post/${3}`} className={editors.readMore}>
+					<button>Read More</button>
+				</Link>
+				<div className={editors.circularBtnWrap}>{btns}</div>
 			</div>
 		</div>
 	);

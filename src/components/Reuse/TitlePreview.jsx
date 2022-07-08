@@ -5,10 +5,7 @@ export default function TitlePreview(props) {
 	const { title, preview, href } = props;
 	return (
 		<div className={post.wrapTp}>
-			<h2 className={post.title}>
-				<a href={href}> </a>
-				{title}
-			</h2>
+			<h2 className={post.title}>{title}</h2>
 			<p className={post.postPreview}>{preview}</p>
 		</div>
 	);

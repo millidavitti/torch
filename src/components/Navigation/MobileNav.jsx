@@ -4,7 +4,7 @@ import { List, XCircle, FacebookLogo, TwitterLogo } from "phosphor-react";
 import MobileMenuItem from "components/Navigation/MobileMenuItem";
 
 export default function MobileNav(props) {
-	const { Logo, menuItems } = props;
+	const { Logo, menu } = props;
 
 	const [mobileMenuState, setMobileMenuState] = useState({ isClosed: true });
 	function showMenu() {
@@ -19,12 +19,12 @@ export default function MobileNav(props) {
 	const show = mobileMenuState.isClosed ? "" : "show";
 	const hideOverlay = !mobileMenuState.isClosed ? "hide-overlay" : "";
 
-	const renderMenuItems = menuItems.map((item) => {
+	const renderMenuItems = menu.map(({ id, attributes }) => {
 		return (
 			<MobileMenuItem
-				key={item.id}
-				id={item.id}
-				item={item}
+				key={id}
+				id={id}
+				attributes={attributes}
 				closeMenu={closeMenu}
 			/>
 		);
@@ -32,32 +32,17 @@ export default function MobileNav(props) {
 
 	return (
 		<nav className='mobile-nav'>
-			<List
-				className='ham'
-				size={35}
-				weight='bold'
-				onClick={showMenu}
-			/>
+			<List className='ham' size={35} weight='bold' onClick={showMenu} />
 			<div className={`mobile-menu-items ${show}`}>
 				<div className='menu-top'>
 					<div className='logo-socials'>
 						<Logo fill='#273136' width='60px' height='60px' />
 						<div>
-							<FacebookLogo
-								size={30}
-								color='var(--secondary)'
-							/>
-							<TwitterLogo
-								size={30}
-								color='var(--secondary)'
-							/>
+							<FacebookLogo size={30} color='var(--secondary)' />
+							<TwitterLogo size={30} color='var(--secondary)' />
 						</div>
 					</div>
-					<XCircle
-						className='close'
-						weight='thin'
-						onClick={closeMenu}
-					/>
+					<XCircle className='close' weight='thin' onClick={closeMenu} />
 				</div>
 				<div className='mobile-items-wrap'>
 					<ul>{renderMenuItems}</ul>

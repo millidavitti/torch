@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
 import DropMenu from "./DropMenu";
 
-export default function MobileMenuItem({ item, closeMenu }) {
-	const { path, name, isDropDown } = item;
+export default function MobileMenuItem({ attributes, closeMenu }) {
+	const { path, name, isDropDown } = attributes;
 	let drops;
 
 	const [showDrop, setShowDrop] = useState(false);
@@ -16,18 +16,15 @@ export default function MobileMenuItem({ item, closeMenu }) {
 	};
 
 	if (isDropDown) {
-		drops = item[item.IDD]?.data.map(({ id, IDN }) => (
-			<DropMenu key={id} closeMenu={closeMenu} IDN={IDN} />
+		drops = attributes[attributes.IDD]?.data.map(({ id, attributes }) => (
+			<DropMenu key={id} closeMenu={closeMenu} IDN={attributes.IDN} />
 		));
 	}
 
 	return (
 		<li className='mobile-menu-item'>
 			{isDropDown ? (
-				<div
-					style={pStyle}
-					onClick={() => setShowDrop((pre) => !pre)}
-				>
+				<div style={pStyle} onClick={() => setShowDrop((pre) => !pre)}>
 					<p>{name}</p>
 					{/* For Dropdown Menus */}
 					{showDrop && <DropDown>{drops}</DropDown>}

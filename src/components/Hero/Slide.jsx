@@ -1,21 +1,37 @@
 import React, { forwardRef } from "react";
 import ReadMore from "components/Reuse/ReadMore";
-import one from "assets/images/one.jpg";
-import Date from "components/Reuse/Date";
+import PostDate from "components/Reuse/Date";
+import hero from "components/Hero/hero.module.css";
 
 export default forwardRef(function Slide(props, ref) {
-	const { css, id } = props;
+	const {
+		id,
+		attributes: {
+			title,
+			publishedAt: date,
+			thumb: {
+				data: {
+					attributes: { url },
+				},
+			},
+		},
+	} = props;
 
 	return (
-		<div ref={ref} className={css.slide}>
-			<img src={one} alt='' className={css.thumbNail} />
-			<div className={css.contentInfo}>
-				<Date css={css.date} date={"Mar 6, 2019"} head={true} />
-				<h2 className={css.title}>
-					{id} Every Level Of Your Life Will Demand A Different
-					You!
-				</h2>
-				<ReadMore />
+		<div ref={ref} className={hero.slide}>
+			<img
+				src={`http://localhost:1337${url}`}
+				alt=''
+				className={hero.thumbNail}
+			/>
+			<div className={hero.contentInfo}>
+				<PostDate
+					css={hero.date}
+					date={new Date(date).toDateString()}
+					head={true}
+				/>
+				<h2 className={hero.title}>{title}</h2>
+				<ReadMore postID={id} />
 			</div>
 		</div>
 	);

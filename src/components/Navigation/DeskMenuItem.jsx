@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
 import DropMenu from "./DropMenu";
 
-export default function DeskMenuItem({ item }) {
-	const { path, name, isDropDown } = item;
+export default function DeskMenuItem({ attributes }) {
+	const { path, name, isDropDown } = attributes;
 	const [showDrop, setShowDrop] = useState(false);
 	let drops;
 
 	// IDN: IDentification Name
 	if (isDropDown) {
-		drops = item[item.IDD]?.data.map(({ id, IDN }) => (
-			<DropMenu key={id} IDN={IDN} />
+		drops = attributes[attributes.IDD]?.data.map(({ id, attributes }) => (
+			<DropMenu key={id} IDN={attributes.IDN} path={attributes.path} />
 		));
 	}
 

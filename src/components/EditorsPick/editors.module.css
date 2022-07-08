@@ -130,11 +130,6 @@
 	position: relative;
 }
 
-.title a {
-	position: absolute;
-	inset: 0;
-}
-
 .postPreview {
 	color: var(--highlight);
 }
@@ -152,21 +147,27 @@
 	width: 100px;
 	background: none;
 	border: none;
-	color: white;
-	font-weight: 600;
-	font-size: 1rem;
+
 	text-align: left;
 	margin: 20px 0;
 	cursor: pointer;
 
 	transition: all 250ms ease-in;
 }
+.readMore button {
+	color: white;
+	font-weight: 600;
+	font-size: 1rem;
+	background: none;
+	border: none;
+}
 
 .readMore:hover {
-	border: 1px solid var(--highlight);
+	border: 2px solid var(--highlight);
 	border-radius: 3px;
 	padding: 3px 5px;
 }
+
 .circularBtnWrap {
 	display: flex;
 	justify-content: space-between;

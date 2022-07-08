@@ -2,6 +2,7 @@ import React from "react";
 
 // Components
 
+import Slider from "components/Hero/Slider";
 import Hero from "components/Hero/Hero";
 import EditorsPick from "components/EditorsPick/EditorsPick";
 import SectionHeader from "components/Reuse/SectionHeader";
@@ -20,15 +21,13 @@ import Post from "components/Reuse/Post";
 import TrendingPost from "components/Reuse/TrendingPost";
 
 // Assets
-import five from "assets/images/five.jpg";
+
 import six from "assets/images/six.jpg";
-import seven from "assets/images/seven.jpg";
 import eight from "assets/images/eight.jpg";
 import nine from "assets/images/nine.jpg";
 import ten from "assets/images/ten.jpg";
 
 // CSS
-import travel from "components/Reuse/CSS/travel.module.css";
 import health from "components/Reuse/CSS/health.module.css";
 import post from "components/Reuse/CSS/post.module.css";
 import authCard from "components/AuthorCard/authCard.module.css";
@@ -37,12 +36,18 @@ import TopTrend from "components/Reuse/TopTrend";
 import Sticky from "components/Reuse/Sticky";
 import GridLeft from "components/Reuse/GridLeft";
 import Sidebar from "components/Reuse/Sidebar";
+import Featured from "components/Hero/Featured";
+import Travel from "components/Travel";
 
 export default function Home() {
 	window.scrollTo(0, 0);
+
 	return (
 		<Container>
-			<Hero />
+			<Hero>
+				<Slider />
+				<Featured />
+			</Hero>
 			<EditorsPick />
 			{/* Travel News */}
 			<PostWrap>
@@ -51,97 +56,7 @@ export default function Home() {
 					description='Lorem ipsum dolor sit amet adipisicing elit.'
 				/>
 				<Margin>
-					<Grid>
-						<div className={travel.mid}>
-							<Margin>
-								<TitlePreview
-									title={
-										"That Which Does Not Kill Us Makes Us Stronger"
-									}
-									preview={
-										"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius et non aliquam dolor facere quam ducimus officia perspiciatis numquam assumenda."
-									}
-									href={"https://google.com"}
-								/>
-								<ReadMore />
-								<Margin>
-									<Thumbnail
-										src={five}
-										css={post}
-										href={"https://google.com"}
-									/>
-								</Margin>
-							</Margin>
-						</div>
-						{/* For Widths < 1024px */}
-						<div className={travel.flexRow}>
-							<div>
-								<Thumbnail
-									src={six}
-									css={post}
-									href={"https://google.com"}
-								/>
-								<TitlePreview
-									cssWrap={travel.wrapTp}
-									cssTitle={travel.title}
-									cssPreview={travel.postPreview}
-									title={
-										"He Who Has a Why to Live Can Bear Almost Any Anything"
-									}
-									href={"https://google.com"}
-								/>
-							</div>
-							<div>
-								<Thumbnail
-									src={seven}
-									css={post}
-									href={"https://google.com"}
-								/>
-								<TitlePreview
-									cssWrap={travel.wrapTp}
-									cssTitle={travel.title}
-									cssPreview={travel.postPreview}
-									title={
-										"We Are All in the Gutter, but Some of Us Are Looking at the Stars"
-									}
-									href={"https://google.com"}
-								/>
-							</div>
-						</div>
-						{/* For Widths >= than 1024px */}
-						<div className={travel.left}>
-							<Thumbnail
-								src={six}
-								css={post}
-								href={"https://google.com"}
-							/>
-							<TitlePreview
-								cssWrap={travel.wrapTp}
-								cssTitle={travel.title}
-								cssPreview={travel.postPreview}
-								title={
-									"He Who Has a Why to Live Can Bear Almost Any Anything"
-								}
-								href={"https://google.com"}
-							/>
-						</div>
-						<div className={travel.right}>
-							<TitlePreview
-								cssWrap={travel.wrapTp}
-								cssTitle={travel.title}
-								cssPreview={travel.postPreview}
-								title={
-									"We Are All in the Gutter, but Some of Us Are Looking at the Stars"
-								}
-								href={"https://google.com"}
-							/>
-							<Thumbnail
-								src={seven}
-								css={post}
-								href={"https://google.com"}
-							/>
-						</div>
-					</Grid>
+					<Travel />
 				</Margin>
 			</PostWrap>
 			{/* Health News */}
@@ -188,11 +103,7 @@ export default function Home() {
 							}
 							href={"https://google.com"}
 						/>
-						<Date
-							css={health.date}
-							date={"Jan 17, 2037"}
-							head={false}
-						/>
+						<Date css={health.date} date={"Jan 17, 2037"} head={false} />
 					</div>
 					<div>
 						<TitlePreview
@@ -203,11 +114,7 @@ export default function Home() {
 							}
 							href={"https://google.com"}
 						/>
-						<Date
-							css={health.date}
-							date={"Jan 17, 2037"}
-							head={false}
-						/>
+						<Date css={health.date} date={"Jan 17, 2037"} head={false} />
 					</div>
 					<div>
 						<TitlePreview
@@ -218,11 +125,7 @@ export default function Home() {
 							}
 							href={"https://google.com"}
 						/>
-						<Date
-							css={health.date}
-							date={"Jan 17, 2037"}
-							head={false}
-						/>
+						<Date css={health.date} date={"Jan 17, 2037"} head={false} />
 					</div>
 				</div>
 			</PostWrap>
@@ -230,19 +133,13 @@ export default function Home() {
 			<PostWrap>
 				<SectionHeader
 					text={"Latest News"}
-					description={
-						"Lorem ipsum dolor sit amet adipisicing elit."
-					}
+					description={"Lorem ipsum dolor sit amet adipisicing elit."}
 				/>
 				<Grid>
 					<GridLeft>
 						<PostFlex>
 							<div className={post.thumbWrap}>
-								<img
-									src={nine}
-									alt=''
-									className={post.thumb}
-								/>
+								<img src={nine} alt='' className={post.thumb} />
 								<a href={"https://google.com"}> </a>
 								<Author
 									cssWrap={post.wrapAuth}
@@ -281,17 +178,8 @@ export default function Home() {
 									alt={"me"}
 								/>
 								<PostInfo>
-									<Date
-										date={"Mar 4, 2019"}
-										head={false}
-									/>
-									<h2
-										className={
-											post.singlePostHead
-										}
-									>
-										Fashion
-									</h2>
+									<Date date={"Mar 4, 2019"} head={false} />
+									<h2 className={post.singlePostHead}>Fashion</h2>
 									<TitlePreview
 										title={"New Post"}
 										preview={
@@ -299,9 +187,7 @@ export default function Home() {
 										}
 										href='https://google.com'
 									/>
-									<ReadMore
-										href={"https://google.com"}
-									/>
+									<ReadMore href={"https://google.com"} />
 								</PostInfo>
 							</Post>
 							<Post>
@@ -312,17 +198,8 @@ export default function Home() {
 									alt={"me"}
 								/>
 								<PostInfo>
-									<Date
-										date={"Mar 4, 2019"}
-										head={false}
-									/>
-									<h2
-										className={
-											post.singlePostHead
-										}
-									>
-										Fashion
-									</h2>
+									<Date date={"Mar 4, 2019"} head={false} />
+									<h2 className={post.singlePostHead}>Fashion</h2>
 									<TitlePreview
 										title={"New Post"}
 										preview={
@@ -330,9 +207,7 @@ export default function Home() {
 										}
 										href='https://google.com'
 									/>
-									<ReadMore
-										href={"https://google.com"}
-									/>
+									<ReadMore href={"https://google.com"} />
 								</PostInfo>
 							</Post>
 							<Post>
@@ -343,17 +218,8 @@ export default function Home() {
 									alt={"me"}
 								/>
 								<PostInfo>
-									<Date
-										date={"Mar 4, 2019"}
-										head={false}
-									/>
-									<h2
-										className={
-											post.singlePostHead
-										}
-									>
-										Fashion
-									</h2>
+									<Date date={"Mar 4, 2019"} head={false} />
+									<h2 className={post.singlePostHead}>Fashion</h2>
 									<TitlePreview
 										title={"New Post"}
 										preview={
@@ -361,9 +227,7 @@ export default function Home() {
 										}
 										href='https://google.com'
 									/>
-									<ReadMore
-										href={"https://google.com"}
-									/>
+									<ReadMore href={"https://google.com"} />
 								</PostInfo>
 							</Post>
 						</PostFlex>

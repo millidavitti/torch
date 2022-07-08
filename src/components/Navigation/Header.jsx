@@ -1,72 +1,84 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { gql, useQuery } from "@apollo/client";
 
 // Components
 import MobileNav from "components/Navigation/MobileNav";
 import DeskItems from "components/Navigation/DeskItems";
 import { ReactComponent as Logo } from "assets/logo.svg";
+import { MoonLoader } from "react-spinners";
+
+const GET_MENU = gql`
+	query GetMenu {
+		menus {
+			data {
+				id
+				attributes {
+					IDD
+					name
+					path
+					isDropDown
+					categories {
+						data {
+							id
+							attributes {
+								IDN
+								path
+							}
+						}
+					}
+					archives {
+						data {
+							id
+							attributes {
+								IDN
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+`;
 
 export default function Header() {
-	const menuItems = [
-		{
-			id: 1,
-			IDD: "home",
-			path: "/",
-			name: "Home",
-			isDropDown: false,
-			categories: { data: [] },
-			archives: { data: [] },
-		},
-		{
-			id: 2,
-			IDD: "categories",
+	const { data, loading, error } = useQuery(GET_MENU);
+	if (error)
+		return (
+			<header style={{ display: "flex", alignItems: "center" }}>
+				<Link to='/'>
+					<Logo className='logo' />
+				</Link>
 
-			path: "category",
-			name: "Categories",
-			isDropDown: true,
-			categories: {
-				data: [
-					{ id: 1, IDN: "Fashion" },
-					{ id: 2, IDN: "Travel" },
-					{ id: 3, IDN: "Health" },
-					{ id: 4, IDN: "Technology" },
-				],
-			},
-			archives: { data: [] },
-		},
-		{
-			id: 3,
-			IDD: "author",
-			path: "/",
-			name: "Author",
-			isDropDown: false,
-			categories: { data: [] },
-			archives: { data: [] },
-		},
-		{
-			id: 4,
-			IDD: "archives",
-			path: "/",
-			name: "Archive",
-			isDropDown: true,
-			categories: { data: [] },
-			archives: {
-				data: [
-					{ id: 1, IDN: 2020 },
-					{ id: 2, IDN: 2021 },
-					{ id: 3, IDN: 2022 },
-				],
-			},
-		},
-	];
+				<p style={{ margin: "0 auto" }}>ERROR: Failed to get menu data!!</p>
+			</header>
+		);
 
+	if (loading)
+		return (
+			<header style={{ display: "flex", alignItems: "center" }}>
+				<Link to='/'>
+					<Logo className='logo' />
+				</Link>
+
+				{/* <p style={{ margin: "0 auto" }}>Loading...</p> */}
+				<MoonLoader
+					cssOverride={{ margin: "0 auto" }}
+					color='var(--secondary)'
+					size={25}
+				/>
+			</header>
+		);
+
+	const { menus } = data;
+	const { data: menu } = menus;
 	return (
 		<header>
-			<Link to='home'>
+			<Link to='/'>
 				<Logo className='logo' />
 			</Link>
-			<MobileNav Logo={Logo} menuItems={menuItems} />
-			<DeskItems menuItems={menuItems} />
+			<MobileNav Logo={Logo} menu={menu} />
+			<DeskItems menu={menu} />
 		</header>
 	);
 }

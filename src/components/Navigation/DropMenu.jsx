@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function DropMenu(props) {
-	const { closeMenu, IDN } = props;
+export default function DropMenu({ closeMenu, IDN, path }) {
 	return (
-		<Link to='post' onClick={closeMenu}>
+		<Link to={`categories/${path}`} onClick={closeMenu}>
 			{IDN}
 		</Link>
 	);
