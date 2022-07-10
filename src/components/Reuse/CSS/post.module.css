@@ -89,6 +89,8 @@
 
 .postPreview {
 	color: var(--highlight);
+	max-height: 100px;
+	overflow: hidden;
 }
 
 .date h4 {

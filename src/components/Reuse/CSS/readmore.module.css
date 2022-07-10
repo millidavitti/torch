@@ -16,23 +16,7 @@
 	color: var(--highlight);
 }
 
-.readMore::after {
-	content: "";
-	width: 30px;
-	height: 2px;
-	margin: 10px 0;
-	background-color: var(--highlight);
-	position: absolute;
-	left: 110px;
-	top: 10%;
-	transform: translateX(-50%);
-}
-
 .readMore:hover {
 	border: 1px solid var(--secondary);
 	color: var(--secondary);
-}
-
-.readMore:hover::after {
-	background-color: var(--secondary);
 }

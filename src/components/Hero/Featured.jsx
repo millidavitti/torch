@@ -20,6 +20,20 @@ const GET_FEATURED = gql`
 							}
 						}
 					}
+					author {
+						data {
+							attributes {
+								name
+								avatar {
+									data {
+										attributes {
+											url
+										}
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 		}
@@ -57,6 +71,18 @@ export default function Featured() {
 								attributes: { url },
 							},
 						},
+						author: {
+							data: {
+								attributes: {
+									name,
+									avatar: {
+										data: {
+											attributes: { url: profilePic },
+										},
+									},
+								},
+							},
+						},
 					},
 				},
 			],
@@ -74,8 +100,8 @@ export default function Featured() {
 				cssWrap={hero.authorInfo}
 				cssAvatar={hero.avatar}
 				cssName={hero.name}
-				src={six}
-				name='Donald Abua'
+				src={`http://localhost:1337${profilePic}`}
+				name={name}
 			/>
 		</Link>
 	);

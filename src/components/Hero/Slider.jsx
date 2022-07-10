@@ -55,8 +55,6 @@ export default function Slider() {
 		});
 		setMax(slides.length);
 		setSlides(slides);
-		console.log("Log 1");
-		if (!loading) console.log("Log 2");
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [loading]);

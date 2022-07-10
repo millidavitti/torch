@@ -2,7 +2,7 @@ import React from "react";
 import post from "components/Reuse/CSS/post.module.css";
 
 export default function TitlePreview(props) {
-	const { title, preview, href } = props;
+	const { title, preview } = props;
 	return (
 		<div className={post.wrapTp}>
 			<h2 className={post.title}>{title}</h2>

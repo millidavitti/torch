@@ -18,6 +18,7 @@ const GET_EDITORS_PICK = gql`
 				attributes {
 					title
 					snippet
+					publishedAt
 					thumb {
 						data {
 							attributes {
@@ -29,6 +30,20 @@ const GET_EDITORS_PICK = gql`
 						data {
 							attributes {
 								IDN
+							}
+						}
+					}
+					author {
+						data {
+							attributes {
+								name
+								avatar {
+									data {
+										attributes {
+											url
+										}
+									}
+								}
 							}
 						}
 					}
@@ -113,17 +128,10 @@ export default function EditorsPick() {
 		: picks.find((pick) => pick.id === idd);
 
 	return (
-		<section className={editors.editorsPick}>
-			<SectionHeader
-				text={`Editor's Pick`}
-				description='Lorem ipsum dolor sit amet adipisicing elit.'
-			/>
-
-			<SwitchTransition>
-				<CSSTransition key={idd} timeout={1000} classNames={editors}>
-					<EditorTab btns={renderBtns} pick={pick} />
-				</CSSTransition>
-			</SwitchTransition>
-		</section>
+		<SwitchTransition>
+			<CSSTransition key={idd} timeout={1000} classNames={editors}>
+				<EditorTab btns={renderBtns} pick={pick} />
+			</CSSTransition>
+		</SwitchTransition>
 	);
 }

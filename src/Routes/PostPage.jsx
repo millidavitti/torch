@@ -8,13 +8,6 @@ import Container from "components/Reuse/Container";
 import Margin from "components/Reuse/Margin";
 import { FacebookLogo, TwitterLogo } from "phosphor-react";
 import PostWrap from "components/Reuse/PostWrap";
-import PostFlex from "components/Reuse/PostFlex";
-import Post from "components/Reuse/Post";
-import Thumbnail from "components/Reuse/Thumbnail";
-import PostInfo from "components/Reuse/PostInfo";
-import TitlePreview from "components/Reuse/TitlePreview";
-import ReadMore from "components/Reuse/ReadMore";
-import Date from "components/Reuse/Date";
 import SectionHeader from "components/Reuse/SectionHeader";
 import Grid from "components/Reuse/Grid";
 import GridLeft from "components/Reuse/GridLeft";
@@ -23,8 +16,9 @@ import Sticky from "components/Reuse/Sticky";
 import TopTrend from "components/Reuse/TopTrend";
 import TrendingPost from "components/Reuse/TrendingPost";
 import { useQuery, gql } from "@apollo/client";
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { MoonLoader } from "react-spinners";
+import RelatedPost from "components/Reuse/RelatedPost";
 
 const GET_POST = gql`
 	query ($postID: ID) {
@@ -33,6 +27,7 @@ const GET_POST = gql`
 				attributes {
 					title
 					content
+					publishedAt
 					thumb {
 						data {
 							attributes {
@@ -44,6 +39,20 @@ const GET_POST = gql`
 						data {
 							attributes {
 								IDN
+							}
+						}
+					}
+					author {
+						data {
+							attributes {
+								name
+								avatar {
+									data {
+										attributes {
+											url
+										}
+									}
+								}
 							}
 						}
 					}
@@ -60,6 +69,7 @@ export default function PostPage() {
 			postID,
 		},
 	});
+
 	if (loading)
 		return (
 			<MoonLoader
@@ -68,12 +78,15 @@ export default function PostPage() {
 				size={25}
 			/>
 		);
+	if (!data.post.data) return <p>Post not found!</p>;
+
 	const {
 		post: {
 			data: {
 				attributes: {
 					title,
 					content,
+					publishedAt,
 					thumb: {
 						data: {
 							attributes: { url },
@@ -86,6 +99,18 @@ export default function PostPage() {
 							},
 						],
 					},
+					author: {
+						data: {
+							attributes: {
+								name,
+								avatar: {
+									data: {
+										attributes: { url: profilePic },
+									},
+								},
+							},
+						},
+					},
 				},
 			},
 		},
@@ -93,245 +118,113 @@ export default function PostPage() {
 
 	window.scrollTo(0, 0);
 	return (
-		<Container>
-			<Margin>
-				<div className={postPage.wrap}>
-					{/* Thumbnail */}
-					<div className={postPage.thumbnail}>
-						<img src={`http://localhost:1337${url}`} alt='' />
-						<div className={postPage.overlay}>
-							<p className={postPage.tag}>{IDN}</p>
-							<h1>{title}</h1>
-							<Author
-								cssWrap={post.wrapAuth}
-								cssAvatar={post.avatar}
-								cssName={post.name}
-								name={"Vegan Bake"}
-								src={seven}
-							/>
+		<>
+			<Container>
+				<Margin>
+					<div className={postPage.wrap}>
+						{/* Thumbnail */}
+						<div className={postPage.thumbnail}>
+							<img src={`http://localhost:1337${url}`} alt='' />
+							<div className={postPage.overlay}>
+								<p className={postPage.tag}>{IDN}</p>
+								<h1>{title}</h1>
+								<Author
+									cssWrap={post.wrapAuth}
+									cssAvatar={post.avatar}
+									cssName={post.name}
+									name={"Vegan Bake"}
+									src={seven}
+								/>
+							</div>
 						</div>
-					</div>
-					{/* Content */}
-					<Grid>
-						<GridLeft>
-							<Margin>
-								<div className={postPage.postContent}>
-									<div className={postPage.leftBar}>
-										<div className={postPage.stick}>
-											<Author
-												cssWrap={postPage.wrapAuth}
-												cssAvatar={postPage.avatar}
-												cssName={postPage.name}
-												name={"Vegan Bake"}
-												src={seven}
-											/>
-											<div className={postPage.share}>
-												<p>Share:</p>
-												<div className={postPage.shareIcons}>
-													<FacebookLogo
-														size={25}
-														color={"var(--secondary)"}
-														cursor={"pointer"}
-													/>
-													<TwitterLogo
-														size={25}
-														color={"var(--secondary)"}
-														cursor={"pointer"}
-													/>
+						{/* Content */}
+						<Grid>
+							<GridLeft>
+								<Margin>
+									<div className={postPage.postContent}>
+										<div className={postPage.leftBar}>
+											<div className={postPage.stick}>
+												<Author
+													cssWrap={postPage.wrapAuth}
+													cssAvatar={postPage.avatar}
+													cssName={postPage.name}
+													name={name}
+													src={`http://localhost:1337${profilePic}`}
+												/>
+												<div className={postPage.share}>
+													<p>Share:</p>
+													<div className={postPage.shareIcons}>
+														<FacebookLogo
+															size={25}
+															color={"var(--secondary)"}
+															cursor={"pointer"}
+														/>
+														<TwitterLogo
+															size={25}
+															color={"var(--secondary)"}
+															cursor={"pointer"}
+														/>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-									<article className={postPage.contentWrap}>
-										{
-											<div
-												dangerouslySetInnerHTML={{
-													__html: content,
-												}}
-											/>
-										}
-									</article>
-									{/* Content Footer */}
-									<div className={postPage.contentFooter}>
-										<p className={postPage.date}>Mar 6, 2019</p>
-										<div className={postPage.footerTag}></div>
-									</div>
-								</div>
-								<Margin>
-									<div className={postPage.postAuthor}>
-										<img src={eight} alt='' />
-										<div className={postPage.postAuthinfo}>
-											<h2>Donald Abua</h2>
-											<p>
-												Lorem ipsum dolor sit amet consectetur
-												adipisicing elit. Non facilis aperiam,
-												perferendis earum odit eligendi?
+										<article className={postPage.contentWrap}>
+											{
+												<div
+													dangerouslySetInnerHTML={{
+														__html: content,
+													}}
+												/>
+											}
+										</article>
+										{/* Content Footer */}
+										<div className={postPage.contentFooter}>
+											<p className={postPage.date}>
+												{new Date(publishedAt).toDateString()}
 											</p>
+											<div className={postPage.footerTag}></div>
 										</div>
 									</div>
+									<Margin>
+										<div className={postPage.postAuthor}>
+											<img src={eight} alt='' />
+											<div className={postPage.postAuthinfo}>
+												<h2>Donald Abua</h2>
+												<p>
+													Lorem ipsum dolor sit amet consectetur
+													adipisicing elit. Non facilis aperiam,
+													perferendis earum odit eligendi?
+												</p>
+											</div>
+										</div>
+									</Margin>
+									<PostWrap>
+										<SectionHeader text={"Related Posts"} />
+										<RelatedPost category={IDN} />
+									</PostWrap>
 								</Margin>
-								<PostWrap>
-									<SectionHeader text={"Related Posts"} />
-									<PostFlex>
-										<Post>
-											<Thumbnail src={eight} />
-											<PostInfo>
-												<Date date={"Mar 4, 2019"} head={false} />
-												<h2 className={post.singlePostHead}>
-													Fashion
-												</h2>
-												<TitlePreview
-													title={"New Post"}
-													preview={
-														"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
-													}
-													href='https://google.com'
-												/>
-												<ReadMore href={"https://google.com"} />
-											</PostInfo>
-										</Post>
-										<Post>
-											<Thumbnail src={eight} />
-											<PostInfo>
-												<Date date={"Mar 4, 2019"} head={false} />
-												<h2 className={post.singlePostHead}>
-													Fashion
-												</h2>
-												<TitlePreview
-													title={"New Post"}
-													preview={
-														"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
-													}
-													href='https://google.com'
-												/>
-												<ReadMore href={"https://google.com"} />
-											</PostInfo>
-										</Post>
-										<Post>
-											<Thumbnail src={eight} />
-											<PostInfo>
-												<Date date={"Mar 4, 2019"} head={false} />
-												<h2 className={post.singlePostHead}>
-													Fashion
-												</h2>
-												<TitlePreview
-													title={"New Post"}
-													preview={
-														"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
-													}
-													href='https://google.com'
-												/>
-												<ReadMore href={"https://google.com"} />
-											</PostInfo>
-										</Post>
-										<Post>
-											<Thumbnail src={eight} />
-											<PostInfo>
-												<Date date={"Mar 4, 2019"} head={false} />
-												<h2 className={post.singlePostHead}>
-													Fashion
-												</h2>
-												<TitlePreview
-													title={"New Post"}
-													preview={
-														"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
-													}
-													href='https://google.com'
-												/>
-												<ReadMore href={"https://google.com"} />
-											</PostInfo>
-										</Post>
-										<Post>
-											<Thumbnail src={eight} />
-											<PostInfo>
-												<Date date={"Mar 4, 2019"} head={false} />
-												<h2 className={post.singlePostHead}>
-													Fashion
-												</h2>
-												<TitlePreview
-													title={"New Post"}
-													preview={
-														"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
-													}
-													href='https://google.com'
-												/>
-												<ReadMore href={"https://google.com"} />
-											</PostInfo>
-										</Post>
-										<Post>
-											<Thumbnail src={eight} />
-											<PostInfo>
-												<Date date={"Mar 4, 2019"} head={false} />
-												<h2 className={post.singlePostHead}>
-													Fashion
-												</h2>
-												<TitlePreview
-													title={"New Post"}
-													preview={
-														"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
-													}
-													href='https://google.com'
-												/>
-												<ReadMore href={"https://google.com"} />
-											</PostInfo>
-										</Post>
-										<Post>
-											<Thumbnail src={eight} />
-											<PostInfo>
-												<Date date={"Mar 4, 2019"} head={false} />
-												<h2 className={post.singlePostHead}>
-													Fashion
-												</h2>
-												<TitlePreview
-													title={"New Post"}
-													preview={
-														"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
-													}
-													href='https://google.com'
-												/>
-												<ReadMore href={"https://google.com"} />
-											</PostInfo>
-										</Post>
-										<Post>
-											<Thumbnail src={eight} />
-											<PostInfo>
-												<Date date={"Mar 4, 2019"} head={false} />
-												<h2 className={post.singlePostHead}>
-													Fashion
-												</h2>
-												<TitlePreview
-													title={"New Post"}
-													preview={
-														"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus dolor animi ex voluptatem totam ab aut amet reiciendis, in laborum?"
-													}
-													href='https://google.com'
-												/>
-												<ReadMore href={"https://google.com"} />
-											</PostInfo>
-										</Post>
-									</PostFlex>
-								</PostWrap>
-							</Margin>
-						</GridLeft>
-						<Sidebar>
-							<Sticky>
-								<TopTrend>
-									<TrendingPost />
-									<TrendingPost />
-									<TrendingPost />
-									<TrendingPost />
-									<TrendingPost />
-									<TrendingPost />
-									<TrendingPost />
-									<TrendingPost />
-									<TrendingPost />
-									<TrendingPost />
-								</TopTrend>
-							</Sticky>
-						</Sidebar>
-					</Grid>
-				</div>
-			</Margin>
-		</Container>
+							</GridLeft>
+							<Sidebar>
+								<Sticky>
+									<TopTrend>
+										<TrendingPost />
+										<TrendingPost />
+										<TrendingPost />
+										<TrendingPost />
+										<TrendingPost />
+										<TrendingPost />
+										<TrendingPost />
+										<TrendingPost />
+										<TrendingPost />
+										<TrendingPost />
+									</TopTrend>
+								</Sticky>
+							</Sidebar>
+						</Grid>
+					</div>
+				</Margin>
+			</Container>
+			<Outlet />
+		</>
 	);
 }

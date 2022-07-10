@@ -3,7 +3,7 @@
 	flex-flow: column;
 	min-height: 150px;
 	padding: 0 3%;
-	margin-top: 40px;
+	margin-top: auto;
 	color: var(--secondary);
 }
 .mail,

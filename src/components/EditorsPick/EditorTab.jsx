@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Author from "components/Reuse/Author";
-import Date from "components/Reuse/Date";
+import PostDate from "components/Reuse/Date";
 import editors from "components/EditorsPick/editors.module.css";
 import { Link } from "react-router-dom";
 
@@ -9,10 +9,11 @@ export default function EditorTab(props) {
 	const {
 		btns,
 		pick: {
-			isActive,
+			id,
 			attributes: {
 				title,
 				snippet,
+				publishedAt,
 				thumb: {
 					data: {
 						attributes: { url },
@@ -24,6 +25,18 @@ export default function EditorTab(props) {
 							attributes: { IDN },
 						},
 					],
+				},
+				author: {
+					data: {
+						attributes: {
+							name,
+							avatar: {
+								data: {
+									attributes: { url: profilePic },
+								},
+							},
+						},
+					},
 				},
 			},
 		},
@@ -53,8 +66,8 @@ export default function EditorTab(props) {
 					cssWrap={editors.authorInfo}
 					cssAvatar={editors.avatar}
 					cssName={editors.name}
-					name={"Vegan Bake"}
-					src={`http://localhost:1337${url}`}
+					name={name}
+					src={`http://localhost:1337${profilePic}`}
 					sho={sho}
 					head={head}
 				/>
@@ -62,9 +75,13 @@ export default function EditorTab(props) {
 			</div>
 
 			<div className={editors.info}>
-				<Date css={editors.date} date={"Mar 6, 2019"} head={true} />
+				<PostDate
+					css={editors.date}
+					date={new Date(publishedAt).toDateString()}
+					head={true}
+				/>
 				<div className={editors.wrapTp}>
-					<Link to={`post/${3}`}>
+					<Link to={`post/${id}`}>
 						<h2 className={editors.title}>{title}</h2>
 					</Link>
 					<p className={editors.postPreview}>{snippet}</p>
@@ -72,7 +89,7 @@ export default function EditorTab(props) {
 			</div>
 
 			<div className={editors.navigate}>
-				<Link to={`post/${3}`} className={editors.readMore}>
+				<Link to={`post/${id}`} className={editors.readMore}>
 					<button>Read More</button>
 				</Link>
 				<div className={editors.circularBtnWrap}>{btns}</div>

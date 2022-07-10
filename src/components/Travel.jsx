@@ -7,14 +7,11 @@ import TitlePreview from "./Reuse/TitlePreview";
 import travel from "components/Reuse/CSS/travel.module.css";
 import { useQuery, gql } from "@apollo/client";
 import { MoonLoader } from "react-spinners";
-import five from "assets/images/five.jpg";
-import six from "assets/images/six.jpg";
-import seven from "assets/images/seven.jpg";
 import { Link } from "react-router-dom";
 
 const GET_TRAVEL = gql`
-	query ($var: PostFiltersInput, $size: PaginationArg) {
-		posts(filters: $var, pagination: $size) {
+	query ($var: PostFiltersInput, $size: PaginationArg, $sort: [String]) {
+		posts(filters: $var, pagination: $size, sort: $sort) {
 			data {
 				id
 				attributes {
@@ -45,6 +42,7 @@ export default function Travel() {
 			size: {
 				pageSize: 3,
 			},
+			sort: ["publishedAt:desc"],
 		},
 	});
 	if (loading)

@@ -14,7 +14,12 @@ export default function App() {
 			<Routes>
 				<Route path='/' element={<Home />} />
 				<Route path='categories/:path' element={<Category />} />
-				<Route path='post/:postID' element={<PostPage />} />
+				<Route path='categories/:path/post/:postID' element={<PostPage />}>
+					<Route path='post/:postID' element={null} />
+				</Route>
+				<Route path='post/:postID' element={<PostPage />}>
+					<Route path='post/:postID' element={null} />
+				</Route>
 				<Route path='*' element='What are you doing here?' />
 			</Routes>
 			<Footer />
