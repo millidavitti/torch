@@ -21,7 +21,7 @@ import { MoonLoader } from "react-spinners";
 import RelatedPost from "components/Reuse/RelatedPost";
 
 const GET_POST = gql`
-	query ($postID: ID) {
+	query ($postID: ID, $cat: CategoryFiltersInput) {
 		post(id: $postID) {
 			data {
 				attributes {
@@ -35,7 +35,7 @@ const GET_POST = gql`
 							}
 						}
 					}
-					categories {
+					categories(filters: $cat) {
 						data {
 							attributes {
 								IDN
@@ -63,10 +63,15 @@ const GET_POST = gql`
 `;
 
 export default function PostPage() {
-	const { postID } = useParams();
+	const { postID, path } = useParams();
 	const { data, loading } = useQuery(GET_POST, {
 		variables: {
 			postID,
+			cat: {
+				IDN: {
+					containsi: path,
+				},
+			},
 		},
 	});
 
@@ -124,7 +129,10 @@ export default function PostPage() {
 					<div className={postPage.wrap}>
 						{/* Thumbnail */}
 						<div className={postPage.thumbnail}>
-							<img src={`http://localhost:1337${url}`} alt='' />
+							<img
+								src={`https://torch-cms-database.herokuapp.com${url}`}
+								alt=''
+							/>
 							<div className={postPage.overlay}>
 								<p className={postPage.tag}>{IDN}</p>
 								<h1>{title}</h1>
@@ -132,8 +140,8 @@ export default function PostPage() {
 									cssWrap={post.wrapAuth}
 									cssAvatar={post.avatar}
 									cssName={post.name}
-									name={"Vegan Bake"}
-									src={seven}
+									name={name}
+									src={`https://torch-cms-database.herokuapp.com${profilePic}`}
 								/>
 							</div>
 						</div>
@@ -149,7 +157,7 @@ export default function PostPage() {
 													cssAvatar={postPage.avatar}
 													cssName={postPage.name}
 													name={name}
-													src={`http://localhost:1337${profilePic}`}
+													src={`https://torch-cms-database.herokuapp.com${profilePic}`}
 												/>
 												<div className={postPage.share}>
 													<p>Share:</p>

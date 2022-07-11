@@ -103,7 +103,10 @@ export default function Category() {
 		if (i) {
 			flexPosts.push(
 				<Post key={id}>
-					<Thumbnail src={`http://localhost:1337${url}`} alt={"me"} />
+					<Thumbnail
+						src={`https://torch-cms-database.herokuapp.com${url}`}
+						alt={"me"}
+					/>
 					<PostInfo>
 						<PostDate
 							date={new Date(publishedAt).toDateString()}
@@ -137,7 +140,7 @@ export default function Category() {
 				<PostFlex>
 					<div className={post.thumbWrap}>
 						<img
-							src={`http://localhost:1337${url}`}
+							src={`https://torch-cms-database.herokuapp.com${url}`}
 							alt=''
 							className={post.thumb}
 						/>
@@ -146,7 +149,7 @@ export default function Category() {
 							cssAvatar={post.avatar}
 							cssName={post.name}
 							name={"Vegan Bake"}
-							src={`http://localhost:1337${url}`}
+							src={`https://torch-cms-database.herokuapp.com${url}`}
 						/>
 					</div>
 					<PostInfo>

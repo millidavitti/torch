@@ -102,7 +102,9 @@ export default function Travel() {
 					<TitlePreview title={midtitle} preview={midSnipp} />
 					<ReadMore postID={midID} />
 					<Margin>
-						<Thumbnail src={`http://localhost:1337${midThumb}`} />
+						<Thumbnail
+							src={`https://torch-cms-database.herokuapp.com${midThumb}`}
+						/>
 					</Margin>
 				</Margin>
 			</div>
@@ -110,7 +112,9 @@ export default function Travel() {
 			<div className={travel.flexRow}>
 				<Link to={`post/${leftID}`}>
 					<div>
-						<Thumbnail src={`http://localhost:1337${leftThumb}`} />
+						<Thumbnail
+							src={`https://torch-cms-database.herokuapp.com${leftThumb}`}
+						/>
 						<TitlePreview
 							cssWrap={travel.wrapTp}
 							cssTitle={travel.title}
@@ -121,7 +125,9 @@ export default function Travel() {
 				</Link>
 				<Link to={`post/${rightID}`}>
 					<div>
-						<Thumbnail src={`http://localhost:1337${rightThumb}`} />
+						<Thumbnail
+							src={`https://torch-cms-database.herokuapp.com${rightThumb}`}
+						/>
 						<TitlePreview
 							cssWrap={travel.wrapTp}
 							cssTitle={travel.title}
@@ -134,7 +140,9 @@ export default function Travel() {
 			{/* For Widths >= than 1024px */}
 			<div className={travel.left}>
 				<Link to={`post/${leftID}`}>
-					<Thumbnail src={`http://localhost:1337${leftThumb}`} />
+					<Thumbnail
+						src={`https://torch-cms-database.herokuapp.com${leftThumb}`}
+					/>
 					<TitlePreview
 						cssWrap={travel.wrapTp}
 						cssTitle={travel.title}
@@ -151,7 +159,9 @@ export default function Travel() {
 						cssPreview={travel.postPreview}
 						title={rightTitle}
 					/>
-					<Thumbnail src={`http://localhost:1337${rightThumb}`} />
+					<Thumbnail
+						src={`https://torch-cms-database.herokuapp.com${rightThumb}`}
+					/>
 				</Link>
 			</div>
 		</Grid>

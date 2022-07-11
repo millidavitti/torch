@@ -92,7 +92,9 @@ export default function RelatedPost({ category }) {
 		if (id !== postID)
 			flexPosts.push(
 				<Post key={id}>
-					<Thumbnail src={`http://localhost:1337${url}`} />
+					<Thumbnail
+						src={`https://torch-cms-database.herokuapp.com${url}`}
+					/>
 					<PostInfo>
 						<PostDate
 							date={new Date(publishedAt).toDateString()}

@@ -92,7 +92,7 @@ export default function Featured() {
 		<Link to={`post/${id}`} className={hero.post}>
 			<h2 className={hero.postHead}>{title}</h2>
 			<img
-				src={`http://localhost:1337${url}`}
+				src={`https://torch-cms-database.herokuapp.com${url}`}
 				alt=''
 				className={hero.postThumb}
 			/>
@@ -100,7 +100,7 @@ export default function Featured() {
 				cssWrap={hero.authorInfo}
 				cssAvatar={hero.avatar}
 				cssName={hero.name}
-				src={`http://localhost:1337${profilePic}`}
+				src={`https://torch-cms-database.herokuapp.com${profilePic}`}
 				name={name}
 			/>
 		</Link>

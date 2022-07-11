@@ -5,7 +5,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import App from "App";
 import "style.css";
 const client = new ApolloClient({
-	uri: "http://localhost:1337/graphql",
+	uri: "https://torch-cms-database.herokuapp.com/graphql",
 	cache: new InMemoryCache(),
 });
 

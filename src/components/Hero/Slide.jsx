@@ -20,7 +20,7 @@ export default forwardRef(function Slide(props, ref) {
 	return (
 		<div ref={ref} className={hero.slide}>
 			<img
-				src={`http://localhost:1337${url}`}
+				src={`https://torch-cms-database.herokuapp.com${url}`}
 				alt=''
 				className={hero.thumbNail}
 			/>

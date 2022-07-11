@@ -58,7 +58,7 @@ export default function EditorTab(props) {
 				onMouseOut={() => setShow((pre) => ({ ...pre, shown: false }))}
 			>
 				<img
-					src={`http://localhost:1337${url}`}
+					src={`https://torch-cms-database.herokuapp.com${url}`}
 					alt={title}
 					className={editors.thumb}
 				/>
@@ -67,7 +67,7 @@ export default function EditorTab(props) {
 					cssAvatar={editors.avatar}
 					cssName={editors.name}
 					name={name}
-					src={`http://localhost:1337${profilePic}`}
+					src={`https://torch-cms-database.herokuapp.com${profilePic}`}
 					sho={sho}
 					head={head}
 				/>
