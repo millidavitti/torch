@@ -4,7 +4,7 @@ import post from "components/Reuse/CSS/post.module.css";
 import Author from "components/Reuse/Author";
 import Container from "components/Reuse/Container";
 import Margin from "components/Reuse/Margin";
-import { FacebookLogo, TwitterLogo } from "phosphor-react";
+import { FacebookLogo, Plus, Square, TwitterLogo } from "phosphor-react";
 import PostWrap from "components/Reuse/PostWrap";
 import SectionHeader from "components/Reuse/SectionHeader";
 import Grid from "components/Reuse/Grid";
@@ -30,6 +30,13 @@ const GET_POST = gql`
 						data {
 							attributes {
 								url
+							}
+						}
+					}
+					tags {
+						data {
+							attributes {
+								tag
 							}
 						}
 					}
@@ -95,6 +102,7 @@ export default function PostPage() {
 							attributes: { url },
 						},
 					},
+					tags: { data: tagData },
 					categories: {
 						data: [
 							{
@@ -119,7 +127,15 @@ export default function PostPage() {
 		},
 	} = data;
 
-	window.scrollTo(0, 0);
+	const renderTags = tagData.map((attr, id) => {
+		return (
+			<div className={postPage.tagEntity}>
+				<p key={id}>{attr.attributes.tag}</p>
+			</div>
+		);
+	});
+
+	// window.scrollTo(0, 0);
 	return (
 		<>
 			<Container>
@@ -185,7 +201,23 @@ export default function PostPage() {
 											<p className={postPage.date}>
 												{new Date(publishedAt).toDateString()}
 											</p>
-											<div className={postPage.footerTag}></div>
+											<div className={postPage.tagTools}>
+												<div className={postPage.toolRack}>
+													<Plus
+														weight='bold'
+														size={20}
+														cursor='pointer'
+														className={postPage.addTag}
+													/>
+													<Square
+														weight='bold'
+														size={20}
+														cursor='pointer'
+														className={postPage.showMore}
+													/>
+												</div>
+												<div className={postPage.footerTag}>{renderTags}</div>
+											</div>
 										</div>
 									</div>
 									<Margin>
