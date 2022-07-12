@@ -5,8 +5,6 @@ import { useEffect } from "react";
 import { MoonLoader } from "react-spinners";
 
 import editors from "components/EditorsPick/editors.module.css";
-
-import SectionHeader from "components/Reuse/SectionHeader";
 import EditorTab from "./EditorTab";
 import CircularBtn from "./CircularBtn";
 
@@ -54,7 +52,7 @@ const GET_EDITORS_PICK = gql`
 `;
 
 export default function EditorsPick() {
-	const { data, loading, error } = useQuery(GET_EDITORS_PICK, {
+	const { data, loading } = useQuery(GET_EDITORS_PICK, {
 		variables: {
 			var: {
 				editorsPick: {
@@ -95,20 +93,10 @@ export default function EditorsPick() {
 
 	const renderBtns = !picks
 		? tempPicks?.map(({ id, isActive }) => (
-				<CircularBtn
-					key={id}
-					id={id}
-					Fn={switchPicks}
-					isActive={isActive}
-				/>
+				<CircularBtn key={id} id={id} Fn={switchPicks} isActive={isActive} />
 		  ))
 		: picks?.map(({ id, isActive }) => (
-				<CircularBtn
-					key={id}
-					id={id}
-					Fn={switchPicks}
-					isActive={isActive}
-				/>
+				<CircularBtn key={id} id={id} Fn={switchPicks} isActive={isActive} />
 		  ));
 
 	function switchPicks(id) {

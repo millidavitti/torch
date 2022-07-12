@@ -10,7 +10,6 @@ import post from "components/Reuse/CSS/post.module.css";
 import { gql, useQuery } from "@apollo/client";
 import { MoonLoader } from "react-spinners";
 import Thumbnail from "./Reuse/Thumbnail";
-import { Link } from "react-router-dom";
 
 const GET_LATEST = gql`
 	query ($sort: [String]) {
@@ -88,10 +87,7 @@ export default function Latest() {
 		if (i) {
 			flexPosts.push(
 				<Post key={id}>
-					<Thumbnail
-						src={`https://torch-cms-database.herokuapp.com${url}`}
-						alt={"me"}
-					/>
+					<Thumbnail src={url} alt={"me"} />
 					<PostInfo>
 						<PostDate
 							date={new Date(publishedAt).toDateString()}
@@ -141,18 +137,14 @@ export default function Latest() {
 		<>
 			<PostFlex>
 				<div className={post.thumbWrap}>
-					<img
-						src={`https://torch-cms-database.herokuapp.com${url}`}
-						alt=''
-						className={post.thumb}
-					/>
+					<img src={url} alt='' className={post.thumb} />
 
 					<Author
 						cssWrap={post.wrapAuth}
 						cssAvatar={post.avatar}
 						cssName={post.name}
 						name={name}
-						src={`https://torch-cms-database.herokuapp.com${profilePic}`}
+						src={profilePic}
 					/>
 				</div>
 				<PostInfo>

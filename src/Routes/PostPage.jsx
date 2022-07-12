@@ -2,8 +2,6 @@ import React from "react";
 import postPage from "components/Reuse/CSS/postPage.module.css";
 import post from "components/Reuse/CSS/post.module.css";
 import Author from "components/Reuse/Author";
-import seven from "assets/images/seven.jpg";
-import eight from "assets/images/eight.jpg";
 import Container from "components/Reuse/Container";
 import Margin from "components/Reuse/Margin";
 import { FacebookLogo, TwitterLogo } from "phosphor-react";
@@ -129,10 +127,7 @@ export default function PostPage() {
 					<div className={postPage.wrap}>
 						{/* Thumbnail */}
 						<div className={postPage.thumbnail}>
-							<img
-								src={`https://torch-cms-database.herokuapp.com${url}`}
-								alt=''
-							/>
+							<img src={url} alt='' />
 							<div className={postPage.overlay}>
 								<p className={postPage.tag}>{IDN}</p>
 								<h1>{title}</h1>
@@ -141,7 +136,7 @@ export default function PostPage() {
 									cssAvatar={post.avatar}
 									cssName={post.name}
 									name={name}
-									src={`https://torch-cms-database.herokuapp.com${profilePic}`}
+									src={profilePic}
 								/>
 							</div>
 						</div>
@@ -157,7 +152,7 @@ export default function PostPage() {
 													cssAvatar={postPage.avatar}
 													cssName={postPage.name}
 													name={name}
-													src={`https://torch-cms-database.herokuapp.com${profilePic}`}
+													src={profilePic}
 												/>
 												<div className={postPage.share}>
 													<p>Share:</p>
@@ -195,13 +190,13 @@ export default function PostPage() {
 									</div>
 									<Margin>
 										<div className={postPage.postAuthor}>
-											<img src={eight} alt='' />
+											<img src={profilePic} alt='' />
 											<div className={postPage.postAuthinfo}>
 												<h2>Donald Abua</h2>
 												<p>
-													Lorem ipsum dolor sit amet consectetur
-													adipisicing elit. Non facilis aperiam,
-													perferendis earum odit eligendi?
+													Lorem ipsum dolor sit amet consectetur adipisicing
+													elit. Non facilis aperiam, perferendis earum odit
+													eligendi?
 												</p>
 											</div>
 										</div>

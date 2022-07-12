@@ -9,8 +9,8 @@ import { ReactComponent as Logo } from "assets/logo.svg";
 import { MoonLoader } from "react-spinners";
 
 const GET_MENU = gql`
-	query GetMenu {
-		menus {
+	query ($menuID: [String]) {
+		menus(sort: $menuID) {
 			data {
 				id
 				attributes {
@@ -42,7 +42,11 @@ const GET_MENU = gql`
 `;
 
 export default function Header() {
-	const { data, loading, error } = useQuery(GET_MENU);
+	const { data, loading, error } = useQuery(GET_MENU, {
+		variables: {
+			menuID: ["id:asc"],
+		},
+	});
 	if (error)
 		return (
 			<header style={{ display: "flex", alignItems: "center" }}>

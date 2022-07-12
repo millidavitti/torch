@@ -28,7 +28,6 @@ import Latest from "components/Latest";
 
 export default function Home() {
 	window.scrollTo(0, 0);
-
 	return (
 		<Container>
 			<Hero>
@@ -86,7 +85,6 @@ export default function Home() {
 			</PostWrap>
 			<section className={authCard.container}>
 				<AuthCard
-					name={"Davitti Vegan"}
 					description={
 						"Nascetur netus, nascetur ante elit sodales. Placerat class ante lacus consequat sapien ante elit sodales "
 					}

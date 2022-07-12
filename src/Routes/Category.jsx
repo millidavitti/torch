@@ -38,6 +38,20 @@ const GET_CATEGORY = gql`
 							}
 						}
 					}
+					author {
+						data {
+							attributes {
+								name
+								avatar {
+									data {
+										attributes {
+											url
+										}
+									}
+								}
+							}
+						}
+					}
 					categories(filters: $cat) {
 						data {
 							attributes {
@@ -91,6 +105,7 @@ export default function Category() {
 						attributes: { url },
 					},
 				},
+
 				categories: {
 					data: [
 						{
@@ -103,10 +118,7 @@ export default function Category() {
 		if (i) {
 			flexPosts.push(
 				<Post key={id}>
-					<Thumbnail
-						src={`https://torch-cms-database.herokuapp.com${url}`}
-						alt={"me"}
-					/>
+					<Thumbnail src={url} alt={"me"} />
 					<PostInfo>
 						<PostDate
 							date={new Date(publishedAt).toDateString()}
@@ -127,6 +139,18 @@ export default function Category() {
 			title,
 			snippet,
 			publishedAt,
+			author: {
+				data: {
+					attributes: {
+						name,
+						avatar: {
+							data: {
+								attributes: { url: profilePic },
+							},
+						},
+					},
+				},
+			},
 			thumb: {
 				data: {
 					attributes: { url },
@@ -139,17 +163,13 @@ export default function Category() {
 			<PostWrap>
 				<PostFlex>
 					<div className={post.thumbWrap}>
-						<img
-							src={`https://torch-cms-database.herokuapp.com${url}`}
-							alt=''
-							className={post.thumb}
-						/>
+						<img src={url} alt='' className={post.thumb} />
 						<Author
 							cssWrap={post.wrapAuth}
 							cssAvatar={post.avatar}
 							cssName={post.name}
-							name={"Vegan Bake"}
-							src={`https://torch-cms-database.herokuapp.com${url}`}
+							name={name}
+							src={profilePic}
 						/>
 					</div>
 					<PostInfo>

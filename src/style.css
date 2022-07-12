@@ -201,7 +201,7 @@ header {
 		left: 0;
 		height: auto;
 		box-shadow: 2px 0px 7px rgba(0, 0, 0, 0.13);
-		min-height: 100px;
+		min-height: 50px;
 		max-height: 500px;
 		overflow: auto;
 	}

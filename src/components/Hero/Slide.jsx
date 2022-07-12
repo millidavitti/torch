@@ -19,11 +19,7 @@ export default forwardRef(function Slide(props, ref) {
 
 	return (
 		<div ref={ref} className={hero.slide}>
-			<img
-				src={`https://torch-cms-database.herokuapp.com${url}`}
-				alt=''
-				className={hero.thumbNail}
-			/>
+			<img src={url} alt='' className={hero.thumbNail} />
 			<div className={hero.contentInfo}>
 				<PostDate
 					css={hero.date}

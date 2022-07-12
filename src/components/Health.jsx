@@ -125,16 +125,14 @@ export default function Health() {
 		<>
 			<Margin>
 				<PostFlex>
-					<Thumbnail
-						src={`https://torch-cms-database.herokuapp.com${url}`}
-					/>
+					<Thumbnail src={url} />
 					<PostInfo>
 						<Author
 							cssWrap={health.wrapAuth}
 							cssAvatar={health.avatar}
 							cssName={health.name}
 							name={name}
-							src={`https://torch-cms-database.herokuapp.com${profilePic}`}
+							src={profilePic}
 						/>
 						<TitlePreview title={title} preview={snippet} />
 						<ReadMore postID={id} />

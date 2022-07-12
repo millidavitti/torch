@@ -1,9 +1,7 @@
 import React from "react";
 import Author from "components/Reuse/Author";
 import { useQuery, gql } from "@apollo/client";
-import six from "assets/images/six.jpg";
 import hero from "components/Hero/hero.module.css";
-import { Spinner } from "phosphor-react";
 import { Link } from "react-router-dom";
 import { MoonLoader } from "react-spinners";
 const GET_FEATURED = gql`
@@ -59,6 +57,7 @@ export default function Featured() {
 				/>
 			</div>
 		);
+
 	const {
 		posts: {
 			data: [
@@ -91,16 +90,12 @@ export default function Featured() {
 	return (
 		<Link to={`post/${id}`} className={hero.post}>
 			<h2 className={hero.postHead}>{title}</h2>
-			<img
-				src={`https://torch-cms-database.herokuapp.com${url}`}
-				alt=''
-				className={hero.postThumb}
-			/>
+			<img src={url} alt='' className={hero.postThumb} />
 			<Author
 				cssWrap={hero.authorInfo}
 				cssAvatar={hero.avatar}
 				cssName={hero.name}
-				src={`https://torch-cms-database.herokuapp.com${profilePic}`}
+				src={profilePic}
 				name={name}
 			/>
 		</Link>

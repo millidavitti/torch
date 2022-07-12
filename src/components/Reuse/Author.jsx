@@ -1,13 +1,13 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
-export default function Author(props) {
-	const { cssWrap, cssAvatar, cssName, name, src, sho, head } = props;
+export default forwardRef(function Author(props, ref) {
+	const { cssWrap, cssAvatar, cssName, name, src, show } = props;
 	return (
-		<div className={cssWrap} style={sho}>
+		<div className={cssWrap} style={show} ref={ref}>
 			<img src={src} alt={name} className={cssAvatar} />
-			<h3 className={cssName} style={head}>
+			<h3 className={cssName} style={show}>
 				{name}
 			</h3>
 		</div>
 	);
-}
+});
