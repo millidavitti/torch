@@ -17,6 +17,7 @@ import { useQuery, gql } from "@apollo/client";
 import { Outlet, useParams } from "react-router-dom";
 import { MoonLoader } from "react-spinners";
 import RelatedPost from "components/Reuse/RelatedPost";
+import Tag from "components/Tag";
 
 const GET_POST = gql`
 	query ($postID: ID, $cat: CategoryFiltersInput) {
@@ -30,13 +31,6 @@ const GET_POST = gql`
 						data {
 							attributes {
 								url
-							}
-						}
-					}
-					tags {
-						data {
-							attributes {
-								tag
 							}
 						}
 					}
@@ -102,7 +96,6 @@ export default function PostPage() {
 							attributes: { url },
 						},
 					},
-					tags: { data: tagData },
 					categories: {
 						data: [
 							{
@@ -126,14 +119,6 @@ export default function PostPage() {
 			},
 		},
 	} = data;
-
-	const renderTags = tagData.map((attr, id) => {
-		return (
-			<div className={postPage.tagEntity}>
-				<p key={id}>{attr.attributes.tag}</p>
-			</div>
-		);
-	});
 
 	// window.scrollTo(0, 0);
 	return (
@@ -201,23 +186,7 @@ export default function PostPage() {
 											<p className={postPage.date}>
 												{new Date(publishedAt).toDateString()}
 											</p>
-											<div className={postPage.tagTools}>
-												<div className={postPage.toolRack}>
-													<Plus
-														weight='bold'
-														size={20}
-														cursor='pointer'
-														className={postPage.addTag}
-													/>
-													<Square
-														weight='bold'
-														size={20}
-														cursor='pointer'
-														className={postPage.showMore}
-													/>
-												</div>
-												<div className={postPage.footerTag}>{renderTags}</div>
-											</div>
+											<Tag postID={postID} />
 										</div>
 									</div>
 									<Margin>
