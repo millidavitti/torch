@@ -1,25 +1,24 @@
 import React from "react";
 import postPage from "../../components/Reuse/CSS/postPage.module.css";
 import post from "../../components/Reuse/CSS/post.module.css";
-import Author from "../../components/Reuse/Author";
-import Container from "../../components/Reuse/Container";
-import Margin from "../../components/Reuse/Margin";
+import Author from "../../../components/Reuse/Author";
+import Container from "../../../components/Reuse/Container";
+import Margin from "../../../components/Reuse/Margin";
 import { FacebookLogo, TwitterLogo } from "phosphor-react";
-import PostWrap from "../../components/Reuse/PostWrap";
-import SectionHeader from "../../components/Reuse/SectionHeader";
-import Grid from "../../components/Reuse/Grid";
-import GridLeft from "../../components/Reuse/GridLeft";
-import Sidebar from "../../components/Reuse/Sidebar";
-import Sticky from "../../components/Reuse/Sticky";
-import TopTrend from "../../components/Reuse/TopTrend";
-import TrendingPost from "../../components/Reuse/TrendingPost";
+import PostWrap from "../../../components/Reuse/PostWrap";
+import SectionHeader from "../../../components/Reuse/SectionHeader";
+import Grid from "../../../components/Reuse/Grid";
+import GridLeft from "../../../components/Reuse/GridLeft";
+import Sidebar from "../../../components/Reuse/Sidebar";
+import Sticky from "../../../components/Reuse/Sticky";
+import TopTrend from "../../../components/Reuse/TopTrend";
+import TrendingPost from "../../../components/Reuse/TrendingPost";
 import { useQuery, gql } from "@apollo/client";
 import { MoonLoader } from "react-spinners";
-import RelatedPost from "../../components/Reuse/RelatedPost";
-import Tag from "../../components/Tag";
+import RelatedPost from "../../../components/Reuse/RelatedPost";
+import Tag from "../../../components/Tag";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import TrendsWrap from "../../components/Reuse/TrendsWrap";
 
 const GET_POST = gql`
 	query ($postID: ID, $cat: CategoryFiltersInput) {
@@ -70,7 +69,7 @@ export default function PostPage() {
 			postID,
 			cat: {
 				IDN: {
-					containsi: path,
+					containsi: "Health",
 				},
 			},
 		},
@@ -221,7 +220,15 @@ export default function PostPage() {
 						</GridLeft>
 						<Sidebar>
 							<Sticky>
-								<TrendsWrap />
+								<TopTrend>
+									<TrendingPost />
+									<TrendingPost />
+									<TrendingPost />
+									<TrendingPost />
+									<TrendingPost />
+									<TrendingPost />
+									<TrendingPost />
+								</TopTrend>
 							</Sticky>
 						</Sidebar>
 					</Grid>

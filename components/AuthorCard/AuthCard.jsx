@@ -3,10 +3,11 @@ import { FacebookLogo, TwitterLogo, Globe } from "phosphor-react";
 import authCard from "../AuthorCard/authCard.module.css";
 import { gql, useQuery } from "@apollo/client";
 import { MoonLoader } from "react-spinners";
-const GET_OWNER = gql`
-	query ($authID: ID) {
+const GET_AUTHOR = gql`
+	query Author($authID: ID) {
 		author(id: $authID) {
 			data {
+				id
 				attributes {
 					name
 					avatar {
@@ -23,7 +24,7 @@ const GET_OWNER = gql`
 `;
 export default function AuthCard(props) {
 	const { description } = props;
-	const { data, loading, error } = useQuery(GET_OWNER, {
+	const { data, loading, error } = useQuery(GET_AUTHOR, {
 		variables: {
 			authID: 1,
 		},
@@ -37,7 +38,7 @@ export default function AuthCard(props) {
 			/>
 		);
 
-	if (error) return error.message;
+	if (error) return <p>Error : {error.message}</p>;
 	const {
 		author: {
 			data: {

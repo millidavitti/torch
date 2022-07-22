@@ -6,7 +6,7 @@ import hero from "./hero.module.css";
 import { MoonLoader } from "react-spinners";
 
 const GET_SLIDES = gql`
-	query ($var: PostFiltersInput) {
+	query PostSlides($var: PostFiltersInput) {
 		posts(filters: $var) {
 			data {
 				id

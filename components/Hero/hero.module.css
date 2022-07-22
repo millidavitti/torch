@@ -1,21 +1,25 @@
 .hero {
 	padding: 0 3%;
 	margin: 20px 0;
+	overflow: hidden;
+	/* outline: auto; */
 }
 .slider {
 	position: relative;
 	max-width: 800px;
-
-	overflow: hidden;
 }
 .slides {
-	min-height: 550px;
+	min-height: 520px;
+	overflow: hidden;
 	position: relative;
+	margin-bottom: 20px;
 }
 
 .slide {
-	display: inline-block;
+	/* display: inline-block; */
+	width: 100%;
 	position: absolute;
+	inset: 0;
 	margin: 20px 0;
 	height: fit-content;
 	transition: all 500ms cubic-bezier(0.165, 0.84, 0.44, 1);

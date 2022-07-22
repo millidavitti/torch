@@ -1,16 +1,24 @@
 import React from "react";
 
-import Date from "../Reuse/Date";
+import PostDate from "./Date";
 import trend from "./CSS/trend.module.css";
+import Link from "next/link";
 
-export default function TrendingPost() {
+export default function TrendingPost({ id, url, title, publishedAt }) {
 	return (
-		<div className={trend.trendingPosts}>
-			<img src={"nine"} alt='' className={trend.thumb} />
-			<div className={trend.postAndDate}>
-				<p>Pinketh Effect On Men</p>
-				<Date css={trend.date} date={"March 4, 3029"} />
-			</div>
-		</div>
+		<Link href={`/post/${id}`}>
+			<a className={trend.link}>
+				<div className={trend.trendingPosts}>
+					<img src={url} alt='' className={trend.thumb} />
+					<div className={trend.postAndDate}>
+						<p>{title}</p>
+						<PostDate
+							css={trend.date}
+							date={new Date(publishedAt).toDateString()}
+						/>
+					</div>
+				</div>
+			</a>
+		</Link>
 	);
 }

@@ -10,10 +10,10 @@ import TitlePreview from "./Reuse/TitlePreview";
 import health from "./Reuse/CSS/health.module.css";
 import { useQuery, gql } from "@apollo/client";
 import { MoonLoader } from "react-spinners";
-import Link from "next/Link";
+import Link from "next/link";
 
 const GET_HEALTH = gql`
-	query ($var: PostFiltersInput, $sort: [String]) {
+	query HealthPosts($var: PostFiltersInput, $sort: [String]) {
 		posts(filters: $var, sort: $sort) {
 			data {
 				id

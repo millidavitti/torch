@@ -12,7 +12,11 @@ import post from "./CSS/post.module.css";
 import { useRouter } from "next/router";
 
 const GET_RELATED_POST = gql`
-	query ($var: PostFiltersInput, $cat: CategoryFiltersInput, $sort: [String]) {
+	query RelatedPosts(
+		$var: PostFiltersInput
+		$cat: CategoryFiltersInput
+		$sort: [String]
+	) {
 		posts(filters: $var, sort: $sort) {
 			data {
 				id

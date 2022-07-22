@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/Link";
+import Link from "next/link";
 import { gql, useQuery } from "@apollo/client";
 
 // Components
@@ -9,7 +9,7 @@ import Logo from "../../public/assets/logo.svg";
 import { MoonLoader } from "react-spinners";
 
 const GET_MENU = gql`
-	query ($menuID: [String]) {
+	query Menus($menuID: [String]) {
 		menus(sort: $menuID) {
 			data {
 				id
@@ -50,8 +50,11 @@ export default function Header() {
 	if (error)
 		return (
 			<header style={{ display: "flex", alignItems: "center" }}>
-				<Logo className='logo' />
-
+				<Link href='/'>
+					<a>
+						<Logo className='logo' />
+					</a>
+				</Link>
 				<p style={{ margin: "0 auto" }}>ERROR: Failed to get menu data!!</p>
 			</header>
 		);
@@ -59,9 +62,11 @@ export default function Header() {
 	if (loading)
 		return (
 			<header style={{ display: "flex", alignItems: "center" }}>
-				<Logo className='logo' />
-
-				{/* <p style={{ margin: "0 auto" }}>Loading...</p> */}
+				<Link href='/'>
+					<a>
+						<Logo className='logo' />
+					</a>
+				</Link>
 				<MoonLoader
 					cssOverride={{ margin: "0 auto" }}
 					color='var(--secondary)'
@@ -74,7 +79,11 @@ export default function Header() {
 	const { data: menu } = menus;
 	return (
 		<header>
-			<Logo className='logo' />
+			<Link href='/'>
+				<a>
+					<Logo className='logo' />
+				</a>
+			</Link>
 			<MobileNav Logo={Logo} menu={menu} />
 			<DeskItems menu={menu} />
 		</header>

@@ -22,6 +22,9 @@ import { MoonLoader } from "react-spinners";
 import AuthCard from "../../components/AuthorCard/AuthCard";
 import Author from "../../components/Reuse/Author";
 import Container from "../../components/Reuse/Container";
+import Head from "next/head";
+import TrendsWrap from "../../components/Reuse/TrendsWrap";
+
 const GET_CATEGORY = gql`
 	query ($var: PostFiltersInput, $cat: CategoryFiltersInput) {
 		posts(filters: $var) {
@@ -66,7 +69,7 @@ const GET_CATEGORY = gql`
 `;
 export default function Category() {
 	const { path } = useRouter().query;
-	const { data, loading } = useQuery(GET_CATEGORY, {
+	const { data, loading, error } = useQuery(GET_CATEGORY, {
 		variables: {
 			var: {
 				categories: {
@@ -82,6 +85,8 @@ export default function Category() {
 			},
 		},
 	});
+	if (error) return <p>Error:{error.message}</p>;
+
 	if (loading)
 		return (
 			<MoonLoader
@@ -156,10 +161,21 @@ export default function Category() {
 					attributes: { url },
 				},
 			},
+			categories: {
+				data: [
+					{
+						attributes: { IDN },
+					},
+				],
+			},
 		},
 	} = data.posts.data[0];
 	return (
 		<Container>
+			<Head>
+				<meta name='description' content='Torch Blog Categories' />
+				<title>Categories : {IDN}</title>
+			</Head>
 			<PostWrap>
 				<PostFlex>
 					<div className={post.thumbWrap}>
@@ -198,15 +214,7 @@ export default function Category() {
 
 				<Sidebar>
 					<Sticky>
-						<TopTrend>
-							<TrendingPost />
-							<TrendingPost />
-							<TrendingPost />
-							<TrendingPost />
-							<TrendingPost />
-							<TrendingPost />
-							<TrendingPost />
-						</TopTrend>
+						<TrendsWrap />
 					</Sticky>
 				</Sidebar>
 			</Grid>

@@ -1,5 +1,5 @@
 import React from "react";
-
+import Head from "next/head";
 // Components
 import Slider from "../components/Hero/Slider";
 import Hero from "../components/Hero/Hero";
@@ -9,13 +9,7 @@ import AuthCard from "../components/AuthorCard/AuthCard";
 import PostWrap from "../components/Reuse/PostWrap";
 import Container from "../components/Reuse/Container";
 import Margin from "../components/Reuse/Margin";
-import TrendingPost from "../components/Reuse/TrendingPost";
-
-// CSS
-import editors from "../components/EditorsPick/editors.module.css";
-import authCard from "../components/AuthorCard/authCard.module.css";
 import Grid from "../components/Reuse/Grid";
-import TopTrend from "../components/Reuse/TopTrend";
 import Sticky from "../components/Reuse/Sticky";
 import GridLeft from "../components/Reuse/GridLeft";
 import Sidebar from "../components/Reuse/Sidebar";
@@ -23,10 +17,19 @@ import Featured from "../components/Hero/Featured";
 import Travel from "../components/Travel";
 import Health from "../components/Health";
 import Latest from "../components/Latest";
+import TrendsWrap from "../components/Reuse/TrendsWrap";
+
+// CSS
+import editors from "../components/EditorsPick/editors.module.css";
+import authCard from "../components/AuthorCard/authCard.module.css";
 
 export default function Home() {
 	return (
 		<Container>
+			<Head>
+				<title>Torch</title>
+			</Head>
+
 			<Hero>
 				<Slider />
 				<Featured />
@@ -69,13 +72,7 @@ export default function Home() {
 					{/* Sidebar */}
 					<Sidebar>
 						<Sticky>
-							<TopTrend>
-								<TrendingPost />
-								<TrendingPost />
-								<TrendingPost />
-								<TrendingPost />
-								<TrendingPost />
-							</TopTrend>
+							<TrendsWrap />
 						</Sticky>
 					</Sidebar>
 				</Grid>

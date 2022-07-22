@@ -7,10 +7,14 @@ import TitlePreview from "./Reuse/TitlePreview";
 import travel from "./Reuse/CSS/travel.module.css";
 import { useQuery, gql } from "@apollo/client";
 import { MoonLoader } from "react-spinners";
-import Link from "next/Link";
+import Link from "next/link";
 
 const GET_TRAVEL = gql`
-	query ($var: PostFiltersInput, $size: PaginationArg, $sort: [String]) {
+	query TravelPosts(
+		$var: PostFiltersInput
+		$size: PaginationArg
+		$sort: [String]
+	) {
 		posts(filters: $var, pagination: $size, sort: $sort) {
 			data {
 				id

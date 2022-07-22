@@ -2,13 +2,11 @@ import React from "react";
 import Author from "../Reuse/Author";
 import { useQuery, gql } from "@apollo/client";
 import hero from "./hero.module.css";
-import Link from "next/Link";
 import { MoonLoader } from "react-spinners";
-import { useRouter } from "next/router";
-import CardRoute from "../Reuse/CardRoute";
+import Link from "next/link";
 
 const GET_FEATURED = gql`
-	query ($var: PostFiltersInput) {
+	query FeaturedPost($var: PostFiltersInput) {
 		posts(filters: $var) {
 			data {
 				id
@@ -41,7 +39,6 @@ const GET_FEATURED = gql`
 	}
 `;
 export default function Featured() {
-	const router = useRouter();
 	const { data, loading, error } = useQuery(GET_FEATURED, {
 		variables: {
 			var: {

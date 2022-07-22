@@ -1,6 +1,6 @@
 import React from "react";
 import readmore from "./CSS/readmore.module.css";
-import Link from "next/Link";
+import Link from "next/link";
 
 export default function ReadMore({ postID }) {
 	return (

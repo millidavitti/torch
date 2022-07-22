@@ -3,7 +3,7 @@ import { At, Phone } from "phosphor-react";
 import footer from "./footer.module.css";
 import Logo from "../../public/assets/logo.svg";
 import Socials from "../Reuse/Socials";
-import Link from "next/Link";
+import Link from "next/link";
 export default function Footer() {
 	return (
 		<footer className={footer.footer}>
@@ -19,9 +19,11 @@ export default function Footer() {
 					<figcaption>+234 805 9739 872</figcaption>
 				</figure>
 			</div>
-			{/* <Link href='/' className={footer.logo} style={{ cursor: "pointer" }}> */}
-			<Logo />
-			{/* </Link> */}
+			<Link href='/'>
+				<a className={footer.logo}>
+					<Logo />
+				</a>
+			</Link>
 			<Socials css={footer} showFacebook={true} showTwitter={true} />
 		</footer>
 	);

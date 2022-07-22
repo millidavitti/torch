@@ -9,7 +9,7 @@ import EditorTab from "./EditorTab";
 import CircularBtn from "./CircularBtn";
 
 const GET_EDITORS_PICK = gql`
-	query ($var: PostFiltersInput, $size: PaginationArg) {
+	query EditorsPick($var: PostFiltersInput, $size: PaginationArg) {
 		posts(filters: $var, pagination: $size) {
 			data {
 				id
@@ -69,6 +69,7 @@ export default function EditorsPick() {
 	const [picks, setPicks] = useState();
 
 	useEffect(() => {
+		if (error) return;
 		if (!loading) {
 			setIdd(data.posts.data[0].id);
 			setPicks(tempPicks);
@@ -85,7 +86,7 @@ export default function EditorsPick() {
 			/>
 		);
 
-	if (error) return error.message;
+	if (error) return <p>Error : {error.message}</p>;
 
 	// Used on first render
 	const tempPicks = data.posts.data.map((pick, index) =>

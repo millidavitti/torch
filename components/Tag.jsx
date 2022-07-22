@@ -6,9 +6,10 @@ import { MoonLoader } from "react-spinners";
 import { useRef } from "react";
 
 const GET_TAGS = gql`
-	query GetTags($tags: TagFiltersInput) {
+	query PostTags($tags: TagFiltersInput) {
 		tags(filters: $tags) {
 			data {
+				id
 				attributes {
 					tag
 				}
@@ -18,7 +19,7 @@ const GET_TAGS = gql`
 `;
 
 const POST_TAG = gql`
-	mutation ($dataInput: TagInput!) {
+	mutation AddPostTag($dataInput: TagInput!) {
 		createTag(data: $dataInput) {
 			data {
 				id
@@ -121,7 +122,7 @@ export default function Tag({ postID }) {
 					publishedAt: "2022-07-12T11:03:00Z",
 				},
 			},
-			refetchQueries: [{ query: GET_TAGS }, "GetTags"],
+			refetchQueries: [{ query: GET_TAGS }, "PostTags"],
 		});
 		setNewTag(false);
 	}

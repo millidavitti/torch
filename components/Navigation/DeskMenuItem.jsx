@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Link from "next/Link";
+import Link from "next/link";
 import { CSSTransition } from "react-transition-group";
 import post from "../Reuse/CSS/post.module.css";
 import DropDown from "./DropDown";

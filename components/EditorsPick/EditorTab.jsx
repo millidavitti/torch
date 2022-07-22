@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import Author from "../Reuse/Author";
 import PostDate from "../Reuse/Date";
 import editors from "../EditorsPick/editors.module.css";
-import Link from "next/Link";
+import Link from "next/link";
 
 export default function EditorTab(props) {
 	const wrap = useRef();

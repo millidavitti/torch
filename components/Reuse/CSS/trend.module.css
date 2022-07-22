@@ -3,6 +3,10 @@
 	padding: 8px;
 }
 
+.link {
+	color: var(--secondary);
+}
+
 .scroll {
 	max-height: 100vh;
 	overflow: auto;
@@ -47,9 +51,11 @@
 }
 
 .thumb {
-	width: 70px;
+	color: black;
+	min-width: 70px;
+	max-width: 70px;
 	height: 70px;
-
+	outline: auto;
 	object-fit: cover;
 }
 

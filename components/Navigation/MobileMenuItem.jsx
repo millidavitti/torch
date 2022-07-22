@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Link from "next/Link";
+import Link from "next/link";
 import DropDown from "./DropDown";
 import DropMenu from "./DropMenu";
 
@@ -17,7 +17,12 @@ export default function MobileMenuItem({ attributes, closeMenu }) {
 
 	if (isDropDown) {
 		drops = attributes[attributes.IDD]?.data.map(({ id, attributes }) => (
-			<DropMenu key={id} closeMenu={closeMenu} IDN={attributes.IDN} />
+			<DropMenu
+				key={id}
+				closeMenu={closeMenu}
+				IDN={attributes.IDN}
+				path={attributes.path}
+			/>
 		));
 	}
 
