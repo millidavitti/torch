@@ -13,7 +13,7 @@ import Sidebar from "../../components/Reuse/Sidebar";
 import Sticky from "../../components/Reuse/Sticky";
 import { gql } from "@apollo/client";
 import RelatedPost from "../../components/Reuse/RelatedPost";
-import Tag from "../../components/Tag";
+// import Tag from "../../components/Tag";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import TrendsWrap from "../../components/Reuse/TrendsWrap";
@@ -93,7 +93,7 @@ export async function getStaticPaths() {
 	});
 	return {
 		paths,
-		fallback: true,
+		fallback: false,
 	};
 }
 
