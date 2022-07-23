@@ -214,7 +214,7 @@ export default function PostPage({ data }) {
 										<p className={postPage.date}>
 											{new Date(publishedAt).toDateString()}
 										</p>
-										<Tag postID={postID} />
+										{/* <Tag postID={postID} /> */}
 									</div>
 								</div>
 								<Margin>
