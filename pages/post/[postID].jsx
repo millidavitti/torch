@@ -11,15 +11,13 @@ import Grid from "../../components/Reuse/Grid";
 import GridLeft from "../../components/Reuse/GridLeft";
 import Sidebar from "../../components/Reuse/Sidebar";
 import Sticky from "../../components/Reuse/Sticky";
-import TopTrend from "../../components/Reuse/TopTrend";
-import TrendingPost from "../../components/Reuse/TrendingPost";
-import { useQuery, gql } from "@apollo/client";
-import { MoonLoader } from "react-spinners";
+import { gql } from "@apollo/client";
 import RelatedPost from "../../components/Reuse/RelatedPost";
 import Tag from "../../components/Tag";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import TrendsWrap from "../../components/Reuse/TrendsWrap";
+import apolloClient from "../../lib/apolloClient";
 
 const GET_POST = gql`
 	query ($postID: ID, $cat: CategoryFiltersInput) {
@@ -62,28 +60,46 @@ const GET_POST = gql`
 		}
 	}
 `;
-
-export default function PostPage() {
-	const { postID, path } = useRouter().query;
-	const { data, loading } = useQuery(GET_POST, {
+const GET_POSTIDs = gql`
+	query PostIDs {
+		posts {
+			data {
+				id
+			}
+		}
+	}
+`;
+export async function getStaticProps({ params }) {
+	const { data } = await apolloClient.query({
+		query: GET_POST,
 		variables: {
-			postID,
-			cat: {
-				IDN: {
-					containsi: path,
-				},
-			},
+			postID: params.postID,
 		},
 	});
 
-	if (loading)
-		return (
-			<MoonLoader
-				cssOverride={{ margin: "auto" }}
-				color='var(--secondary)'
-				size={25}
-			/>
-		);
+	return {
+		props: {
+			data,
+		},
+	};
+}
+
+export async function getStaticPaths() {
+	const { data } = await apolloClient.query({
+		query: GET_POSTIDs,
+	});
+	const paths = data.posts.data.map(({ id }) => {
+		return { params: { postID: id } };
+	});
+	return {
+		paths,
+		fallback: true,
+	};
+}
+
+export default function PostPage({ data }) {
+	const { postID } = useRouter().query;
+
 	if (!data.post.data) return <p>Post not found!</p>;
 
 	const {
