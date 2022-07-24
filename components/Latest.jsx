@@ -230,7 +230,7 @@ export default function Latest() {
 							fetchMore({
 								variables: {
 									pag: {
-										start: subLatest.posts.data.length + 1,
+										start: subLatest.posts.data.length,
 										limit: 2,
 									},
 								},
