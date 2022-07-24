@@ -127,9 +127,19 @@ export default function Latest() {
 		},
 	});
 
-	if (error || subError) return <p>Error: {error.message}</p>;
+	if (error) return <p>Error: {error.message}</p>;
 
-	if (loading || subLoad)
+	if (loading)
+		return (
+			<MoonLoader
+				cssOverride={{ margin: "auto" }}
+				color='var(--secondary)'
+				size={25}
+			/>
+		);
+	if (subError) return <p>Error: {error.message}</p>;
+
+	if (subLoad)
 		return (
 			<MoonLoader
 				cssOverride={{ margin: "auto" }}
@@ -139,7 +149,7 @@ export default function Latest() {
 		);
 	const flexPosts = subLatest.posts.data.map((data) => {
 		const {
-            id,
+			id,
 			attributes: {
 				title,
 				publishedAt,
@@ -231,7 +241,7 @@ export default function Latest() {
 							fetchMore({
 								variables: {
 									pag: {
-										start: subLatest.posts.data.length,
+										start: subLatest.posts.data.length + 1,
 										limit: 2,
 									},
 								},
