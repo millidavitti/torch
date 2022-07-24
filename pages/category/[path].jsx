@@ -174,6 +174,10 @@ export default function Category() {
 		<Container>
 			<Head>
 				<meta name='description' content='Torch Blog Categories' />
+				<meta
+					property='og:image'
+					content='https://res.cloudinary.com/torch-cms-media/image/upload/v1658568341/logo_5d3d7f7c34_a598a29434.svg'
+				/>
 				<title>Categories : {IDN}</title>
 			</Head>
 			<PostWrap>
