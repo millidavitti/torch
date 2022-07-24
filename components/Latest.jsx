@@ -137,8 +137,9 @@ export default function Latest() {
 				size={25}
 			/>
 		);
-	const flexPosts = subLatest.posts.data.map((data, id) => {
+	const flexPosts = subLatest.posts.data.map((data) => {
 		const {
+            id,
 			attributes: {
 				title,
 				publishedAt,
