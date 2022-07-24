@@ -50,8 +50,8 @@ const GET_LATEST = gql`
 `;
 
 const GET_SUBLATEST = gql`
-	query LatestPost($latestSort: [String], $pag: PaginationArg) {
-		posts(sort: $latestSort, pagination: $pag) {
+	query SubLatestPost($subLatestSort: [String], $pag: PaginationArg) {
+		posts(sort: $subLatestSort, pagination: $pag) {
 			data {
 				id
 				attributes {
