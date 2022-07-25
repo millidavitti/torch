@@ -4,5 +4,6 @@ Torch is an indispensable blog & magazine theme with a clean, modern design suit
 
 [Visit website](https://torch-mordern-blog.vercel.app/)
 [Editor's dashboard](https://torch-cms-database.herokuapp.com/admin/)
+[Twine Profile](https://www.twine.net/Davitti)
 
 Login Credentials: torch@demo.com, iuwyeiuey123A
