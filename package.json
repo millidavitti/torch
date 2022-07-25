@@ -42,6 +42,8 @@
 		]
 	},
 	"devDependencies": {
-		"eslint": "^8.20.0"
+		"@hint/configuration-web-recommended": "^8.2.14",
+		"eslint": "^8.20.0",
+		"hint": "^7.1.1"
 	}
 }
