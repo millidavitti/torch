@@ -1,6 +1,13 @@
 {
 	"extends": ["web-recommended"],
 	"hints": {
-		"x-content-type-options": "nosniff"
+		"x-content-type-options": "nosniff",
+		"http-cache": [
+			"error",
+			{
+				"maxAgeTarget": 180, // 5 minutes in seconds
+				"maxAgeResource": 1576800 // 6 months in seconds
+			}
+		]
 	}
 }
