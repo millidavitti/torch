@@ -50,8 +50,8 @@ const GET_LATEST = gql`
 `;
 
 const GET_SUBLATEST = gql`
-	query LatestPost($latestSort: [String], $pag: PaginationArg) {
-		posts(sort: $latestSort, pagination: $pag) {
+	query SubLatestPost($subLatestSort: [String], $pag: PaginationArg) {
+		posts(sort: $subLatestSort, pagination: $pag) {
 			data {
 				id
 				attributes {
@@ -127,9 +127,9 @@ export default function Latest() {
 		},
 	});
 
-	if (error || subError) return <p>Error: {error.message}</p>;
+	if (error) return <p>Error: {error.message}</p>;
 
-	if (loading || subLoad)
+	if (loading)
 		return (
 			<MoonLoader
 				cssOverride={{ margin: "auto" }}
@@ -137,8 +137,19 @@ export default function Latest() {
 				size={25}
 			/>
 		);
-	const flexPosts = subLatest.posts.data.map((data, id) => {
+	if (subError) return <p>Error: {error.message}</p>;
+
+	if (subLoad)
+		return (
+			<MoonLoader
+				cssOverride={{ margin: "auto" }}
+				color='var(--secondary)'
+				size={25}
+			/>
+		);
+	const flexPosts = subLatest.posts.data.map((data) => {
 		const {
+			id,
 			attributes: {
 				title,
 				publishedAt,

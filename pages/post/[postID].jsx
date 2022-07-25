@@ -142,6 +142,7 @@ export default function PostPage({ data }) {
 		<Container>
 			<Head>
 				<meta name='description' content='Blog Post' />
+				<meta property='og:image' content={url} />
 				<title>{title}</title>
 			</Head>
 			<Margin>
