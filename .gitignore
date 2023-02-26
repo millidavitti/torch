@@ -24,3 +24,5 @@ yarn-error.log*
 
 #Next.js
 .next
+
+.env
