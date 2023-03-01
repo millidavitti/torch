@@ -7,250 +7,74 @@ import PostInfo from "./Reuse/PostInfo";
 import ReadMore from "./Reuse/ReadMore";
 import TitlePreview from "./Reuse/TitlePreview";
 import post from "./Reuse/CSS/post.module.css";
-import { gql, useQuery } from "@apollo/client";
 import { MoonLoader } from "react-spinners";
 import Thumbnail from "./Reuse/Thumbnail";
 import PostWrap from "./Reuse/PostWrap";
 import readmore from "./Reuse/CSS/readmore.module.css";
+import { mockPosts } from "../serverless/mock";
 
-const GET_LATEST = gql`
-	query LatestPost($latestSort: [String], $pag: PaginationArg) {
-		posts(sort: $latestSort, pagination: $pag) {
-			data {
-				id
-				attributes {
-					title
-					snippet
-					publishedAt
-					thumb {
-						data {
-							attributes {
-								url
-							}
-						}
-					}
-					author {
-						data {
-							attributes {
-								name
-								avatar {
-									data {
-										attributes {
-											url
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-`;
-
-const GET_SUBLATEST = gql`
-	query SubLatestPost($subLatestSort: [String], $pag: PaginationArg) {
-		posts(sort: $subLatestSort, pagination: $pag) {
-			data {
-				id
-				attributes {
-					title
-					snippet
-					publishedAt
-					thumb {
-						data {
-							attributes {
-								url
-							}
-						}
-					}
-					categories {
-						data {
-							attributes {
-								IDN
-							}
-						}
-					}
-					author {
-						data {
-							attributes {
-								name
-								avatar {
-									data {
-										attributes {
-											url
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-			meta {
-				pagination {
-					page
-					pageCount
-				}
-			}
-		}
-	}
-`;
 export default function Latest() {
-	const {
-		data: latest,
-		loading,
-		error,
-	} = useQuery(GET_LATEST, {
-		variables: {
-			latestSort: ["publishedAt:desc"],
-			pag: {
-				start: 0,
-				limit: 1,
-			},
-		},
-	});
-	const {
-		data: subLatest,
-		loading: subLoad,
-		error: subError,
-		fetchMore,
-	} = useQuery(GET_SUBLATEST, {
-		variables: {
-			subLatestSort: ["publishedAt:desc"],
-			pag: {
-				start: 1,
-				limit: 2,
-			},
-			notifyOnNetworkStatusChange: true,
-		},
-	});
-
-	if (error) return <p>Error: {error.message}</p>;
-
-	if (loading)
+	const flexPosts = mockPosts.map((post) => {
 		return (
-			<MoonLoader
-				cssOverride={{ margin: "auto" }}
-				color='var(--secondary)'
-				size={25}
-			/>
-		);
-	if (subError) return <p>Error: {error.message}</p>;
-
-	if (subLoad)
-		return (
-			<MoonLoader
-				cssOverride={{ margin: "auto" }}
-				color='var(--secondary)'
-				size={25}
-			/>
-		);
-	const flexPosts = subLatest.posts.data.map((data) => {
-		const {
-			id,
-			attributes: {
-				title,
-				publishedAt,
-				snippet,
-				thumb: {
-					data: {
-						attributes: { url },
-					},
-				},
-				categories,
-			},
-		} = data;
-		return (
-			<Post key={id}>
-				<Thumbnail src={url} alt={"me"} />
+			<Post key={post.title}>
+				<Thumbnail src={"url"} alt={"me"} />
 				<PostInfo>
-					<PostDate date={new Date(publishedAt).toDateString()} head={false} />
+					<PostDate
+						date={new Date(post.published).toDateString()}
+						head={false}
+					/>
 					<div style={{ display: "flex", gap: "7px" }}>
-						{categories.data.map(({ attributes: { IDN } }) => (
-							<h2 key={IDN} className={post.singlePostHead}>
-								{IDN}
+						{post.categories.map((category) => (
+							<h2 key={category} className={post.singlePostHead}>
+								{category}
 							</h2>
 						))}
 					</div>
-					<TitlePreview title={title} preview={snippet} />
-					<ReadMore postID={id} />
+					<TitlePreview title={post.title} preview={post.snippet} />
+					<ReadMore postID={post.title} />
 				</PostInfo>
 			</Post>
 		);
 	});
 
-	const {
-		id,
-		attributes: {
-			title,
-			snippet,
-			publishedAt,
-			thumb: {
-				data: {
-					attributes: { url },
-				},
-			},
-			author: {
-				data: {
-					attributes: {
-						name,
-						avatar: {
-							data: {
-								attributes: { url: profilePic },
-							},
-						},
-					},
-				},
-			},
-		},
-	} = latest.posts.data[0];
 	return (
 		<>
+			{/* Most Recent */}
 			<PostFlex>
 				<div className={post.thumbWrap}>
-					<img src={url} alt='' className={post.thumb} />
+					<img src={"url"} alt='' className={post.thumb} />
 
 					<Author
 						cssWrap={post.wrapAuth}
 						cssAvatar={post.avatar}
 						cssName={post.name}
-						name={name}
-						src={profilePic}
+						name={mockPosts[0].author.name}
+						src={mockPosts[0].author.avatar}
 					/>
 				</div>
 				<PostInfo>
 					<PostDate
 						css={post.date}
-						date={new Date(publishedAt).toDateString()}
+						date={new Date(mockPosts[0].published).toDateString()}
 						head={true}
 					/>
-					<TitlePreview title={title} preview={snippet} />
-					<ReadMore postID={id} />
+					<TitlePreview
+						title={mockPosts[0].title}
+						preview={mockPosts[0].snippet}
+					/>
+					<ReadMore postID={mockPosts[0].title} />
 				</PostInfo>
 			</PostFlex>
 
 			{/* Others */}
 			<PostWrap>
 				<PostFlex>{flexPosts}</PostFlex>
-				{subLatest.posts.meta.pagination.page ===
-					subLatest.posts.meta.pagination.pageCount || (
+				{
 					<button
-						onClick={() => {
-							fetchMore({
-								variables: {
-									pag: {
-										start: subLatest.posts.data.length + 1,
-										limit: 2,
-									},
-								},
-							});
-						}}
 						className={readmore.readMore}
 						style={{ left: "43%", width: "auto" }}
 					>
-						{subLoad ? (
+						{true ? (
 							<MoonLoader
 								cssOverride={{ margin: "auto", left: "40%" }}
 								color='var(--secondary)'
@@ -260,7 +84,7 @@ export default function Latest() {
 							"Load More"
 						)}
 					</button>
-				)}
+				}
 			</PostWrap>
 		</>
 	);

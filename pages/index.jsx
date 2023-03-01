@@ -22,8 +22,12 @@ import TrendsWrap from "../components/Reuse/TrendsWrap";
 // CSS
 import editors from "../components/EditorsPick/editors.module.css";
 import authCard from "../components/AuthorCard/authCard.module.css";
+import postController from "../serverless/controllers/post.controller";
+import authorController from "../serverless/controllers/author.controller";
+import menuController from "../serverless/controllers/menu.controller";
+import categoryController from "../serverless/controllers/category.controller";
 
-export default function Home() {
+export default function Home({ menus }) {
 	return (
 		<Container>
 			<Head>
@@ -90,4 +94,20 @@ export default function Home() {
 			</section>
 		</Container>
 	);
+}
+
+export async function getServerSideProps() {
+	const res = await postController();
+	const res2 = await authorController();
+	const menus = await menuController();
+	const categories = await categoryController();
+
+	return {
+		props: {
+			res,
+			res2,
+			menus,
+			categories,
+		},
+	};
 }

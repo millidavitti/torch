@@ -7,41 +7,6 @@ import Link from "next/link";
 export default function EditorTab(props) {
 	const wrap = useRef();
 	const [show, setShow] = useState({ shown: false });
-	const {
-		btns,
-		pick: {
-			id,
-			attributes: {
-				title,
-				snippet,
-				publishedAt,
-				thumb: {
-					data: {
-						attributes: { url },
-					},
-				},
-				categories: {
-					data: [
-						{
-							attributes: { IDN },
-						},
-					],
-				},
-				author: {
-					data: {
-						attributes: {
-							name,
-							avatar: {
-								data: {
-									attributes: { url: profilePic },
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-	} = props;
 
 	const sho = {
 		transform: show.shown
@@ -60,38 +25,42 @@ export default function EditorTab(props) {
 				onClick={() => setShow((pre) => ({ ...pre, shown: !pre.shown }))}
 				onMouseOut={() => setShow((pre) => ({ ...pre, shown: false }))}
 			>
-				<img src={url} alt={title} className={editors.thumb} />
+				<img
+					src={props.pick.thumb}
+					alt={props.pick.title}
+					className={editors.thumb}
+				/>
 				<Author
 					ref={wrap}
 					cssWrap={editors.authorInfo}
 					cssAvatar={editors.avatar}
 					cssName={editors.name}
-					name={name}
-					src={profilePic}
+					name={props.pick.author.name}
+					src={props.pick.author.avatar}
 					show={sho}
 				/>
-				<h2 className={editors.category}>{IDN}</h2>
+				<h2 className={editors.category}>{props.pick.categories[0]}</h2>
 			</div>
 
 			<div className={editors.info}>
 				<PostDate
 					css={editors.date}
-					date={new Date(publishedAt).toDateString()}
+					date={new Date(props.pick.published).toDateString()}
 					head={true}
 				/>
 				<div className={editors.wrapTp}>
-					<Link href={`/post/${id}`}>
-						<h2 className={editors.title}>{title}</h2>
+					<Link href={`/post/${props.pick.title}`}>
+						<h2 className={editors.title}>{props.pick.title}</h2>
 					</Link>
-					<p className={editors.postPreview}>{snippet}</p>
+					<p className={editors.postPreview}>{props.pick.snippet}</p>
 				</div>
 			</div>
 
 			<div className={editors.navigate}>
-				<Link href={`/post/${id}`}>
+				<Link href={`/post/${props.pick.title}`}>
 					<a className={editors.readMore}>Read More</a>
 				</Link>
-				<div className={editors.circularBtnWrap}>{btns}</div>
+				<div className={editors.circularBtnWrap}>{props.btns}</div>
 			</div>
 		</div>
 	);
