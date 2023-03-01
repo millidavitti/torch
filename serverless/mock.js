@@ -1,6 +1,6 @@
 const date = new Date(Date.UTC(2023, 1));
 
-var content = `
+const content = `
 <p>
 Meditation has been around for thousands of years and has been practiced by various cultures and religions around the world. In recent years, it has gained popularity as a tool for promoting mental health and well-being. Research has shown that regular meditation practice can have numerous benefits for mental health, including reduced stress, anxiety, and depression. In this blog post, we will explore the benefits of meditation for mental health in more detail.</p>
 
@@ -116,7 +116,7 @@ export const mockPosts = [
 	},
 ];
 
-const menu = [
+export const menu = [
 	{
 		id: "Home",
 		name: "Home",
@@ -146,7 +146,7 @@ const menu = [
 	},
 ];
 
-const categories = [
+export const categories = [
 	{
 		id: "Tech",
 		name: "Tech",
@@ -164,7 +164,7 @@ const categories = [
 	},
 ];
 
-const archives = [
+export const archives = [
 	{
 		year: 2023,
 		posts: [],

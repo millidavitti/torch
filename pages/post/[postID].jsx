@@ -11,156 +11,40 @@ import Grid from "../../components/Reuse/Grid";
 import GridLeft from "../../components/Reuse/GridLeft";
 import Sidebar from "../../components/Reuse/Sidebar";
 import Sticky from "../../components/Reuse/Sticky";
-import { gql } from "@apollo/client";
 import RelatedPost from "../../components/Reuse/RelatedPost";
 import Tag from "../../components/Tag";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import TrendsWrap from "../../components/Reuse/TrendsWrap";
-import apolloClient from "../../lib/apolloClient";
 
-const GET_POST = gql`
-	query ($postID: ID, $cat: CategoryFiltersInput) {
-		post(id: $postID) {
-			data {
-				attributes {
-					title
-					content
-					publishedAt
-					thumb {
-						data {
-							attributes {
-								url
-							}
-						}
-					}
-					categories(filters: $cat) {
-						data {
-							attributes {
-								IDN
-							}
-						}
-					}
-					author {
-						data {
-							attributes {
-								name
-								avatar {
-									data {
-										attributes {
-											url
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-`;
-const GET_POSTIDs = gql`
-	query PostIDs {
-		posts {
-			data {
-				id
-			}
-		}
-	}
-`;
-export async function getStaticProps({ params }) {
-	const { data } = await apolloClient.query({
-		query: GET_POST,
-		variables: {
-			postID: params.postID,
-		},
-	});
-
-	return {
-		props: {
-			data,
-		},
-	};
-}
-
-export async function getStaticPaths() {
-	const { data } = await apolloClient.query({
-		query: GET_POSTIDs,
-	});
-	const paths = data.posts.data.map(({ id }) => {
-		return { params: { postID: id } };
-	});
-	return {
-		paths,
-		fallback: false,
-	};
-}
+import { mockPosts } from "../../serverless/mock";
 
 export default function PostPage({ data }) {
 	const { postID } = useRouter().query;
-
-	if (!data.post.data) return <p>Post not found!</p>;
-
-	const {
-		post: {
-			data: {
-				attributes: {
-					title,
-					content,
-					publishedAt,
-					thumb: {
-						data: {
-							attributes: { url },
-						},
-					},
-					categories: {
-						data: [
-							{
-								attributes: { IDN },
-							},
-						],
-					},
-					author: {
-						data: {
-							attributes: {
-								name,
-								avatar: {
-									data: {
-										attributes: { url: profilePic },
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-	} = data;
 
 	return (
 		<Container>
 			<Head>
 				<meta name='description' content='Blog Post' />
-				<meta property='og:image' content={url} />
-				<title>{title}</title>
+				<meta property='og:image' content={"url"} />
+				<title>{mockPosts[0].title}</title>
 			</Head>
 			<Margin>
 				<div className={postPage.wrap}>
 					{/* Thumbnail */}
 					<div className={postPage.thumbnail}>
-						<img src={url} alt='' />
+						<img src={"url"} alt='' />
 						<div className={postPage.overlay}>
-							<p className={postPage.tag}>{IDN}</p>
+							<p className={postPage.tag}>{mockPosts[0].categories[0]}</p>
 							<Margin>
-								<h1 className={postPage.title}>{title}</h1>
+								<h1 className={postPage.title}>{mockPosts[0].title}</h1>
 							</Margin>
 							<Author
 								cssWrap={post.wrapAuth}
 								cssAvatar={post.avatar}
 								cssName={post.name}
-								name={name}
-								src={profilePic}
+								name={mockPosts[0].author.name}
+								src={mockPosts[0].author.avatar}
 							/>
 						</div>
 					</div>
@@ -175,8 +59,8 @@ export default function PostPage({ data }) {
 												cssWrap={postPage.wrapAuth}
 												cssAvatar={postPage.avatar}
 												cssName={postPage.name}
-												name={name}
-												src={profilePic}
+												name={mockPosts[0].author.name}
+												src={mockPosts[0].author.avatar}
 											/>
 											<div className={postPage.share}>
 												<p>Share:</p>
@@ -205,7 +89,7 @@ export default function PostPage({ data }) {
 										{
 											<div
 												dangerouslySetInnerHTML={{
-													__html: content,
+													__html: mockPosts[0].content,
 												}}
 											/>
 										}
@@ -213,14 +97,14 @@ export default function PostPage({ data }) {
 									{/* Content Footer */}
 									<div className={postPage.contentFooter}>
 										<p className={postPage.date}>
-											{new Date(publishedAt).toDateString()}
+											{new Date(mockPosts[0].published).toDateString()}
 										</p>
 										<Tag postID={postID} />
 									</div>
 								</div>
 								<Margin>
 									<div className={postPage.postAuthor}>
-										<img src={profilePic} alt='' />
+										<img src={mockPosts[0].author.avatar} alt='' />
 										<div className={postPage.postAuthinfo}>
 											<h2>Donald Abua</h2>
 											<p>
@@ -232,7 +116,7 @@ export default function PostPage({ data }) {
 								</Margin>
 								<PostWrap>
 									<SectionHeader text={"Related Posts"} />
-									<RelatedPost category={IDN} />
+									<RelatedPost category={mockPosts[0].categories} />
 								</PostWrap>
 							</Margin>
 						</GridLeft>

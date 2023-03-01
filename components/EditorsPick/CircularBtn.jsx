@@ -10,7 +10,8 @@ export default function CircularBtn(props) {
 		<button
 			className={editors.circularBtn}
 			style={highlight}
-			onClick={Fn.bind(null, id)}
-		></button>
+			id={id}
+			onClick={Fn}
+		/>
 	);
 }
