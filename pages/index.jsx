@@ -22,6 +22,7 @@ import TrendsWrap from "../components/Reuse/TrendsWrap";
 // CSS
 import editors from "../components/EditorsPick/editors.module.css";
 import authCard from "../components/AuthorCard/authCard.module.css";
+// Controllers
 import postController from "../serverless/controllers/post.controller";
 import authorController from "../serverless/controllers/author.controller";
 import menuController from "../serverless/controllers/menu.controller";
@@ -35,7 +36,6 @@ import latestController from "../serverless/controllers/latest.controller";
 import trendingController from "../serverless/controllers/trending.controller";
 
 export default function Home(props) {
-	console.log(JSON.parse(props.trendingPosts));
 	return (
 		<Container>
 			<Head>
@@ -57,6 +57,7 @@ export default function Home(props) {
 				/>
 				<EditorsPick posts={props.editorsPickPosts} />
 			</section>
+
 			{/* Travel News */}
 			<PostWrap>
 				<SectionHeader
@@ -67,6 +68,7 @@ export default function Home(props) {
 					<Travel posts={props.travelPosts} />
 				</Margin>
 			</PostWrap>
+
 			{/* Health News */}
 			<PostWrap>
 				<SectionHeader
@@ -75,6 +77,7 @@ export default function Home(props) {
 				/>
 				<Health posts={props.healthPosts} />
 			</PostWrap>
+
 			{/* Latest News */}
 			<PostWrap>
 				<SectionHeader
@@ -85,7 +88,8 @@ export default function Home(props) {
 					<GridLeft>
 						<Latest posts={props.latestPosts} />
 					</GridLeft>
-					{/* Sidebar */}
+
+					{/* Sidebar: Top Trending */}
 					<Sidebar>
 						<Sticky>
 							<TrendsWrap posts={props.trendingPosts} />
@@ -93,6 +97,8 @@ export default function Home(props) {
 					</Sidebar>
 				</Grid>
 			</PostWrap>
+
+			{/* Author Card */}
 			<section className={authCard.container}>
 				<AuthCard
 					description={

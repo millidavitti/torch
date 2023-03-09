@@ -17,17 +17,17 @@ export default function Travel({ posts }) {
 						title={JSON.parse(posts)[0].title}
 						preview={JSON.parse(posts)[0].snippet}
 					/>
-					<ReadMore postID={JSON.parse(posts)[0].title} />
+					<ReadMore postID={JSON.parse(posts)[0]._id} />
 					<Margin>
-						<Thumbnail src={"url"} />
+						<Thumbnail src={JSON.parse(posts)[0].thumb} />
 					</Margin>
 				</Margin>
 			</div>
 			{/* For Widths < 1024px */}
 			<div className={travel.flexRow}>
-				<Link href={`/post/${JSON.parse(posts)[1].title}`}>
+				<Link href={`/post/${JSON.parse(posts)[1]._id}`}>
 					<a>
-						<Thumbnail src={"url"} />
+						<Thumbnail src={JSON.parse(posts)[1].thumb} />
 						<TitlePreview
 							cssWrap={travel.wrapTp}
 							cssTitle={travel.title}
@@ -36,9 +36,9 @@ export default function Travel({ posts }) {
 						/>
 					</a>
 				</Link>
-				<Link href={`/post/${JSON.parse(posts)[2].title}`}>
+				<Link href={`/post/${JSON.parse(posts)[2]._id}`}>
 					<a>
-						<Thumbnail src={"url"} />
+						<Thumbnail src={JSON.parse(posts)[2].thumb} />
 						<TitlePreview
 							cssWrap={travel.wrapTp}
 							cssTitle={travel.title}
@@ -50,9 +50,9 @@ export default function Travel({ posts }) {
 			</div>
 			{/* For Widths >= than 1024px */}
 			<div className={travel.left}>
-				<Link href={`/post/${JSON.parse(posts)[1].title}`}>
+				<Link href={`/post/${JSON.parse(posts)[1]._id}`}>
 					<a>
-						<Thumbnail src={"url"} />
+						<Thumbnail src={JSON.parse(posts)[1].thumb} />
 						<TitlePreview
 							cssWrap={travel.wrapTp}
 							cssTitle={travel.title}
@@ -63,7 +63,7 @@ export default function Travel({ posts }) {
 				</Link>
 			</div>
 			<div className={travel.right}>
-				<Link href={`/post/${JSON.parse(posts)[2].title}`}>
+				<Link href={`/post/${JSON.parse(posts)[2]._id}`}>
 					<a>
 						<TitlePreview
 							cssWrap={travel.wrapTp}
@@ -71,7 +71,7 @@ export default function Travel({ posts }) {
 							cssPreview={travel.postPreview}
 							title={JSON.parse(posts)[2].title}
 						/>
-						<Thumbnail src={"url"} />
+						<Thumbnail src={JSON.parse(posts)[2].thumb} />
 					</a>
 				</Link>
 			</div>

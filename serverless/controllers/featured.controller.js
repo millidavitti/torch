@@ -5,7 +5,7 @@ export default async function featuredController() {
 	connectdb();
 
 	const fearuredPosts = await postModel
-		.findOne({ featured: true }, { _v: 0 })
+		.findOne({ featured: true }, { thumb: 1, title: 1, author: 1 })
 		.populate("author");
 
 	return JSON.stringify(fearuredPosts);

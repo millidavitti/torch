@@ -7,29 +7,26 @@ import ReadMore from "./ReadMore";
 import Thumbnail from "./Thumbnail";
 import TitlePreview from "./TitlePreview";
 import post from "./CSS/post.module.css";
-import { mockPosts } from "../../serverless/mock";
+import { useRouter } from "next/router";
 
-export default function RelatedPost({ category }) {
+export default function RelatedPost({ posts }) {
+	const { postID } = useRouter().query;
 	const flexPosts = [];
-	for (let i = 0; i < mockPosts.length; i++) {
-		mockPosts[i];
-		if (mockPosts[0].title)
+	for (let i = 0; i < posts.length; i++) {
+		if (posts[i]._id !== postID)
 			flexPosts.push(
-				<Post key={mockPosts[0].title}>
-					<Thumbnail src={"url"} />
+				<Post key={posts[i].title}>
+					<Thumbnail src={posts[i].thumb} />
 					<PostInfo>
 						<PostDate
-							date={new Date(mockPosts[0].published).toDateString()}
+							date={new Date(posts[i].published).toDateString()}
 							head={false}
 						/>
 						<h2 className={post.singlePostHead}>
-							{mockPosts[0].categories[0]}
+							{posts[i].categories[0].name}
 						</h2>
-						<TitlePreview
-							title={mockPosts[0].title}
-							preview={mockPosts[0].snippet}
-						/>
-						<ReadMore postID={mockPosts[0].title} />
+						<TitlePreview title={posts[i].title} preview={posts[i].snippet} />
+						<ReadMore postID={posts[i]._id} />
 					</PostInfo>
 				</Post>,
 			);

@@ -12,48 +12,49 @@ import { mockPosts } from "../serverless/mock";
 import Link from "next/link";
 
 export default function Health({ posts }) {
+	const parsedPosts = JSON.parse(posts);
 	return (
 		<>
+			{/* Higlight Post */}
 			<Margin>
 				<PostFlex>
-					<Thumbnail src={"url"} />
+					<Thumbnail src={parsedPosts[0].thumb} />
 					<PostInfo>
 						<Author
 							cssWrap={health.wrapAuth}
 							cssAvatar={health.avatar}
 							cssName={health.name}
-							name={JSON.parse(posts)[0].author?.name}
-							src={JSON.parse(posts)[0].author?.avatar}
+							name={parsedPosts[0].author.name}
+							src={parsedPosts[0].author.avatar}
 						/>
 						<TitlePreview
-							title={JSON.parse(posts)[0].title}
-							preview={JSON.parse(posts)[0].snippet}
+							title={parsedPosts[0].title}
+							preview={parsedPosts[0].snippet}
 						/>
-						<ReadMore postID={JSON.parse(posts)[0].title} />
+						<ReadMore postID={parsedPosts[0]._id} />
 					</PostInfo>
 				</PostFlex>
 			</Margin>
+			{/* Sub Posts */}
 			<PostFlex>
-				{JSON.parse(posts)
-					.slice(1)
-					.map((post) => (
-						<div key={post.title}>
-							<Link href={`/post/${post.title}`}>
-								<a>
-									<TitlePreview
-										cssWrap={`${health.wrapTp} ${health.modWrapTp}`}
-										cssTitle={health.title}
-										title={post.title}
-									/>
-								</a>
-							</Link>
-							<PostDate
-								css={health.date}
-								date={new Date(post.published).toDateString()}
-								head={false}
-							/>
-						</div>
-					))}
+				{parsedPosts.slice(1).map((post) => (
+					<div key={post.title}>
+						<Link href={`/post/${post._id}`}>
+							<a>
+								<TitlePreview
+									cssWrap={`${health.wrapTp} ${health.modWrapTp}`}
+									cssTitle={health.title}
+									title={post.title}
+								/>
+							</a>
+						</Link>
+						<PostDate
+							css={health.date}
+							date={new Date(post.published).toDateString()}
+							head={false}
+						/>
+					</div>
+				))}
 			</PostFlex>
 		</>
 	);

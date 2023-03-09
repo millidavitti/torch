@@ -20,6 +20,7 @@ export default function EditorTab(props) {
 
 	return (
 		<div className={editors.tab}>
+			{/* Thumbnail */}
 			<div
 				className={editors.thumbWrap}
 				onClick={() => setShow((pre) => ({ ...pre, shown: !pre.shown }))}
@@ -30,16 +31,15 @@ export default function EditorTab(props) {
 					alt={props.pick.title}
 					className={editors.thumb}
 				/>
-				<Author
-					ref={wrap}
-					cssWrap={editors.authorInfo}
-					cssAvatar={editors.avatar}
-					cssName={editors.name}
-					name={props.pick.author.name}
-					src={props.pick.author.avatar}
-					show={sho}
-				/>
-				<h2 className={editors.category}>{props.pick.categories[0]}</h2>
+				<div className={editors.authorInfo}>
+					<img
+						src={props.pick.author.avatar}
+						alt={props.pick.author.name}
+						className={editors.avatar}
+					/>
+					<h3 className={editors.name}>{props.pick.author.name}</h3>
+				</div>
+				<h2 className={editors.category}>{props.pick.categories[0].name}</h2>
 			</div>
 
 			<div className={editors.info}>
@@ -48,16 +48,18 @@ export default function EditorTab(props) {
 					date={new Date(props.pick.published).toDateString()}
 					head={true}
 				/>
+
 				<div className={editors.wrapTp}>
-					<Link href={`/post/${props.pick.title}`}>
+					<Link href={`/post/${props.pick._id}`}>
 						<h2 className={editors.title}>{props.pick.title}</h2>
 					</Link>
 					<p className={editors.postPreview}>{props.pick.snippet}</p>
 				</div>
 			</div>
 
+			{/* Read More */}
 			<div className={editors.navigate}>
-				<Link href={`/post/${props.pick.title}`}>
+				<Link href={`/post/${props.pick._id}`}>
 					<a className={editors.readMore}>Read More</a>
 				</Link>
 				<div className={editors.circularBtnWrap}>{props.btns}</div>

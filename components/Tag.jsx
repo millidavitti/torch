@@ -1,8 +1,9 @@
 import React from "react";
 import postPage from "./Reuse/CSS/postPage.module.css";
 import { Plus, Square } from "phosphor-react";
+import { useRouter } from "next/router";
 
-export default function Tag({ postID }) {
+export default function Tag({ tags }) {
 	return (
 		<div className={postPage.tagTools}>
 			<div className={postPage.toolRack}>
@@ -20,7 +21,9 @@ export default function Tag({ postID }) {
 				/>
 			</div>
 			<div className={postPage.footerTag}>
-				{"renderTags"}
+				{tags.map((tag) => (
+					<p key={tag}>{tag}</p>
+				))}
 				{
 					<div className={postPage.tagEntity}>
 						<input type='text' />

@@ -935,7 +935,7 @@ export const mockPosts = [
 	},
 	// 11
 	{
-		title: "The Benefits of Yoga for Mind and Body",
+		title: "Incorporating exercise into your daily",
 		content: `<p>
 			Incorporating exercise into your daily routine can feel like a daunting
 			task, but it doesn't have to be. In fact, there are plenty of easy ways to

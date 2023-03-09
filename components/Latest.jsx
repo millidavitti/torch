@@ -11,64 +11,64 @@ import { MoonLoader } from "react-spinners";
 import Thumbnail from "./Reuse/Thumbnail";
 import PostWrap from "./Reuse/PostWrap";
 import readmore from "./Reuse/CSS/readmore.module.css";
+
 import { mockPosts } from "../serverless/mock";
 
 export default function Latest({ posts }) {
-	const flexPosts = JSON.parse(posts).map((post) => {
-		return (
-			<Post key={post.title}>
-				<Thumbnail src={"url"} alt={"me"} />
-				<PostInfo>
-					<PostDate
-						date={new Date(post.published).toDateString()}
-						head={false}
-					/>
-					<div style={{ display: "flex", gap: "7px" }}>
-						{post.categories.map((category) => (
-							<h2 key={category} className={post.singlePostHead}>
-								{category.name}
-							</h2>
-						))}
-					</div>
-					<TitlePreview title={post.title} preview={post.snippet} />
-					<ReadMore postID={post.title} />
-				</PostInfo>
-			</Post>
-		);
-	});
-
+	const parsedPosts = JSON.parse(posts);
 	return (
 		<>
 			{/* Most Recent */}
 			<PostFlex>
 				<div className={post.thumbWrap}>
-					<img src={"url"} alt='' className={post.thumb} />
+					<img src={parsedPosts[0].thumb} alt='' className={post.thumb} />
 
+					{/* Author */}
 					<Author
-						cssWrap={post.wrapAuth}
-						cssAvatar={post.avatar}
-						cssName={post.name}
-						name={JSON.parse(posts)[0].author.name}
-						src={JSON.parse(posts)[0].author.avatar}
+						name={parsedPosts[0].author.name}
+						src={parsedPosts[0].author.avatar}
 					/>
 				</div>
 				<PostInfo>
 					<PostDate
 						css={post.date}
-						date={new Date(JSON.parse(posts)[0].published).toDateString()}
+						date={new Date(parsedPosts[0].published).toDateString()}
 						head={true}
 					/>
 					<TitlePreview
-						title={JSON.parse(posts)[0].title}
-						preview={JSON.parse(posts)[0].snippet}
+						title={parsedPosts[0].title}
+						preview={parsedPosts[0].snippet}
 					/>
-					<ReadMore postID={JSON.parse(posts)[0].title} />
+					<ReadMore postID={parsedPosts[0]._id} />
 				</PostInfo>
 			</PostFlex>
 
 			{/* Others */}
 			<PostWrap>
-				<PostFlex>{flexPosts}</PostFlex>
+				<PostFlex>
+					{JSON.parse(posts).map((post) => {
+						return (
+							<Post key={post.title}>
+								<Thumbnail src={post.thumb} alt={"me"} />
+								<PostInfo>
+									<PostDate
+										date={new Date(post.published).toDateString()}
+										head={false}
+									/>
+									<div style={{ display: "flex", gap: "7px" }}>
+										{post.categories.map((category) => (
+											<h2 key={category} className={post.singlePostHead}>
+												{category.name}
+											</h2>
+										))}
+									</div>
+									<TitlePreview title={post.title} preview={post.snippet} />
+									<ReadMore postID={post._id} />
+								</PostInfo>
+							</Post>
+						);
+					})}
+				</PostFlex>
 				{
 					<button
 						className={readmore.readMore}

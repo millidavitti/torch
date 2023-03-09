@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Featured({ post }) {
 	return (
-		<Link href={`/post/${JSON.parse(post).title}`}>
+		<Link href={`/post/${JSON.parse(post)._id}`}>
 			<a className={hero.post}>
 				<h2 className={hero.postHead}>{JSON.parse(post).title}</h2>
 				<img src={JSON.parse(post).thumb} alt='' className={hero.postThumb} />
@@ -13,8 +13,8 @@ export default function Featured({ post }) {
 					cssWrap={hero.authorInfo}
 					cssAvatar={hero.avatar}
 					cssName={hero.name}
-					src={JSON.parse(post).author?.avatar}
-					name={JSON.parse(post).author?.name}
+					src={JSON.parse(post).author.avatar}
+					name={JSON.parse(post).author.name}
 				/>
 			</a>
 		</Link>

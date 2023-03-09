@@ -14,7 +14,7 @@ export default forwardRef(function Slide(props, ref) {
 					head={true}
 				/>
 				<h2 className={hero.title}>{props.slide.title}</h2>
-				<ReadMore postID={props.slide.title} />
+				<ReadMore postID={props.slide._id} />
 			</div>
 		</div>
 	);
