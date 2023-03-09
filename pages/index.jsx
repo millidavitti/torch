@@ -22,12 +22,20 @@ import TrendsWrap from "../components/Reuse/TrendsWrap";
 // CSS
 import editors from "../components/EditorsPick/editors.module.css";
 import authCard from "../components/AuthorCard/authCard.module.css";
+// Controllers
 import postController from "../serverless/controllers/post.controller";
 import authorController from "../serverless/controllers/author.controller";
 import menuController from "../serverless/controllers/menu.controller";
 import categoryController from "../serverless/controllers/category.controller";
+import slideController from "../serverless/controllers/slide.controller";
+import featuredController from "../serverless/controllers/featured.controller";
+import editorsPickController from "../serverless/controllers/editorsPick.controller";
+import travelController from "../serverless/controllers/travel.controller";
+import healthController from "../serverless/controllers/health.controller";
+import latestController from "../serverless/controllers/latest.controller";
+import trendingController from "../serverless/controllers/trending.controller";
 
-export default function Home({ menus }) {
+export default function Home(props) {
 	return (
 		<Container>
 			<Head>
@@ -39,16 +47,17 @@ export default function Home({ menus }) {
 			</Head>
 
 			<Hero>
-				<Slider />
-				<Featured />
+				<Slider posts={props.slidePosts} />
+				<Featured post={props.featuredPosts} />
 			</Hero>
 			<section className={editors.editorsPick}>
 				<SectionHeader
 					text={`Editor's Pick`}
 					description='Lorem ipsum dolor sit amet adipisicing elit.'
 				/>
-				<EditorsPick />
+				<EditorsPick posts={props.editorsPickPosts} />
 			</section>
+
 			{/* Travel News */}
 			<PostWrap>
 				<SectionHeader
@@ -56,17 +65,19 @@ export default function Home({ menus }) {
 					description='Get the latest travel articles'
 				/>
 				<Margin>
-					<Travel />
+					<Travel posts={props.travelPosts} />
 				</Margin>
 			</PostWrap>
+
 			{/* Health News */}
 			<PostWrap>
 				<SectionHeader
 					text='Health News'
 					description='Get the most benificial health articles'
 				/>
-				<Health />
+				<Health posts={props.healthPosts} />
 			</PostWrap>
+
 			{/* Latest News */}
 			<PostWrap>
 				<SectionHeader
@@ -75,16 +86,19 @@ export default function Home({ menus }) {
 				/>
 				<Grid>
 					<GridLeft>
-						<Latest />
+						<Latest posts={props.latestPosts} />
 					</GridLeft>
-					{/* Sidebar */}
+
+					{/* Sidebar: Top Trending */}
 					<Sidebar>
 						<Sticky>
-							<TrendsWrap />
+							<TrendsWrap posts={props.trendingPosts} />
 						</Sticky>
 					</Sidebar>
 				</Grid>
 			</PostWrap>
+
+			{/* Author Card */}
 			<section className={authCard.container}>
 				<AuthCard
 					description={
@@ -97,17 +111,31 @@ export default function Home({ menus }) {
 }
 
 export async function getServerSideProps() {
-	const res = await postController();
-	const res2 = await authorController();
+	const posts = await postController();
+	const authors = await authorController();
 	const menus = await menuController();
 	const categories = await categoryController();
+	const slidePosts = await slideController();
+	const featuredPosts = await featuredController();
+	const editorsPickPosts = await editorsPickController();
+	const travelPosts = await travelController();
+	const healthPosts = await healthController();
+	const latestPosts = await latestController();
+	const trendingPosts = await trendingController();
 
 	return {
 		props: {
-			res,
-			res2,
+			posts,
+			authors,
 			menus,
 			categories,
+			slidePosts,
+			featuredPosts,
+			editorsPickPosts,
+			travelPosts,
+			healthPosts,
+			latestPosts,
+			trendingPosts,
 		},
 	};
 }

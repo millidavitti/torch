@@ -13,38 +13,35 @@ import Sidebar from "../../components/Reuse/Sidebar";
 import Sticky from "../../components/Reuse/Sticky";
 import RelatedPost from "../../components/Reuse/RelatedPost";
 import Tag from "../../components/Tag";
-import { useRouter } from "next/router";
 import Head from "next/head";
 import TrendsWrap from "../../components/Reuse/TrendsWrap";
 
-import { mockPosts } from "../../serverless/mock";
+import postPageController from "../../serverless/controllers/postpage.controller";
+import relatedController from "../../serverless/controllers/related.controller";
 
-export default function PostPage({ data }) {
-	const { postID } = useRouter().query;
-
+export default function PostPage({ post, relatedPosts }) {
+	const parsedPost = JSON.parse(post);
+	const relatedPostsParsed = JSON.parse(relatedPosts);
 	return (
 		<Container>
 			<Head>
 				<meta name='description' content='Blog Post' />
 				<meta property='og:image' content={"url"} />
-				<title>{mockPosts[0].title}</title>
+				<title>{parsedPost.title}</title>
 			</Head>
 			<Margin>
 				<div className={postPage.wrap}>
 					{/* Thumbnail */}
 					<div className={postPage.thumbnail}>
-						<img src={"url"} alt='' />
+						<img src={parsedPost.thumb} alt='' />
 						<div className={postPage.overlay}>
-							<p className={postPage.tag}>{mockPosts[0].categories[0]}</p>
+							<p className={postPage.tag}>{parsedPost.categories[0].name}</p>
 							<Margin>
-								<h1 className={postPage.title}>{mockPosts[0].title}</h1>
+								<h1 className={postPage.title}>{parsedPost.title}</h1>
 							</Margin>
 							<Author
-								cssWrap={post.wrapAuth}
-								cssAvatar={post.avatar}
-								cssName={post.name}
-								name={mockPosts[0].author.name}
-								src={mockPosts[0].author.avatar}
+								name={parsedPost.author.name}
+								src={parsedPost.author.avatar}
 							/>
 						</div>
 					</div>
@@ -55,13 +52,19 @@ export default function PostPage({ data }) {
 								<div className={postPage.postContent}>
 									<div className={postPage.leftBar}>
 										<div className={postPage.stick}>
-											<Author
-												cssWrap={postPage.wrapAuth}
-												cssAvatar={postPage.avatar}
-												cssName={postPage.name}
-												name={mockPosts[0].author.name}
-												src={mockPosts[0].author.avatar}
-											/>
+											{/* Auhtor */}
+											<div className={postPage.wrapAuth}>
+												<img
+													src={parsedPost.author.avatar}
+													alt={parsedPost.author.name}
+													className={postPage.avatar}
+												/>
+												<h3 className={postPage.name}>
+													{parsedPost.author.name}
+												</h3>
+											</div>
+
+											{/* Share */}
 											<div className={postPage.share}>
 												<p>Share:</p>
 												<div className={postPage.shareIcons}>
@@ -85,11 +88,13 @@ export default function PostPage({ data }) {
 											</div>
 										</div>
 									</div>
+
+									{/* Blog Post */}
 									<article className={postPage.contentWrap}>
 										{
 											<div
 												dangerouslySetInnerHTML={{
-													__html: mockPosts[0].content,
+													__html: parsedPost.content,
 												}}
 											/>
 										}
@@ -97,16 +102,16 @@ export default function PostPage({ data }) {
 									{/* Content Footer */}
 									<div className={postPage.contentFooter}>
 										<p className={postPage.date}>
-											{new Date(mockPosts[0].published).toDateString()}
+											{new Date(parsedPost.published).toDateString()}
 										</p>
-										<Tag postID={postID} />
+										<Tag tags={parsedPost.tag} />
 									</div>
 								</div>
 								<Margin>
 									<div className={postPage.postAuthor}>
-										<img src={mockPosts[0].author.avatar} alt='' />
+										<img src={parsedPost.author.avatar} alt='' />
 										<div className={postPage.postAuthinfo}>
-											<h2>Donald Abua</h2>
+											<h2>{parsedPost.author.name}</h2>
 											<p>
 												Lorem ipsum dolor sit amet consectetur adipisicing elit.
 												Non facilis aperiam, perferendis earum odit eligendi?
@@ -116,18 +121,25 @@ export default function PostPage({ data }) {
 								</Margin>
 								<PostWrap>
 									<SectionHeader text={"Related Posts"} />
-									<RelatedPost category={mockPosts[0].categories} />
+									<RelatedPost posts={relatedPostsParsed} />
 								</PostWrap>
 							</Margin>
 						</GridLeft>
 						<Sidebar>
-							<Sticky>
-								<TrendsWrap />
-							</Sticky>
+							<Sticky>{/* <TrendsWrap /> */}</Sticky>
 						</Sidebar>
 					</Grid>
 				</div>
 			</Margin>
 		</Container>
 	);
+}
+
+export async function getServerSideProps({ params }) {
+	const { postID } = params;
+	const post = await postPageController(postID);
+	const relatedPosts = await relatedController(JSON.parse(post).categories[0]);
+	return {
+		props: { post, relatedPosts },
+	};
 }

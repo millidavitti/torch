@@ -3,13 +3,11 @@ import { Circle } from "phosphor-react";
 import Slide from "./Slide";
 import hero from "./hero.module.css";
 
-import { mockPosts } from "../../serverless/mock";
-
-export default function Slider() {
+export default function Slider({ posts }) {
 	// Slide's DOM Refrence
 	const sld = useRef([]);
 	// Number Of Slides
-	const max = mockPosts.length;
+	const max = JSON.parse(posts).length;
 	// Current Slide Position
 	const [currentSlide, setCurrentSlide] = useState(1);
 	// Actual Slides
@@ -43,7 +41,7 @@ export default function Slider() {
 		getSlide(currentSlide);
 	}
 
-	const renderSlides = mockPosts.map((slide) => (
+	const renderSlides = JSON.parse(posts).map((slide) => (
 		<Slide ref={sldRefs} key={slide.title} id={slide.title} slide={slide} />
 	));
 

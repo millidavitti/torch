@@ -5,75 +5,73 @@ import ReadMore from "./Reuse/ReadMore";
 import Thumbnail from "./Reuse/Thumbnail";
 import TitlePreview from "./Reuse/TitlePreview";
 import travel from "./Reuse/CSS/travel.module.css";
-import { useQuery, gql } from "@apollo/client";
-import { MoonLoader } from "react-spinners";
 import Link from "next/link";
 import { mockPosts } from "../serverless/mock";
 
-export default function Travel() {
+export default function Travel({ posts }) {
 	return (
 		<Grid>
 			<div className={travel.mid}>
 				<Margin>
 					<TitlePreview
-						title={mockPosts[0].title}
-						preview={mockPosts[0].snippet}
+						title={JSON.parse(posts)[0].title}
+						preview={JSON.parse(posts)[0].snippet}
 					/>
-					<ReadMore postID={mockPosts[0].title} />
+					<ReadMore postID={JSON.parse(posts)[0]._id} />
 					<Margin>
-						<Thumbnail src={"url"} />
+						<Thumbnail src={JSON.parse(posts)[0].thumb} />
 					</Margin>
 				</Margin>
 			</div>
 			{/* For Widths < 1024px */}
 			<div className={travel.flexRow}>
-				<Link href={`/post/${mockPosts[0].title}`}>
+				<Link href={`/post/${JSON.parse(posts)[1]._id}`}>
 					<a>
-						<Thumbnail src={"url"} />
+						<Thumbnail src={JSON.parse(posts)[1].thumb} />
 						<TitlePreview
 							cssWrap={travel.wrapTp}
 							cssTitle={travel.title}
 							cssPreview={travel.postPreview}
-							title={mockPosts[0].title}
+							title={JSON.parse(posts)[1].title}
 						/>
 					</a>
 				</Link>
-				<Link href={`/post/${mockPosts[0].title}`}>
+				<Link href={`/post/${JSON.parse(posts)[2]._id}`}>
 					<a>
-						<Thumbnail src={"url"} />
+						<Thumbnail src={JSON.parse(posts)[2].thumb} />
 						<TitlePreview
 							cssWrap={travel.wrapTp}
 							cssTitle={travel.title}
 							cssPreview={travel.postPreview}
-							title={mockPosts[0].title}
+							title={JSON.parse(posts)[2].title}
 						/>
 					</a>
 				</Link>
 			</div>
 			{/* For Widths >= than 1024px */}
 			<div className={travel.left}>
-				<Link href={`/post/${mockPosts[0].title}`}>
+				<Link href={`/post/${JSON.parse(posts)[1]._id}`}>
 					<a>
-						<Thumbnail src={"url"} />
+						<Thumbnail src={JSON.parse(posts)[1].thumb} />
 						<TitlePreview
 							cssWrap={travel.wrapTp}
 							cssTitle={travel.title}
 							cssPreview={travel.postPreview}
-							title={mockPosts[0].title}
+							title={JSON.parse(posts)[1].title}
 						/>
 					</a>
 				</Link>
 			</div>
 			<div className={travel.right}>
-				<Link href={`/post/${mockPosts[0].title}`}>
+				<Link href={`/post/${JSON.parse(posts)[2]._id}`}>
 					<a>
 						<TitlePreview
 							cssWrap={travel.wrapTp}
 							cssTitle={travel.title}
 							cssPreview={travel.postPreview}
-							title={mockPosts[0].title}
+							title={JSON.parse(posts)[2].title}
 						/>
-						<Thumbnail src={"url"} />
+						<Thumbnail src={JSON.parse(posts)[2].thumb} />
 					</a>
 				</Link>
 			</div>

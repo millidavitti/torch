@@ -68,6 +68,11 @@
 	line-height: 30px;
 	color: var(--secondary);
 }
+
+.contentWrap h2,
+.contentWrap p {
+	margin: 20px auto;
+}
 /* Sticky Author */
 .stick {
 	position: sticky;

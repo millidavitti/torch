@@ -11,32 +11,35 @@ import health from "./Reuse/CSS/health.module.css";
 import { mockPosts } from "../serverless/mock";
 import Link from "next/link";
 
-export default function Health() {
+export default function Health({ posts }) {
+	const parsedPosts = JSON.parse(posts);
 	return (
 		<>
+			{/* Higlight Post */}
 			<Margin>
 				<PostFlex>
-					<Thumbnail src={"url"} />
+					<Thumbnail src={parsedPosts[0].thumb} />
 					<PostInfo>
 						<Author
 							cssWrap={health.wrapAuth}
 							cssAvatar={health.avatar}
 							cssName={health.name}
-							name={mockPosts[0].author.name}
-							src={mockPosts[0].author.avatar}
+							name={parsedPosts[0].author.name}
+							src={parsedPosts[0].author.avatar}
 						/>
 						<TitlePreview
-							title={mockPosts[0].title}
-							preview={mockPosts[0].snippet}
+							title={parsedPosts[0].title}
+							preview={parsedPosts[0].snippet}
 						/>
-						<ReadMore postID={mockPosts[0].title} />
+						<ReadMore postID={parsedPosts[0]._id} />
 					</PostInfo>
 				</PostFlex>
 			</Margin>
+			{/* Sub Posts */}
 			<PostFlex>
-				{mockPosts.map((post) => (
+				{parsedPosts.slice(1).map((post) => (
 					<div key={post.title}>
-						<Link href={`/post/${post.title}`}>
+						<Link href={`/post/${post._id}`}>
 							<a>
 								<TitlePreview
 									cssWrap={`${health.wrapTp} ${health.modWrapTp}`}
