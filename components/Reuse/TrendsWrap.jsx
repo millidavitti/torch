@@ -1,12 +1,9 @@
 import React from "react";
-import { gql, useQuery } from "@apollo/client";
-import { MoonLoader } from "react-spinners";
 import TrendingPost from "./TrendingPost";
 import TopTrend from "./TopTrend";
-import { mockPosts } from "../../serverless/mock";
 
-export default function TrendsWrap() {
-	const renderTrends = mockPosts.map((post) => {
+export default function TrendsWrap({ posts }) {
+	const renderTrends = JSON.parse(posts).map((post) => {
 		return (
 			<TrendingPost
 				key={post.title}

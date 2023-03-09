@@ -9,7 +9,10 @@ const schema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Author",
 	},
-	categories: [String],
+	categories: {
+		type: [mongoose.Schema.Types.ObjectId],
+		ref: "Category",
+	},
 	snippet: String,
 	updated: Date,
 	editorsPick: Boolean,

@@ -13,8 +13,8 @@ import PostWrap from "./Reuse/PostWrap";
 import readmore from "./Reuse/CSS/readmore.module.css";
 import { mockPosts } from "../serverless/mock";
 
-export default function Latest() {
-	const flexPosts = mockPosts.map((post) => {
+export default function Latest({ posts }) {
+	const flexPosts = JSON.parse(posts).map((post) => {
 		return (
 			<Post key={post.title}>
 				<Thumbnail src={"url"} alt={"me"} />
@@ -26,7 +26,7 @@ export default function Latest() {
 					<div style={{ display: "flex", gap: "7px" }}>
 						{post.categories.map((category) => (
 							<h2 key={category} className={post.singlePostHead}>
-								{category}
+								{category.name}
 							</h2>
 						))}
 					</div>
@@ -48,21 +48,21 @@ export default function Latest() {
 						cssWrap={post.wrapAuth}
 						cssAvatar={post.avatar}
 						cssName={post.name}
-						name={mockPosts[0].author.name}
-						src={mockPosts[0].author.avatar}
+						name={JSON.parse(posts)[0].author.name}
+						src={JSON.parse(posts)[0].author.avatar}
 					/>
 				</div>
 				<PostInfo>
 					<PostDate
 						css={post.date}
-						date={new Date(mockPosts[0].published).toDateString()}
+						date={new Date(JSON.parse(posts)[0].published).toDateString()}
 						head={true}
 					/>
 					<TitlePreview
-						title={mockPosts[0].title}
-						preview={mockPosts[0].snippet}
+						title={JSON.parse(posts)[0].title}
+						preview={JSON.parse(posts)[0].snippet}
 					/>
-					<ReadMore postID={mockPosts[0].title} />
+					<ReadMore postID={JSON.parse(posts)[0].title} />
 				</PostInfo>
 			</PostFlex>
 

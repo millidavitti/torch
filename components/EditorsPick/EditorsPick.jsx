@@ -4,15 +4,13 @@ import editors from "../EditorsPick/editors.module.css";
 import EditorTab from "./EditorTab";
 import CircularBtn from "./CircularBtn";
 
-import { mockPosts } from "../../serverless/mock";
+export default function EditorsPick({ posts }) {
+	const [curr, setCurr] = useState(JSON.parse(posts)[0].title);
 
-export default function EditorsPick() {
-	const [curr, setCurr] = useState(mockPosts[0].title);
+	const pick = JSON.parse(posts).find((pick) => pick.title === curr);
 
-	const pick = mockPosts.find((pick) => pick.title === curr);
-
-	const renderBtns = mockPosts.map(({ title, isActive }) => (
-		<CircularBtn key={title} id={title} Fn={switchPicks} isActive={isActive} />
+	const renderBtns = JSON.parse(posts).map(({ title }) => (
+		<CircularBtn key={title} id={title} Fn={switchPicks} />
 	));
 
 	function switchPicks(event) {

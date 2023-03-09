@@ -131,3 +131,8 @@ export default function PostPage({ data }) {
 		</Container>
 	);
 }
+
+export default function getServerSideProps({params})
+{
+ const {id} = params
+}
