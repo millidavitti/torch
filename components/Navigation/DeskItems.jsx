@@ -1,15 +1,10 @@
 import React from "react";
-import DeskMenuItem from "../Navigation/DeskMenuItem";
 import { FacebookLogo, TwitterLogo } from "phosphor-react";
 
-export default function DeskItems({ menu }) {
-	const renderDeskItems = menu.map(({ id, attributes }) => (
-		<DeskMenuItem key={id} attributes={attributes} />
-	));
-
+export default function DeskItems({ children }) {
 	return (
 		<nav className='desk-nav'>
-			<ul className='desk-menu-items'>{renderDeskItems}</ul>
+			<ul className='desk-menu-items'>{children}</ul>
 			<div className='desk-socials'>
 				<FacebookLogo size={30} color='#273136' />
 				<TwitterLogo size={30} color='#273136' />

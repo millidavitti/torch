@@ -10,7 +10,12 @@ export default function EditorsPick({ posts }) {
 	const pick = JSON.parse(posts).find((pick) => pick.title === curr);
 
 	const renderBtns = JSON.parse(posts).map(({ title }) => (
-		<CircularBtn key={title} id={title} Fn={switchPicks} />
+		<CircularBtn
+			key={title}
+			id={title}
+			switchPicks={switchPicks}
+			isActive={curr}
+		/>
 	));
 
 	function switchPicks(event) {

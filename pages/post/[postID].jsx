@@ -1,6 +1,5 @@
 import React from "react";
 import postPage from "../../components/Reuse/CSS/postPage.module.css";
-import post from "../../components/Reuse/CSS/post.module.css";
 import Author from "../../components/Reuse/Author";
 import Container from "../../components/Reuse/Container";
 import Margin from "../../components/Reuse/Margin";
@@ -18,6 +17,7 @@ import TrendsWrap from "../../components/Reuse/TrendsWrap";
 
 import postPageController from "../../serverless/controllers/postpage.controller";
 import relatedController from "../../serverless/controllers/related.controller";
+import trendingController from "../../serverless/controllers/trending.controller";
 
 export default function PostPage({ post, relatedPosts }) {
 	const parsedPost = JSON.parse(post);
@@ -112,10 +112,7 @@ export default function PostPage({ post, relatedPosts }) {
 										<img src={parsedPost.author.avatar} alt='' />
 										<div className={postPage.postAuthinfo}>
 											<h2>{parsedPost.author.name}</h2>
-											<p>
-												Lorem ipsum dolor sit amet consectetur adipisicing elit.
-												Non facilis aperiam, perferendis earum odit eligendi?
-											</p>
+											<p>{parsedPost.author.bio}</p>
 										</div>
 									</div>
 								</Margin>
@@ -125,9 +122,7 @@ export default function PostPage({ post, relatedPosts }) {
 								</PostWrap>
 							</Margin>
 						</GridLeft>
-						<Sidebar>
-							<Sticky>{/* <TrendsWrap /> */}</Sticky>
-						</Sidebar>
+						<Sidebar>{/* <Sticky><TrendsWrap /></Sticky> */}</Sidebar>
 					</Grid>
 				</div>
 			</Margin>
@@ -139,6 +134,8 @@ export async function getServerSideProps({ params }) {
 	const { postID } = params;
 	const post = await postPageController(postID);
 	const relatedPosts = await relatedController(JSON.parse(post).categories[0]);
+	const trendingPosts = await trendingController();
+
 	return {
 		props: { post, relatedPosts },
 	};

@@ -4,17 +4,9 @@ import { CSSTransition } from "react-transition-group";
 import post from "../Reuse/CSS/post.module.css";
 import DropDown from "./DropDown";
 import DropMenu from "./DropMenu";
-export default function DeskMenuItem({ attributes }) {
-	const { path, name, isDropDown } = attributes;
+import { categories } from "../../serverless/mock";
+export default function DeskMenuItem({ menu }) {
 	const [showDrop, setShowDrop] = useState(false);
-	let drops;
-
-	// IDN: IDentification Name
-	if (isDropDown) {
-		drops = attributes[attributes.IDD]?.data.map(({ id, attributes }) => (
-			<DropMenu key={id} IDN={attributes.IDN} path={attributes.path} />
-		));
-	}
 
 	return (
 		<li
@@ -23,13 +15,14 @@ export default function DeskMenuItem({ attributes }) {
 				alignItem: "center",
 			}}
 		>
-			{isDropDown ? (
+			{menu.isdropDown ? (
 				<div
 					className='desk-menu-item'
 					onMouseEnter={() => setShowDrop(true)}
 					onMouseLeave={() => setShowDrop(false)}
 				>
-					{name}
+					{menu.name}
+
 					{/* For Dropdown Menus */}
 					<CSSTransition
 						in={showDrop}
@@ -37,12 +30,17 @@ export default function DeskMenuItem({ attributes }) {
 						timeout={300}
 						classNames={post}
 					>
-						<DropDown>{drops}</DropDown>
+						{/* Replace categories with menu.dropItems */}
+						<DropDown>
+							{categories.map((cat) => (
+								<DropMenu key={cat.id} category={cat} />
+							))}
+						</DropDown>
 					</CSSTransition>
 				</div>
 			) : (
-				<Link href={`${path}`}>
-					<a className='desk-menu-item'>{name}</a>
+				<Link href={`${menu.name.toLowerCase()}`}>
+					<a className='desk-menu-item'>{menu.name}</a>
 				</Link>
 			)}
 		</li>
