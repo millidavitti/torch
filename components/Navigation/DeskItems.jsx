@@ -1,13 +1,17 @@
 import React from "react";
-import { FacebookLogo, TwitterLogo } from "phosphor-react";
+import { InstagramLogo, TwitterLogo } from "phosphor-react";
 
 export default function DeskItems({ children }) {
 	return (
 		<nav className='desk-nav'>
 			<ul className='desk-menu-items'>{children}</ul>
 			<div className='desk-socials'>
-				<FacebookLogo size={30} color='#273136' />
-				<TwitterLogo size={30} color='#273136' />
+				<a href='https://www.instagram.com/milli_davitti/'>
+					<InstagramLogo size={30} color='#273136' />
+				</a>
+				<a href='https://twitter.com/GIGO_22'>
+					<TwitterLogo size={30} color='#273136' />
+				</a>
 			</div>
 		</nav>
 	);

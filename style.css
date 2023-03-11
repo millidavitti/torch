@@ -9,6 +9,7 @@
 	text-decoration: none;
 	font-family: "Source Sans Pro", sans-serif;
 }
+
 img {
 	overflow: hidden;
 }
@@ -19,6 +20,9 @@ img {
 	--accent: #003366;
 }
 
+a {
+	color: var(--secondary);
+}
 .container {
 	display: flex;
 	flex-flow: column;

@@ -1,4 +1,5 @@
 import React from "react";
+import footer from "../Footer/footer.module.css";
 
 import {
 	FacebookLogo,
@@ -7,21 +8,21 @@ import {
 	InstagramLogo,
 } from "phosphor-react";
 function Socials(props) {
-	const { css, showFacebook, showTwitter, showWebsite } = props;
+	const { showFacebook, showTwitter, showWebsite } = props;
 	return (
-		<div className={css.socialWrap}>
+		<div className={footer.socialWrap}>
 			{showFacebook && (
 				<a href='https://www.instagram.com/milli_davitti/'>
-					<InstagramLogo className={css.facebook} size={30} />
+					<InstagramLogo className={footer.facebook} size={30} />
 				</a>
 			)}
 
 			{showTwitter && (
 				<a href='https://twitter.com/GIGO_22'>
-					<TwitterLogo className={css.twitter} size={30} />
+					<TwitterLogo className={footer.twitter} size={30} />
 				</a>
 			)}
-			{showWebsite && <Globe className={css.globe} size={30} />}
+			{showWebsite && <Globe className={footer.globe} size={30} />}
 		</div>
 	);
 }

@@ -24,7 +24,7 @@ export default function Footer() {
 					<Logo />
 				</a>
 			</Link>
-			<Socials css={footer} showFacebook={true} showTwitter={true} />
+			<Socials showFacebook={true} showTwitter={true} />
 		</footer>
 	);
 }

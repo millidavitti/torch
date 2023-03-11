@@ -22,6 +22,7 @@ import Author from "../../components/Reuse/Author";
 import Container from "../../components/Reuse/Container";
 import { mockPosts, categories } from "../../serverless/mock";
 import authorController from "../../serverless/controllers/author.controller";
+import trendingController from "../../serverless/controllers/trending.controller";
 
 export default function Category(props) {
 	const flexPosts = [];
@@ -87,7 +88,9 @@ export default function Category(props) {
 				</GridLeft>
 
 				<Sidebar>
-					<Sticky>{/* <TrendsWrap /> */}</Sticky>
+					<Sticky>
+						<TrendsWrap posts={props.trendingPosts} />
+					</Sticky>
 				</Sidebar>
 			</Grid>
 		</Container>
@@ -96,9 +99,12 @@ export default function Category(props) {
 
 export async function getServerSideProps() {
 	const author = await authorController();
+	const trendingPosts = await trendingController();
+
 	return {
 		props: {
 			author,
+			trendingPosts,
 		},
 	};
 }

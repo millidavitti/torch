@@ -54,7 +54,7 @@ export default function Home(props) {
 			<section className={editors.editorsPick}>
 				<SectionHeader
 					text={`Editor's Pick`}
-					description='Lorem ipsum dolor sit amet adipisicing elit.'
+					description='Curated posts by the author'
 				/>
 				<EditorsPick posts={props.editorsPickPosts} />
 			</section>
