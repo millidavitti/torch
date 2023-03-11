@@ -42,7 +42,7 @@
 	display: flex;
 	gap: 20px;
 	padding: 10px 0;
-	border-bottom: 2px dotted var(--secondary);
+	border-bottom: 1px solid var(--secondary);
 	margin-top: 10px;
 }
 
@@ -55,7 +55,6 @@
 	min-width: 70px;
 	max-width: 70px;
 	height: 70px;
-	outline: auto;
 	object-fit: cover;
 }
 

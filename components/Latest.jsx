@@ -6,7 +6,7 @@ import PostFlex from "./Reuse/PostFlex";
 import PostInfo from "./Reuse/PostInfo";
 import ReadMore from "./Reuse/ReadMore";
 import TitlePreview from "./Reuse/TitlePreview";
-import post from "./Reuse/CSS/post.module.css";
+import postcss from "./Reuse/CSS/post.module.css";
 import { MoonLoader } from "react-spinners";
 import Thumbnail from "./Reuse/Thumbnail";
 import PostWrap from "./Reuse/PostWrap";
@@ -24,8 +24,12 @@ export default function Latest({ posts }) {
 		<>
 			{/* Most Recent */}
 			<PostFlex>
-				<div className={post.thumbWrap}>
-					<img src={parsedPosts[0].thumb} alt='' className={post.thumb} />
+				<div className={postcss.thumbWrap}>
+					<img
+						src={parsedPosts[0].thumb}
+						alt={parsedPosts[0].title}
+						className={postcss.thumb}
+					/>
 
 					{/* Author */}
 					<Author
@@ -35,7 +39,7 @@ export default function Latest({ posts }) {
 				</div>
 				<PostInfo>
 					<PostDate
-						css={post.date}
+						css={postcss.date}
 						date={new Date(parsedPosts[0].published).toDateString()}
 						head={true}
 					/>
@@ -53,7 +57,7 @@ export default function Latest({ posts }) {
 					{JSON.parse(posts).map((post) => {
 						return (
 							<Post key={post.title}>
-								<Thumbnail src={post.thumb} alt={"me"} />
+								<Thumbnail src={post.thumb} alt={post.title} />
 								<PostInfo>
 									<PostDate
 										date={new Date(post.published).toDateString()}
@@ -61,7 +65,10 @@ export default function Latest({ posts }) {
 									/>
 									<div style={{ display: "flex", gap: "7px" }}>
 										{post.categories.map((category) => (
-											<h2 key={category} className={post.singlePostHead}>
+											<h2
+												key={category.name}
+												className={postcss.singlePostHead}
+											>
 												{category.name}
 											</h2>
 										))}
@@ -73,6 +80,8 @@ export default function Latest({ posts }) {
 						);
 					})}
 				</PostFlex>
+
+				{/* Load More */}
 				{
 					<button
 						className={readmore.readMore}
