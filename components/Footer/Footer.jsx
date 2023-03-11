@@ -16,7 +16,7 @@ export default function Footer() {
 				</figure>
 				<figure className={footer.phoneNum}>
 					<Phone className={footer.phone} size={20} />
-					<figcaption>+234 805 9739 872</figcaption>
+					<figcaption>+234 705 1722 721</figcaption>
 				</figure>
 			</div>
 			<Link href='/'>

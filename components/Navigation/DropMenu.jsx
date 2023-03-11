@@ -1,10 +1,10 @@
 import React from "react";
 import Link from "next/link";
 
-export default function DropMenu({ closeMenu, IDN, path }) {
+export default function DropMenu({ category }) {
 	return (
-		<Link href={`/category/${path}`}>
-			<a onClick={closeMenu}>{IDN}</a>
+		<Link href={`/category/${category.name.toLowerCase()}`}>
+			<a>{category.name}</a>
 		</Link>
 	);
 }

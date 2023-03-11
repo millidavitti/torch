@@ -36,6 +36,7 @@ import latestController from "../serverless/controllers/latest.controller";
 import trendingController from "../serverless/controllers/trending.controller";
 
 export default function Home(props) {
+	console.log(JSON.parse(props.author));
 	return (
 		<Container>
 			<Head>
@@ -100,11 +101,7 @@ export default function Home(props) {
 
 			{/* Author Card */}
 			<section className={authCard.container}>
-				<AuthCard
-					description={
-						"Nascetur netus, nascetur ante elit sodales. Placerat class ante lacus consequat sapien ante elit sodales "
-					}
-				/>
+				<AuthCard author={props.author} />
 			</section>
 		</Container>
 	);
@@ -112,7 +109,7 @@ export default function Home(props) {
 
 export async function getServerSideProps() {
 	const posts = await postController();
-	const authors = await authorController();
+	const author = await authorController();
 	const menus = await menuController();
 	const categories = await categoryController();
 	const slidePosts = await slideController();
@@ -126,7 +123,7 @@ export async function getServerSideProps() {
 	return {
 		props: {
 			posts,
-			authors,
+			author,
 			menus,
 			categories,
 			slidePosts,

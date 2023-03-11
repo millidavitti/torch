@@ -42,6 +42,7 @@ export default function EditorTab(props) {
 				<h2 className={editors.category}>{props.pick.categories[0].name}</h2>
 			</div>
 
+			{/* Authors Info */}
 			<div className={editors.info}>
 				<PostDate
 					css={editors.date}

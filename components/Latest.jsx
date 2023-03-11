@@ -11,11 +11,15 @@ import { MoonLoader } from "react-spinners";
 import Thumbnail from "./Reuse/Thumbnail";
 import PostWrap from "./Reuse/PostWrap";
 import readmore from "./Reuse/CSS/readmore.module.css";
-
-import { mockPosts } from "../serverless/mock";
+import useSWR from "swr";
 
 export default function Latest({ posts }) {
 	const parsedPosts = JSON.parse(posts);
+	// const {from, limit} = useRouter().query;
+	const fetcher = (url) => fetch(url).then((r) => r.json());
+	const { data, error } = useSWR(`api/posts`, fetcher);
+
+	// console.log(data);
 	return (
 		<>
 			{/* Most Recent */}
