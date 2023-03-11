@@ -1041,17 +1041,17 @@ export const menu = [
 
 export const categories = [
 	{
-		id: "Tech",
+		id: "tech",
 		name: "Tech",
 		posts: [],
 	},
 	{
-		id: "Food",
+		id: "food",
 		name: "Food",
 		posts: [],
 	},
 	{
-		id: "Travel",
+		id: "travel",
 		name: "Travel",
 		posts: [],
 	},

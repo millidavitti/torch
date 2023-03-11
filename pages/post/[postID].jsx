@@ -19,7 +19,7 @@ import postPageController from "../../serverless/controllers/postpage.controller
 import relatedController from "../../serverless/controllers/related.controller";
 import trendingController from "../../serverless/controllers/trending.controller";
 
-export default function PostPage({ post, relatedPosts }) {
+export default function PostPage({ post, relatedPosts, trendingPosts }) {
 	const parsedPost = JSON.parse(post);
 	const relatedPostsParsed = JSON.parse(relatedPosts);
 	return (
@@ -109,7 +109,10 @@ export default function PostPage({ post, relatedPosts }) {
 								</div>
 								<Margin>
 									<div className={postPage.postAuthor}>
-										<img src={parsedPost.author.avatar} alt='' />
+										<img
+											src={parsedPost.author.avatar}
+											alt={parsedPost.author.name}
+										/>
 										<div className={postPage.postAuthinfo}>
 											<h2>{parsedPost.author.name}</h2>
 											<p>{parsedPost.author.bio}</p>
@@ -122,7 +125,11 @@ export default function PostPage({ post, relatedPosts }) {
 								</PostWrap>
 							</Margin>
 						</GridLeft>
-						<Sidebar>{/* <Sticky><TrendsWrap /></Sticky> */}</Sidebar>
+						<Sidebar>
+							<Sticky>
+								<TrendsWrap posts={trendingPosts} />
+							</Sticky>
+						</Sidebar>
 					</Grid>
 				</div>
 			</Margin>
@@ -137,6 +144,6 @@ export async function getServerSideProps({ params }) {
 	const trendingPosts = await trendingController();
 
 	return {
-		props: { post, relatedPosts },
+		props: { post, relatedPosts, trendingPosts },
 	};
 }

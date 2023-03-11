@@ -4,10 +4,9 @@ import postModel from "../models/post.model";
 export default async function trendingController() {
 	connectdb();
 
-	const trendingPosts = await postModel.find(
-		{},
-		{ title: 1, published: 1, thumb: 1 },
-	);
+	const trendingPosts = await postModel
+		.find({}, { title: 1, published: 1, thumb: 1 })
+		.limit(5);
 
 	return JSON.stringify(trendingPosts);
 }

@@ -6,6 +6,7 @@
 	margin-top: auto;
 	color: var(--secondary);
 }
+
 .mail,
 .phoneNum {
 	display: flex;
