@@ -1,24 +1,22 @@
 import React from "react";
 import footer from "../Footer/footer.module.css";
+import useSWR from "swr";
+import { TwitterLogo, Globe, InstagramLogo } from "phosphor-react";
 
-import {
-	FacebookLogo,
-	TwitterLogo,
-	Globe,
-	InstagramLogo,
-} from "phosphor-react";
 function Socials(props) {
-	const { showFacebook, showTwitter, showWebsite } = props;
+	const { showInstagram, showTwitter, showWebsite } = props;
+	const { data: author, isLoading } = useSWR("/api/author");
+	if (isLoading) return;
 	return (
 		<div className={footer.socialWrap}>
-			{showFacebook && (
-				<a href='https://www.instagram.com/milli_davitti/'>
+			{showInstagram && (
+				<a href={author.socials.instagram}>
 					<InstagramLogo className={footer.facebook} size={30} />
 				</a>
 			)}
 
 			{showTwitter && (
-				<a href='https://twitter.com/GIGO_22'>
+				<a href={author.socials.twitter}>
 					<TwitterLogo className={footer.twitter} size={30} />
 				</a>
 			)}
