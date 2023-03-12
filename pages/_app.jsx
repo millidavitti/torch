@@ -3,7 +3,6 @@ import { SWRConfig } from "swr";
 import Layout from "../components/Layout";
 
 export default function App({ Component, pageProps }) {
-	console.log("_app: ", pageProps);
 	return (
 		<SWRConfig value={options}>
 			<Layout>
