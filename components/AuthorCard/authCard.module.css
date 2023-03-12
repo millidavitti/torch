@@ -54,16 +54,9 @@
 	margin: auto;
 }
 
-.facebook {
+.facebook,
+.twitter,
+.globe {
 	color: #fff;
 	cursor: pointer;
-}
-
-.twitter {
-	cursor: pointer;
-}
-
-.globe {
-	cursor: pointer;
-	color: white;
 }

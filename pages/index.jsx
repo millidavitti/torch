@@ -36,7 +36,6 @@ import latestController from "../serverless/controllers/latest.controller";
 import trendingController from "../serverless/controllers/trending.controller";
 
 export default function Home(props) {
-	console.log(JSON.parse(props.author));
 	return (
 		<Container>
 			<Head>

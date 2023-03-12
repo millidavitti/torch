@@ -8,6 +8,10 @@ const schema = new mongoose.Schema({
 		ref: "Post",
 	},
 	bio: String,
+	socials: {
+		instagram: String,
+		twitter: String,
+	},
 });
 
 module.exports = mongoose.models.Author || mongoose.model("Author", schema);

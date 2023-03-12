@@ -16,10 +16,9 @@ import useSWR from "swr";
 export default function Latest({ posts }) {
 	const parsedPosts = JSON.parse(posts);
 	// const {from, limit} = useRouter().query;
-	const fetcher = (url) => fetch(url).then((r) => r.json());
-	const { data, error } = useSWR(`api/posts`, fetcher);
+	const { data, error } = useSWR(`api/posts`);
 
-	// console.log(data);
+	console.log("Latest",data);
 	return (
 		<>
 			{/* Most Recent */}
