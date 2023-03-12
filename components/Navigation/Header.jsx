@@ -19,7 +19,7 @@ export default function Header() {
 					<Logo className='logo' />
 				</a>
 			</Link>
-			<MobileNav menu={mockPosts[0].categories} />
+			{/* <MobileNav menu={mockPosts[0].categories} /> */}
 			<DeskItems>
 				{menus.map((menu) => (
 					<DeskMenuItem key={menu._id} menu={menu} />
