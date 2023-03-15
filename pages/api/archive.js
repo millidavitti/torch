@@ -7,7 +7,7 @@ const api = express();
 export default api.get("/api/archive", async (_, res) => {
 	connectdb();
 
-	const menus = await archiveModel.find({}, { _v: 0 });
+	const archives = await archiveModel.find({}, { _v: 0 });
 
-	res.json(menus);
+	res.json(archives);
 });
