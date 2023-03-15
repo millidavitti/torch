@@ -32,7 +32,7 @@ export default function DeskMenuItem({ menu }) {
 					>
 						{/* Replace categories with menu.dropItems */}
 						<DropDown>
-							{categories.map((cat) => (
+							{menu.dropItems.map((cat) => (
 								<DropMenu key={cat.id} category={cat} />
 							))}
 						</DropDown>

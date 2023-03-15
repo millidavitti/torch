@@ -23,8 +23,10 @@ import Container from "../../components/Reuse/Container";
 import { mockPosts, categories } from "../../serverless/mock";
 import authorController from "../../serverless/controllers/author.controller";
 import trendingController from "../../serverless/controllers/trending.controller";
+import categoryPostController from "../../serverless/controllers/categoryPost.controller";
 
 export default function Category(props) {
+	console.log(JSON.parse(props.posts));
 	const flexPosts = [];
 
 	for (let i = 0; i < mockPosts.length; i++) {
@@ -97,14 +99,17 @@ export default function Category(props) {
 	);
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ params }) {
+	const { path } = params;
 	const author = await authorController();
 	const trendingPosts = await trendingController();
+	const posts = await categoryPostController(path);
 
 	return {
 		props: {
 			author,
 			trendingPosts,
+			posts,
 		},
 	};
 }

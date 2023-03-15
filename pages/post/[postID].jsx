@@ -107,6 +107,8 @@ export default function PostPage({ post, relatedPosts, trendingPosts }) {
 										<Tag tags={parsedPost.tag} />
 									</div>
 								</div>
+
+								{/*Author */}
 								<Margin>
 									<div className={postPage.postAuthor}>
 										<img

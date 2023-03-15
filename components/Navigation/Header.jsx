@@ -4,13 +4,17 @@ import Link from "next/link";
 import MobileNav from "../Navigation/MobileNav";
 import DeskItems from "../Navigation/DeskItems";
 import DeskMenuItem from "./DeskMenuItem";
+import MobileMenuItem from "./MobileMenuItem";
 import Logo from "../../public/assets/logo.svg";
 import { mockPosts } from "../../serverless/mock";
 import useSWR from "swr";
 
 export default function Header() {
-	const { data: menus, isLoading } = useSWR(`api/menus`);
+	const { data: menus, isLoading } = useSWR(`/api/menus`);
+	console.log("Header: ", isLoading);
+
 	if (isLoading) return;
+	console.log("Header: ", menus);
 
 	return (
 		<header>
@@ -19,10 +23,14 @@ export default function Header() {
 					<Logo className='logo' />
 				</a>
 			</Link>
-			{/* <MobileNav menu={mockPosts[0].categories} /> */}
+			{/* <MobileNav menu={mockPosts[0].categories}>
+				{menus.map((menu) => (
+					<MobileMenuItem key={menu._id} menu={menu} />
+				))}
+			</MobileNav> */}
 			<DeskItems>
 				{menus.map((menu) => (
-					<DeskMenuItem key={menu._id} menu={menu} />
+					<DeskMenuItem key={menu._id} menu={menu.menu} />
 				))}
 			</DeskItems>
 		</header>
