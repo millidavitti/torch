@@ -4,7 +4,7 @@ import { CSSTransition } from "react-transition-group";
 import post from "../Reuse/CSS/post.module.css";
 import DropDown from "./DropDown";
 import DropMenu from "./DropMenu";
-import { categories } from "../../serverless/mock";
+
 export default function DeskMenuItem({ menu }) {
 	const [showDrop, setShowDrop] = useState(false);
 
@@ -33,7 +33,7 @@ export default function DeskMenuItem({ menu }) {
 						{/* Replace categories with menu.dropItems */}
 						<DropDown>
 							{menu.dropItems.map((cat) => (
-								<DropMenu key={cat.id} category={cat} />
+								<DropMenu key={cat.id + "poe"} category={cat} />
 							))}
 						</DropDown>
 					</CSSTransition>

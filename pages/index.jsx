@@ -60,21 +60,11 @@ export default function Home(props) {
 
 			{/* Travel News */}
 			<PostWrap>
-				<SectionHeader
-					text='Travel News'
-					description='Get the latest travel articles'
-				/>
-				<Margin>
-					<Travel posts={props.travelPosts} />
-				</Margin>
+				<Travel posts={props.travelPosts} />
 			</PostWrap>
 
 			{/* Health News */}
 			<PostWrap>
-				<SectionHeader
-					text='Health News'
-					description='Get the most benificial health articles'
-				/>
 				<Health posts={props.healthPosts} />
 			</PostWrap>
 
