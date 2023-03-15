@@ -26,11 +26,13 @@ import trendingController from "../../serverless/controllers/trending.controller
 import categoryPostController from "../../serverless/controllers/categoryPost.controller";
 
 export default function Category(props) {
-	console.log(JSON.parse(props.posts));
+	const categoryPosts = JSON.parse(props.posts);
+	console.log(categoryPosts);
+
 	const flexPosts = [];
 
-	for (let i = 0; i < mockPosts.length; i++) {
-		const post = mockPosts[i];
+	for (let i = 0; i < categoryPosts.length; i++) {
+		const post = categoryPosts[i];
 		if (i) {
 			flexPosts.push(
 				<Post key={post.title}>
@@ -40,7 +42,9 @@ export default function Category(props) {
 							date={new Date(post.published).toDateString()}
 							head={false}
 						/>
-						<h2 className={postcss.singlePostHead}>{post.categories[0]}</h2>
+						<h2 className={postcss.singlePostHead}>
+							{post.categories[0].name}
+						</h2>
 						<TitlePreview title={post.title} preview={post.snippet} />
 						<ReadMore postID={post.title} />
 					</PostInfo>
@@ -49,7 +53,7 @@ export default function Category(props) {
 		}
 	}
 
-	const mockPost = mockPosts[0];
+	const categoryPost = categoryPosts[0];
 	return (
 		<Container>
 			<Head>
@@ -64,20 +68,26 @@ export default function Category(props) {
 				<PostFlex>
 					<div className={postcss.thumbWrap}>
 						<img
-							src={mockPost.thumb}
-							alt={mockPost.title}
+							src={categoryPost.thumb}
+							alt={categoryPost.title}
 							className={postcss.thumb}
 						/>
-						<Author name={mockPost.author.name} src={mockPost.author.avatar} />
+						<Author
+							name={categoryPost.author.name}
+							src={categoryPost.author.avatar}
+						/>
 					</div>
 					<PostInfo>
 						<PostDate
 							css={postcss.date}
-							date={new Date(mockPost.published).toDateString()}
+							date={new Date(categoryPost.published).toDateString()}
 							head={true}
 						/>
-						<TitlePreview title={mockPost.title} preview={mockPost.snippet} />
-						<ReadMore postID={mockPost.title} />
+						<TitlePreview
+							title={categoryPost.title}
+							preview={categoryPost.snippet}
+						/>
+						<ReadMore postID={categoryPost.title} />
 					</PostInfo>
 				</PostFlex>
 			</PostWrap>
