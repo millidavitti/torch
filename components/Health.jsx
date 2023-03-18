@@ -13,7 +13,7 @@ import SectionHeader from "./Reuse/SectionHeader";
 
 export default function Health({ posts }) {
 	const parsedPosts = JSON.parse(posts);
-	console.log(parsedPosts);
+
 	return (
 		<>
 			<SectionHeader

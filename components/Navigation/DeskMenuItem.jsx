@@ -32,14 +32,14 @@ export default function DeskMenuItem({ menu }) {
 					>
 						{/* Replace categories with menu.dropItems */}
 						<DropDown>
-							{menu.dropItems.map((cat) => (
-								<DropMenu key={cat.id + "poe"} category={cat} />
+							{menu.dropItems.map((menu) => (
+								<DropMenu key={menu._id} menu={menu} />
 							))}
 						</DropDown>
 					</CSSTransition>
 				</div>
 			) : (
-				<Link href={`${menu.id}`}>
+				<Link href={`${menu._id}`}>
 					<a className='desk-menu-item'>{menu.name}</a>
 				</Link>
 			)}

@@ -9,14 +9,3 @@ const schema = new mongoose.Schema({
 });
 
 module.exports = mongoose.models.Archive || mongoose.model("Archive", schema);
-
-// const o = [
-// 	{
-// 		name: 2023,
-// 		posts: [],
-// 	},
-// 	{
-// 		name: 2024,
-// 		posts: [],
-// 	},
-// ];

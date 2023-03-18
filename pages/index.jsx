@@ -8,7 +8,6 @@ import SectionHeader from "../components/Reuse/SectionHeader";
 import AuthCard from "../components/AuthorCard/AuthCard";
 import PostWrap from "../components/Reuse/PostWrap";
 import Container from "../components/Reuse/Container";
-import Margin from "../components/Reuse/Margin";
 import Grid from "../components/Reuse/Grid";
 import Sticky from "../components/Reuse/Sticky";
 import GridLeft from "../components/Reuse/GridLeft";
@@ -25,7 +24,6 @@ import authCard from "../components/AuthorCard/authCard.module.css";
 // Controllers
 import postController from "../serverless/controllers/post.controller";
 import authorController from "../serverless/controllers/author.controller";
-import menuController from "../serverless/controllers/menu.controller";
 import categoryController from "../serverless/controllers/category.controller";
 import slideController from "../serverless/controllers/slide.controller";
 import featuredController from "../serverless/controllers/featured.controller";
@@ -34,6 +32,7 @@ import travelController from "../serverless/controllers/travel.controller";
 import healthController from "../serverless/controllers/health.controller";
 import latestController from "../serverless/controllers/latest.controller";
 import trendingController from "../serverless/controllers/trending.controller";
+import archiveController from "../serverless/controllers/archive.controller";
 
 export default function Home(props) {
 	return (
@@ -99,7 +98,6 @@ export default function Home(props) {
 export async function getServerSideProps() {
 	const posts = await postController();
 	const author = await authorController();
-	const menus = await menuController();
 	const categories = await categoryController();
 	const slidePosts = await slideController();
 	const featuredPosts = await featuredController();
@@ -108,12 +106,12 @@ export async function getServerSideProps() {
 	const healthPosts = await healthController();
 	const latestPosts = await latestController();
 	const trendingPosts = await trendingController();
+	await archiveController();
 
 	return {
 		props: {
 			posts,
 			author,
-			menus,
 			categories,
 			slidePosts,
 			featuredPosts,

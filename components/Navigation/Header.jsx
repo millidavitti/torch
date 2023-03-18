@@ -6,7 +6,6 @@ import DeskItems from "../Navigation/DeskItems";
 import DeskMenuItem from "./DeskMenuItem";
 import MobileMenuItem from "./MobileMenuItem";
 import Logo from "../../public/assets/logo.svg";
-import { mockPosts } from "../../serverless/mock";
 import useSWR from "swr";
 
 export default function Header() {

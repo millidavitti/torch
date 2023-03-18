@@ -20,14 +20,12 @@ import Sticky from "../../components/Reuse/Sticky";
 import AuthCard from "../../components/AuthorCard/AuthCard";
 import Author from "../../components/Reuse/Author";
 import Container from "../../components/Reuse/Container";
-import { mockPosts, categories } from "../../serverless/mock";
 import authorController from "../../serverless/controllers/author.controller";
 import trendingController from "../../serverless/controllers/trending.controller";
 import categoryPostController from "../../serverless/controllers/categoryPost.controller";
 
 export default function Category(props) {
 	const categoryPosts = JSON.parse(props.posts);
-	console.log(categoryPosts);
 
 	const flexPosts = [];
 
@@ -62,7 +60,7 @@ export default function Category(props) {
 					property='og:image'
 					content='https://res.cloudinary.com/torch-cms-media/image/upload/v1658568341/logo_5d3d7f7c34_a598a29434.svg'
 				/>
-				<title>Categories : {categories[0].name}</title>
+				<title>Categories : {categoryPost.name}</title>
 			</Head>
 			<PostWrap>
 				<PostFlex>

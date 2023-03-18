@@ -7,7 +7,7 @@ const api = express();
 export default api.get("/api/posts", async (req, res) => {
 	connectdb();
 	const { filters, pag } = parseQuery(req.query);
-	// console.log(query);
+
 	const posts = await postModel
 		.find({}, { _v: 0 })
 		.sort("-date")
