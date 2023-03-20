@@ -44,7 +44,7 @@ export default function Category(props) {
 							{post.categories[0].name}
 						</h2>
 						<TitlePreview title={post.title} preview={post.snippet} />
-						<ReadMore postID={post.title} />
+						<ReadMore postID={post._id} />
 					</PostInfo>
 				</Post>,
 			);
@@ -85,7 +85,7 @@ export default function Category(props) {
 							title={categoryPost.title}
 							preview={categoryPost.snippet}
 						/>
-						<ReadMore postID={categoryPost.title} />
+						<ReadMore postID={categoryPost._id} />
 					</PostInfo>
 				</PostFlex>
 			</PostWrap>

@@ -96,9 +96,10 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps() {
-	const posts = await postController();
+	await archiveController();
 	const author = await authorController();
 	const categories = await categoryController();
+	const posts = await postController();
 	const slidePosts = await slideController();
 	const featuredPosts = await featuredController();
 	const editorsPickPosts = await editorsPickController();
@@ -106,7 +107,6 @@ export async function getServerSideProps() {
 	const healthPosts = await healthController();
 	const latestPosts = await latestController();
 	const trendingPosts = await trendingController();
-	await archiveController();
 
 	return {
 		props: {

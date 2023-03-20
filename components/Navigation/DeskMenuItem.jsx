@@ -39,7 +39,7 @@ export default function DeskMenuItem({ menu }) {
 					</CSSTransition>
 				</div>
 			) : (
-				<Link href={`${menu._id}`}>
+				<Link href={`${menu.id}`}>
 					<a className='desk-menu-item'>{menu.name}</a>
 				</Link>
 			)}
