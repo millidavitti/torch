@@ -33,6 +33,7 @@ import healthController from "../serverless/controllers/health.controller";
 import latestController from "../serverless/controllers/latest.controller";
 import trendingController from "../serverless/controllers/trending.controller";
 import archiveController from "../serverless/controllers/archive.controller";
+import menuController from "../serverless/controllers/menu.controller";
 
 export default function Home(props) {
 	return (
@@ -96,6 +97,7 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps() {
+	await menuController();
 	await archiveController();
 	const author = await authorController();
 	const categories = await categoryController();
