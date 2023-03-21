@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 // Components
 import MobileNav from "../Navigation/MobileNav";
@@ -9,8 +9,12 @@ import Logo from "../../public/assets/logo.svg";
 import useSWR from "swr";
 
 export default function Header() {
+	const [mobileMenuState, setMobileMenuState] = useState({ isClosed: true });
 	const { data: menus, isLoading } = useSWR(`/api/menus`);
 
+	function toggleMenu() {
+		setMobileMenuState((pre) => ({ ...pre, isClosed: !pre.isClosed }));
+	}
 	if (isLoading) return;
 
 	return (
@@ -20,9 +24,13 @@ export default function Header() {
 					<Logo className='logo' />
 				</a>
 			</Link>
-			<MobileNav menu={menus}>
+			<MobileNav toggleMenu={toggleMenu} mobileMenuState={mobileMenuState}>
 				{menus.map((menu) => (
-					<MobileMenuItem key={menu._id} menu={menu.menu} />
+					<MobileMenuItem
+						key={menu._id}
+						menu={menu.menu}
+						toggleMenu={toggleMenu}
+					/>
 				))}
 			</MobileNav>
 			<DeskItems>

@@ -3,7 +3,7 @@ import Link from "next/link";
 import DropDown from "./DropDown";
 import DropMenu from "./DropMenu";
 
-export default function MobileMenuItem({ menu, closeMenu }) {
+export default function MobileMenuItem({ menu, toggleMenu }) {
 	const [showDrop, setShowDrop] = useState(false);
 
 	const paragraphStyle = {
@@ -20,7 +20,7 @@ export default function MobileMenuItem({ menu, closeMenu }) {
 					<p>{menu.name}</p>
 
 					{showDrop && (
-						<DropDown>
+						<DropDown toggleMenu={toggleMenu}>
 							{menu.dropItems.map((menu) => (
 								<DropMenu key={menu._id} menu={menu} />
 							))}
@@ -29,7 +29,7 @@ export default function MobileMenuItem({ menu, closeMenu }) {
 				</div>
 			) : (
 				<Link href={`${menu.id}`}>
-					<a onClick={closeMenu}>{menu.name}</a>
+					<a onClick={toggleMenu}>{menu.name}</a>
 				</Link>
 			)}
 		</li>

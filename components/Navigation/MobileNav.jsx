@@ -1,16 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { List, XCircle, FacebookLogo, TwitterLogo } from "phosphor-react";
 import Logo from "../../public/assets/logo.svg";
 
-import MobileMenuItem from "../Navigation/MobileMenuItem";
-
-export default function MobileNav({ children }) {
-	const [mobileMenuState, setMobileMenuState] = useState({ isClosed: true });
-
-	function toggleMenu() {
-		setMobileMenuState((pre) => ({ ...pre, isClosed: !pre.isClosed }));
-	}
-
+export default function MobileNav({ children, toggleMenu, mobileMenuState }) {
 	// Dynamic class logic
 	const show = mobileMenuState.isClosed ? "" : "show";
 	const hideOverlay = !mobileMenuState.isClosed ? "hide-overlay" : "";
