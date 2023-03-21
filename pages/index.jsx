@@ -32,8 +32,6 @@ import travelController from "../serverless/controllers/travel.controller";
 import healthController from "../serverless/controllers/health.controller";
 import latestController from "../serverless/controllers/latest.controller";
 import trendingController from "../serverless/controllers/trending.controller";
-import archiveController from "../serverless/controllers/archive.controller";
-import menuController from "../serverless/controllers/menu.controller";
 
 export default function Home(props) {
 	return (
@@ -98,9 +96,7 @@ export default function Home(props) {
 
 export async function getServerSideProps() {
 	const categories = await categoryController();
-	await archiveController();
 	const author = await authorController();
-	await menuController();
 	const posts = await postController();
 	const slidePosts = await slideController();
 	const featuredPosts = await featuredController();
