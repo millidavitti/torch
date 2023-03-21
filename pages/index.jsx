@@ -97,9 +97,9 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps() {
+	const categories = await categoryController();
 	await archiveController();
 	const author = await authorController();
-	const categories = await categoryController();
 	await menuController();
 	const posts = await postController();
 	const slidePosts = await slideController();
