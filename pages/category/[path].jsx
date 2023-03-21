@@ -23,9 +23,11 @@ import Container from "../../components/Reuse/Container";
 import authorController from "../../serverless/controllers/author.controller";
 import trendingController from "../../serverless/controllers/trending.controller";
 import categoryPostController from "../../serverless/controllers/categoryPost.controller";
+import categoryFindOneController from "../../serverless/controllers/categoryFindOne.controller";
 
 export default function Category(props) {
 	const categoryPosts = JSON.parse(props.posts);
+	const category = JSON.parse(props.category);
 
 	const flexPosts = [];
 
@@ -60,7 +62,7 @@ export default function Category(props) {
 					property='og:image'
 					content='https://res.cloudinary.com/torch-cms-media/image/upload/v1658568341/logo_5d3d7f7c34_a598a29434.svg'
 				/>
-				<title>Categories : {categoryPost.name}</title>
+				<title>Categories : {category.name}</title>
 			</Head>
 			<PostWrap>
 				<PostFlex>
@@ -112,12 +114,14 @@ export async function getServerSideProps({ params }) {
 	const author = await authorController();
 	const trendingPosts = await trendingController();
 	const posts = await categoryPostController(path);
+	const category = await categoryFindOneController(path);
 
 	return {
 		props: {
 			author,
 			trendingPosts,
 			posts,
+			category,
 		},
 	};
 }
