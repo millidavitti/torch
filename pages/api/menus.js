@@ -1,15 +1,20 @@
 import express from "express";
+import archiveController from "../../serverless/controllers/archive.controller";
+import authorController from "../../serverless/controllers/author.controller";
+import categoryController from "../../serverless/controllers/category.controller";
 import connectdb from "../../serverless/db/connect";
 import menuModel from "../../serverless/models/menu.model";
 
-import parseQuery from "../../serverless/utils/parseQuery";
 const api = express();
 
 export default api.get("/api/menus", async (req, res) => {
 	connectdb();
-	const { filters, pag } = parseQuery(req.query);
-	// console.log(query);
-	const menus = await menuModel.find({}, { _v: 0 });
+
+	categoryController();
+	archiveController();
+	authorController();
+
+	const menus = await menuModel.find({}, { _v: 0 }).populate("menu.dropItems");
 
 	res.json(menus);
 });

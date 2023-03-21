@@ -8,7 +8,6 @@ import SectionHeader from "../components/Reuse/SectionHeader";
 import AuthCard from "../components/AuthorCard/AuthCard";
 import PostWrap from "../components/Reuse/PostWrap";
 import Container from "../components/Reuse/Container";
-import Margin from "../components/Reuse/Margin";
 import Grid from "../components/Reuse/Grid";
 import Sticky from "../components/Reuse/Sticky";
 import GridLeft from "../components/Reuse/GridLeft";
@@ -25,7 +24,6 @@ import authCard from "../components/AuthorCard/authCard.module.css";
 // Controllers
 import postController from "../serverless/controllers/post.controller";
 import authorController from "../serverless/controllers/author.controller";
-import menuController from "../serverless/controllers/menu.controller";
 import categoryController from "../serverless/controllers/category.controller";
 import slideController from "../serverless/controllers/slide.controller";
 import featuredController from "../serverless/controllers/featured.controller";
@@ -60,21 +58,11 @@ export default function Home(props) {
 
 			{/* Travel News */}
 			<PostWrap>
-				<SectionHeader
-					text='Travel News'
-					description='Get the latest travel articles'
-				/>
-				<Margin>
-					<Travel posts={props.travelPosts} />
-				</Margin>
+				<Travel posts={props.travelPosts} />
 			</PostWrap>
 
 			{/* Health News */}
 			<PostWrap>
-				<SectionHeader
-					text='Health News'
-					description='Get the most benificial health articles'
-				/>
 				<Health posts={props.healthPosts} />
 			</PostWrap>
 
@@ -107,10 +95,9 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps() {
-	const posts = await postController();
-	const author = await authorController();
-	const menus = await menuController();
 	const categories = await categoryController();
+	const author = await authorController();
+	const posts = await postController();
 	const slidePosts = await slideController();
 	const featuredPosts = await featuredController();
 	const editorsPickPosts = await editorsPickController();
@@ -123,7 +110,6 @@ export async function getServerSideProps() {
 		props: {
 			posts,
 			author,
-			menus,
 			categories,
 			slidePosts,
 			featuredPosts,

@@ -22,6 +22,7 @@ import trendingController from "../../serverless/controllers/trending.controller
 export default function PostPage({ post, relatedPosts, trendingPosts }) {
 	const parsedPost = JSON.parse(post);
 	const relatedPostsParsed = JSON.parse(relatedPosts);
+
 	return (
 		<Container>
 			<Head>
@@ -45,6 +46,7 @@ export default function PostPage({ post, relatedPosts, trendingPosts }) {
 							/>
 						</div>
 					</div>
+
 					{/* Content */}
 					<Grid>
 						<GridLeft>
@@ -99,6 +101,7 @@ export default function PostPage({ post, relatedPosts, trendingPosts }) {
 											/>
 										}
 									</article>
+
 									{/* Content Footer */}
 									<div className={postPage.contentFooter}>
 										<p className={postPage.date}>
@@ -107,6 +110,8 @@ export default function PostPage({ post, relatedPosts, trendingPosts }) {
 										<Tag tags={parsedPost.tag} />
 									</div>
 								</div>
+
+								{/*Author */}
 								<Margin>
 									<div className={postPage.postAuthor}>
 										<img

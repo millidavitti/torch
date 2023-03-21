@@ -20,15 +20,19 @@ import Sticky from "../../components/Reuse/Sticky";
 import AuthCard from "../../components/AuthorCard/AuthCard";
 import Author from "../../components/Reuse/Author";
 import Container from "../../components/Reuse/Container";
-import { mockPosts, categories } from "../../serverless/mock";
 import authorController from "../../serverless/controllers/author.controller";
 import trendingController from "../../serverless/controllers/trending.controller";
+import categoryPostController from "../../serverless/controllers/categoryPost.controller";
+import categoryFindOneController from "../../serverless/controllers/categoryFindOne.controller";
 
 export default function Category(props) {
+	const categoryPosts = JSON.parse(props.posts);
+	const category = JSON.parse(props.category);
+
 	const flexPosts = [];
 
-	for (let i = 0; i < mockPosts.length; i++) {
-		const post = mockPosts[i];
+	for (let i = 0; i < categoryPosts.length; i++) {
+		const post = categoryPosts[i];
 		if (i) {
 			flexPosts.push(
 				<Post key={post.title}>
@@ -38,16 +42,18 @@ export default function Category(props) {
 							date={new Date(post.published).toDateString()}
 							head={false}
 						/>
-						<h2 className={postcss.singlePostHead}>{post.categories[0]}</h2>
+						<h2 className={postcss.singlePostHead}>
+							{post.categories[0].name}
+						</h2>
 						<TitlePreview title={post.title} preview={post.snippet} />
-						<ReadMore postID={post.title} />
+						<ReadMore postID={post._id} />
 					</PostInfo>
 				</Post>,
 			);
 		}
 	}
 
-	const mockPost = mockPosts[0];
+	const categoryPost = categoryPosts[0];
 	return (
 		<Container>
 			<Head>
@@ -56,26 +62,32 @@ export default function Category(props) {
 					property='og:image'
 					content='https://res.cloudinary.com/torch-cms-media/image/upload/v1658568341/logo_5d3d7f7c34_a598a29434.svg'
 				/>
-				<title>Categories : {categories[0].name}</title>
+				<title>Categories : {category.name}</title>
 			</Head>
 			<PostWrap>
 				<PostFlex>
 					<div className={postcss.thumbWrap}>
 						<img
-							src={mockPost.thumb}
-							alt={mockPost.title}
+							src={categoryPost.thumb}
+							alt={categoryPost.title}
 							className={postcss.thumb}
 						/>
-						<Author name={mockPost.author.name} src={mockPost.author.avatar} />
+						<Author
+							name={categoryPost.author.name}
+							src={categoryPost.author.avatar}
+						/>
 					</div>
 					<PostInfo>
 						<PostDate
 							css={postcss.date}
-							date={new Date(mockPost.published).toDateString()}
+							date={new Date(categoryPost.published).toDateString()}
 							head={true}
 						/>
-						<TitlePreview title={mockPost.title} preview={mockPost.snippet} />
-						<ReadMore postID={mockPost.title} />
+						<TitlePreview
+							title={categoryPost.title}
+							preview={categoryPost.snippet}
+						/>
+						<ReadMore postID={categoryPost._id} />
 					</PostInfo>
 				</PostFlex>
 			</PostWrap>
@@ -97,14 +109,19 @@ export default function Category(props) {
 	);
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ params }) {
+	const { path } = params;
 	const author = await authorController();
 	const trendingPosts = await trendingController();
+	const posts = await categoryPostController(path);
+	const category = await categoryFindOneController(path);
 
 	return {
 		props: {
 			author,
 			trendingPosts,
+			posts,
+			category,
 		},
 	};
 }

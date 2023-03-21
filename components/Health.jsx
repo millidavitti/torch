@@ -8,13 +8,18 @@ import ReadMore from "./Reuse/ReadMore";
 import Thumbnail from "./Reuse/Thumbnail";
 import TitlePreview from "./Reuse/TitlePreview";
 import health from "./Reuse/CSS/health.module.css";
-import { mockPosts } from "../serverless/mock";
 import Link from "next/link";
+import SectionHeader from "./Reuse/SectionHeader";
 
 export default function Health({ posts }) {
 	const parsedPosts = JSON.parse(posts);
+
 	return (
 		<>
+			<SectionHeader
+				text={parsedPosts[0].categories[0].name}
+				description={`Get the most benificial ${parsedPosts[0].categories[0].name.toLowerCase()} articles`}
+			/>
 			{/* Higlight Post */}
 			<Margin>
 				<PostFlex>
