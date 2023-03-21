@@ -9,11 +9,11 @@ import Logo from "../../public/assets/logo.svg";
 import useSWR from "swr";
 
 export default function Header() {
-	const { data: menus, isLoading } = useSWR(`/api/menus`);
-	console.log("Header: ", isLoading);
+	// const { data: menus, isLoading } = useSWR(`/api/menus`);
+	// console.log("Header: ", isLoading);
 
-	if (isLoading) return;
-	console.log("Header: ", menus);
+	// if (isLoading) return;
+	// console.log("Header: ", menus);
 
 	return (
 		<header>
