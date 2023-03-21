@@ -10,10 +10,8 @@ import useSWR from "swr";
 
 export default function Header() {
 	const { data: menus, isLoading } = useSWR(`/api/menus`);
-	console.log("Header: ", isLoading);
 
 	if (isLoading) return;
-	console.log("Header: ", menus);
 
 	return (
 		<header>
@@ -22,11 +20,11 @@ export default function Header() {
 					<Logo className='logo' />
 				</a>
 			</Link>
-			{/* <MobileNav menu={mockPosts[0].categories}>
+			<MobileNav menu={menus}>
 				{menus.map((menu) => (
-					<MobileMenuItem key={menu._id} menu={menu} />
+					<MobileMenuItem key={menu._id} menu={menu.menu} />
 				))}
-			</MobileNav> */}
+			</MobileNav>
 			<DeskItems>
 				{menus.map((menu) => (
 					<DeskMenuItem key={menu._id} menu={menu.menu} />
