@@ -26,7 +26,7 @@ import categoryPostController from "../../serverless/controllers/categoryPost.co
 import categoryFindOneController from "../../serverless/controllers/categoryFindOne.controller";
 
 export default function Category(props) {
-	const categoryPosts = JSON.parse(props.posts);
+	const { posts: categoryPosts } = JSON.parse(props.posts);
 	const category = JSON.parse(props.category);
 
 	const flexPosts = [];
