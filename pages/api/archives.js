@@ -4,7 +4,7 @@ import archiveModel from "../../serverless/models/archive.model";
 
 const api = express();
 
-export default api.get("/api/archives", async (req, res) => {
+export default api.get("/api/archives", async (_, res) => {
 	connectdb();
 
 	const archives = await archiveModel.find({}, { __v: 0 });

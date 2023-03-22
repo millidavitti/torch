@@ -4,7 +4,7 @@ import authorModel from "../../serverless/models/author.model";
 
 const api = express();
 
-export default api.get("/api/author", async (req, res) => {
+export default api.get("/api/author", async (_, res) => {
 	connectdb();
 
 	const author = await authorModel.findOne({}, { _v: 0 });
