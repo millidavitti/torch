@@ -6,9 +6,10 @@ export default async function categoryPostController(path) {
 
 	const posts = await postModel
 		.find({ categories: path }, { _v: 0 })
+		.limit(3)
 		.populate("author")
 		.populate("categories");
 
 	const count = await postModel.find({ categories: path }, { _v: 0 }).count();
-	return JSON.stringify({ posts, count });
+	return JSON.stringify({ posts, count, path });
 }

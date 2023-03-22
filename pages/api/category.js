@@ -4,17 +4,16 @@ import postModel from "../../serverless/models/post.model";
 import parseQuery from "../../serverless/utils/parseQuery";
 const api = express();
 
-export default api.get("/api/posts", async (req, res) => {
+export default api.get("/api/category", async (req, res) => {
 	connectdb();
-	const { pag } = parseQuery(req.query);
+	const { pag, filters } = parseQuery(req.query);
 
 	const posts = await postModel
-		.find({}, { _v: 0 })
-		.sort("-_id")
+		.find({ categories: filters.path }, { _v: 0 })
 		.skip(+pag.from || 0)
 		.limit(+pag.limit || 2)
-		.populate("categories")
-		.populate("author");
+		.populate("author")
+		.populate("categories");
 
 	res.json(posts);
 });

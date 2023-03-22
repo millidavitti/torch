@@ -9,8 +9,6 @@ import PostInfo from "../../components/Reuse/PostInfo";
 import PostWrap from "../../components/Reuse/PostWrap";
 import ReadMore from "../../components/Reuse/ReadMore";
 import TitlePreview from "../../components/Reuse/TitlePreview";
-import TopTrend from "../../components/Reuse/TopTrend";
-import TrendingPost from "../../components/Reuse/TrendingPost";
 import TrendsWrap from "../../components/Reuse/TrendsWrap";
 import Thumbnail from "../../components/Reuse/Thumbnail";
 import Grid from "../../components/Reuse/Grid";
@@ -24,10 +22,21 @@ import authorController from "../../serverless/controllers/author.controller";
 import trendingController from "../../serverless/controllers/trending.controller";
 import categoryPostController from "../../serverless/controllers/categoryPost.controller";
 import categoryFindOneController from "../../serverless/controllers/categoryFindOne.controller";
+import readmore from "../../components/Reuse/CSS/readmore.module.css";
+import { useEffect, useState } from "react";
+import { MoonLoader } from "react-spinners";
+import axios from "axios";
 
 export default function Category(props) {
-	const { posts: categoryPosts } = JSON.parse(props.posts);
+	const { posts: categoryPosts, count, path } = JSON.parse(props.posts);
 	const category = JSON.parse(props.category);
+
+	const [append, setAppend] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
+
+	useEffect(() => {
+		setAppend([]);
+	}, [path]);
 
 	const flexPosts = [];
 
@@ -52,8 +61,8 @@ export default function Category(props) {
 			);
 		}
 	}
-
 	const categoryPost = categoryPosts[0];
+
 	return (
 		<Container>
 			<Head>
@@ -94,7 +103,56 @@ export default function Category(props) {
 			<Grid>
 				<GridLeft>
 					<PostWrap>
-						<PostFlex>{flexPosts}</PostFlex>
+						<PostFlex>
+							{flexPosts}
+							{append.map((post) => (
+								<Post key={post.title}>
+									<Thumbnail src={post.thumb} alt={post.title} />
+									<PostInfo>
+										<PostDate
+											date={new Date(post.published).toDateString()}
+											head={false}
+										/>
+										<h2 className={postcss.singlePostHead}>
+											{post.categories[0].name}
+										</h2>
+										<TitlePreview title={post.title} preview={post.snippet} />
+										<ReadMore postID={post._id} />
+									</PostInfo>
+								</Post>
+							))}
+						</PostFlex>
+
+						{/* Load More */}
+						{categoryPosts.length + append.length !== count && (
+							<button
+								className={readmore.readMore}
+								style={{ left: "43%", width: "auto" }}
+								onClick={async () => {
+									setIsLoading(true);
+
+									const { data } = await axios.get(
+										`/api/category?from=${
+											categoryPosts.length + append.length
+										}&path=${category._id}`,
+									);
+
+									setIsLoading(false);
+
+									setAppend((prev) => [...prev, ...data]);
+								}}
+							>
+								{isLoading ? (
+									<MoonLoader
+										cssOverride={{ margin: "0 30px" }}
+										color='var(--secondary)'
+										size={15}
+									/>
+								) : (
+									"Load More"
+								)}
+							</button>
+						)}
 					</PostWrap>
 					<AuthCard author={props.author} />
 				</GridLeft>
