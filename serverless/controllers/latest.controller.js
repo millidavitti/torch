@@ -6,10 +6,12 @@ export default async function latestController() {
 
 	const latestPosts = await postModel
 		.find({}, { _v: 0 })
-		.limit(5)
-		.sort("-date")
+		.limit(3)
+		.sort("-_id")
 		.populate("categories")
 		.populate("author");
 
-	return JSON.stringify(latestPosts);
+	const count = await postModel.count();
+
+	return JSON.stringify({ latestPosts, count });
 }

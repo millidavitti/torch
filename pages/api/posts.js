@@ -10,9 +10,9 @@ export default api.get("/api/posts", async (req, res) => {
 
 	const posts = await postModel
 		.find({}, { _v: 0 })
-		.sort("-date")
+		.sort("-_id")
 		.skip(+pag.from || 0)
-		.limit(+pag.limit || 5)
+		.limit(+pag.limit || 2)
 		.populate("categories")
 		.populate("author");
 
