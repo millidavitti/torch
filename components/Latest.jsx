@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Author from "./Reuse/Author";
 import PostDate from "./Reuse/Date";
 import Post from "./Reuse/Post";
@@ -11,12 +11,14 @@ import { MoonLoader } from "react-spinners";
 import Thumbnail from "./Reuse/Thumbnail";
 import PostWrap from "./Reuse/PostWrap";
 import readmore from "./Reuse/CSS/readmore.module.css";
-import useSWR from "swr";
+import axios from "axios";
 
 export default function Latest({ posts }) {
-	const parsedPosts = JSON.parse(posts);
-	// const {from, limit} = useRouter().query;
-	const { data, error } = useSWR(`/api/posts`);
+	const { latestPosts, count } = JSON.parse(posts);
+	const [append, setAppend] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
+
+	console.log("data: ", count);
 
 	return (
 		<>
@@ -24,35 +26,35 @@ export default function Latest({ posts }) {
 			<PostFlex>
 				<div className={postcss.thumbWrap}>
 					<img
-						src={parsedPosts[0].thumb}
-						alt={parsedPosts[0].title}
+						src={latestPosts[0].thumb}
+						alt={latestPosts[0].title}
 						className={postcss.thumb}
 					/>
 
 					{/* Author */}
 					<Author
-						name={parsedPosts[0].author.name}
-						src={parsedPosts[0].author.avatar}
+						name={latestPosts[0].author.name}
+						src={latestPosts[0].author.avatar}
 					/>
 				</div>
 				<PostInfo>
 					<PostDate
 						css={postcss.date}
-						date={new Date(parsedPosts[0].published).toDateString()}
+						date={new Date(latestPosts[0].published).toDateString()}
 						head={true}
 					/>
 					<TitlePreview
-						title={parsedPosts[0].title}
-						preview={parsedPosts[0].snippet}
+						title={latestPosts[0].title}
+						preview={latestPosts[0].snippet}
 					/>
-					<ReadMore postID={parsedPosts[0]._id} />
+					<ReadMore postID={latestPosts[0]._id} />
 				</PostInfo>
 			</PostFlex>
 
 			{/* Others */}
 			<PostWrap>
 				<PostFlex>
-					{JSON.parse(posts).map((post) => {
+					{latestPosts.slice(1).map((post) => {
 						return (
 							<Post key={post.title}>
 								<Thumbnail src={post.thumb} alt={post.title} />
@@ -77,17 +79,46 @@ export default function Latest({ posts }) {
 							</Post>
 						);
 					})}
+					{append.map((post) => (
+						<Post key={post.title}>
+							<Thumbnail src={post.thumb} alt={post.title} />
+							<PostInfo>
+								<PostDate
+									date={new Date(post.published).toDateString()}
+									head={false}
+								/>
+								<div style={{ display: "flex", gap: "7px" }}>
+									{post.categories.map((category) => (
+										<h2 key={category.name} className={postcss.singlePostHead}>
+											{category.name}
+										</h2>
+									))}
+								</div>
+								<TitlePreview title={post.title} preview={post.snippet} />
+								<ReadMore postID={post._id} />
+							</PostInfo>
+						</Post>
+					))}
 				</PostFlex>
 
 				{/* Load More */}
-				{
+				{latestPosts.length + append.length !== count && (
 					<button
 						className={readmore.readMore}
 						style={{ left: "43%", width: "auto" }}
+						onClick={async () => {
+							setIsLoading(true);
+							const { data } = await axios.get(
+								`/api/posts?from=${latestPosts.length + append.length}`,
+							);
+							setIsLoading(false);
+
+							setAppend((prev) => [...prev, ...data]);
+						}}
 					>
-						{true ? (
+						{isLoading ? (
 							<MoonLoader
-								cssOverride={{ margin: "auto", left: "40%" }}
+								cssOverride={{ margin: "0 30px" }}
 								color='var(--secondary)'
 								size={15}
 							/>
@@ -95,7 +126,7 @@ export default function Latest({ posts }) {
 							"Load More"
 						)}
 					</button>
-				}
+				)}
 			</PostWrap>
 		</>
 	);
