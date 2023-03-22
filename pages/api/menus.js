@@ -1,18 +1,18 @@
 import express from "express";
-import archiveController from "../../serverless/controllers/archive.controller";
-import authorController from "../../serverless/controllers/author.controller";
-import categoryController from "../../serverless/controllers/category.controller";
+import categoryModel from "../../serverless/models/category.model";
+import authorModel from "../../serverless/models/author.model";
+import archiveModel from "../../serverless/models/archive.model";
 import connectdb from "../../serverless/db/connect";
 import menuModel from "../../serverless/models/menu.model";
 
 const api = express();
 
-export default api.get("/api/menus", async (req, res) => {
+export default api.get("/api/menus", async (_, res) => {
 	connectdb();
 
-	categoryController();
-	archiveController();
-	authorController();
+	await categoryModel.count();
+	await authorModel.count();
+	await archiveModel.count();
 
 	const menus = await menuModel.find({}, { _v: 0 }).populate("menu.dropItems");
 
