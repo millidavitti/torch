@@ -107,7 +107,7 @@ export default function PostPage({ post, relatedPosts, trendingPosts }) {
 										<p className={postPage.date}>
 											{new Date(parsedPost.published).toDateString()}
 										</p>
-										<Tag tags={parsedPost.tag} />
+										<Tag tags={parsedPost.tags} />
 									</div>
 								</div>
 

@@ -5,9 +5,9 @@ import categoryModel from "../../serverless/models/category.model";
 import authorModel from "../../serverless/models/author.model";
 
 import parseQuery from "../../serverless/utils/parseQuery";
-const api = express();
+const api = express.Router();
 
-export default api.get("/api/posts", async (req, res) => {
+api.get("/api/posts", async (req, res) => {
 	connectdb();
 	const { pag } = parseQuery(req.query);
 
@@ -23,3 +23,17 @@ export default api.get("/api/posts", async (req, res) => {
 
 	res.json(posts);
 });
+
+api.post("/api/posts", async (req, res) => {
+	const { postID, tag } = req.body;
+
+	const post = await postModel.findOneAndUpdate(
+		{ _id: postID },
+		{ $push: { tags: tag } },
+		{ upsert: true },
+	);
+	console.log(post.tags);
+	res.json(post.tags);
+});
+
+export default api;
