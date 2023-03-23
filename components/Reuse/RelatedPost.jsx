@@ -10,26 +10,22 @@ import post from "./CSS/post.module.css";
 import { useRouter } from "next/router";
 
 export default function RelatedPost({ posts }) {
-	const { postID } = useRouter().query;
-	const flexPosts = [];
-	for (let i = 0; i < posts.length; i++) {
-		if (posts[i]._id !== postID)
-			flexPosts.push(
-				<Post key={posts[i].title}>
-					<Thumbnail src={posts[i].thumb} />
+	return (
+		<PostFlex>
+			{posts.map((post) => (
+				<Post key={post._id}>
+					<Thumbnail src={post.thumb} />
 					<PostInfo>
 						<PostDate
-							date={new Date(posts[i].published).toDateString()}
+							date={new Date(post.published).toDateString()}
 							head={false}
 						/>
-						<h2 className={post.singlePostHead}>
-							{posts[i].categories[0].name}
-						</h2>
-						<TitlePreview title={posts[i].title} preview={posts[i].snippet} />
-						<ReadMore postID={posts[i]._id} />
+						<h2 className={post.singlePostHead}>{post.categories[0].name}</h2>
+						<TitlePreview title={post.title} preview={post.snippet} />
+						<ReadMore postID={post._id} />
 					</PostInfo>
-				</Post>,
-			);
-	}
-	return <PostFlex>{flexPosts}</PostFlex>;
+				</Post>
+			))}
+		</PostFlex>
+	);
 }
