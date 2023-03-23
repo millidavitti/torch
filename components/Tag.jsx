@@ -13,6 +13,7 @@ export default function Tag({ tags }) {
 	}, [postID]);
 
 	async function postTag() {
+		if (state.tag.length < 3) return;
 		dispatch({ type: "optimistic-update", update: state.tag });
 		await axios.post("/api/posts", {
 			postID,
