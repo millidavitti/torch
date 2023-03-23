@@ -80,6 +80,6 @@ function reducer(state, action) {
 }
 
 const init = {
-	tag: null,
+	tag: "",
 	update: [],
 };
