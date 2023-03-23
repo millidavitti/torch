@@ -145,7 +145,10 @@ export default function PostPage({ post, relatedPosts, trendingPosts }) {
 export async function getServerSideProps({ params }) {
 	const { postID } = params;
 	const post = await postPageController(postID);
-	const relatedPosts = await relatedController(JSON.parse(post).categories[0]);
+	const relatedPosts = await relatedController(
+		JSON.parse(post).categories[0],
+		postID,
+	);
 	const trendingPosts = await trendingController();
 
 	return {
