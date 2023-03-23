@@ -17,7 +17,7 @@ const schema = new mongoose.Schema({
 	updated: Date,
 	editorsPick: Boolean,
 	featured: Boolean,
-	tag: [String],
+	tags: [String],
 });
 
 module.exports = mongoose.models.Post || mongoose.model("Post", schema);
