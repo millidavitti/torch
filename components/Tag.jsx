@@ -40,7 +40,7 @@ export default function Tag({ tags }) {
 					</p>
 				))}
 				{/* Optimistic Update */}
-				{state?.update.map((tag) => (
+				{state.update.map((tag) => (
 					<p key={tag} className={postPage.tagEntity}>
 						{tag}
 					</p>
