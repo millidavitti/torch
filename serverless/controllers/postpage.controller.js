@@ -1,5 +1,6 @@
 import connectdb from "../db/connect";
 import authorModel from "../models/author.model";
+import categoryModel from "../models/category.model";
 import postModel from "../models/post.model";
 
 export default async function postPageController(id) {
