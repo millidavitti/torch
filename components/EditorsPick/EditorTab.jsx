@@ -18,12 +18,14 @@ export default function EditorTab(props) {
 			  }px)`,
 	};
 
+	console.log(sho);
+
 	return (
 		<div className={editors.tab}>
 			{/* Thumbnail */}
 			<div
 				className={editors.thumbWrap}
-				onClick={() => setShow((pre) => ({ ...pre, shown: !pre.shown }))}
+				onMouseEnter={() => setShow((pre) => ({ ...pre, shown: !pre.shown }))}
 				onMouseOut={() => setShow((pre) => ({ ...pre, shown: false }))}
 			>
 				<img
@@ -31,7 +33,9 @@ export default function EditorTab(props) {
 					alt={props.pick.title}
 					className={editors.thumb}
 				/>
-				<div className={editors.authorInfo}>
+
+				{/* Authors Info */}
+				<div className={editors.authorInfo} style={sho}>
 					<img
 						src={props.pick.author.avatar}
 						alt={props.pick.author.name}
@@ -39,10 +43,10 @@ export default function EditorTab(props) {
 					/>
 					<h3 className={editors.name}>{props.pick.author.name}</h3>
 				</div>
-				<h2 className={editors.category}>{props.pick.categories[0].name}</h2>
+				{/* <h2 className={editors.category}>{props.pick.categories[0].name}</h2> */}
 			</div>
 
-			{/* Authors Info */}
+			{/* Content Snippet */}
 			<div className={editors.info}>
 				<PostDate
 					css={editors.date}
