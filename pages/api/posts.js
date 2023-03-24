@@ -32,7 +32,7 @@ api.post("/api/posts", async (req, res) => {
 		{ $push: { tags: tag } },
 		{ upsert: true },
 	);
-	console.log(post.tags);
+
 	res.json(post.tags);
 });
 
