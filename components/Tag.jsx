@@ -3,6 +3,7 @@ import postPage from "./Reuse/CSS/postPage.module.css";
 import { Plus, Square } from "phosphor-react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import Link from "next/link";
 
 export default function Tag({ tags }) {
 	const { postID } = useRouter().query;
@@ -17,7 +18,7 @@ export default function Tag({ tags }) {
 		dispatch({ type: "optimistic-update", update: state.tag });
 		await axios.post("/api/posts", {
 			postID,
-			tag: state.tag,
+			tag: state.tag.trim(),
 		});
 		dispatch({ type: "clear" });
 	}
@@ -32,19 +33,22 @@ export default function Tag({ tags }) {
 					onClick={postTag}
 				/>
 			</div>
-
 			{/* Footer Tag */}
 			<div className={postPage.footerTag}>
 				{tags.map((tag) => (
-					<p key={tag} className={postPage.tagEntity}>
-						{tag}
-					</p>
+					<Link href={`/tag/${tag}`}>
+						<p key={tag} className={postPage.tagEntity}>
+							{tag}
+						</p>
+					</Link>
 				))}
 				{/* Optimistic Update */}
 				{state.update.map((tag) => (
-					<p key={tag} className={postPage.tagEntity}>
-						{tag}
-					</p>
+					<Link href={`/tag/${tag}`}>
+						<p key={tag} className={postPage.tagEntity}>
+							{tag}
+						</p>
+					</Link>
 				))}
 				{/* Tag Input */}
 				{
