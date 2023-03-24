@@ -10,14 +10,15 @@ const api = express();
 export default api.get("/api/tags", async (req, res) => {
 	connectdb();
 
-	const { filters } = parseQuery(req.query);
+	const { filters, pag } = parseQuery(req.query);
 
 	await authorModel.count();
 	await categoryModel.count();
 
 	const posts = await postModel
 		.find({ tags: { $elemMatch: { $eq: filters.tagName } } }, { _v: 0 })
-		.limit(3)
+		.skip(+pag.from || 0)
+		.limit(+pag.limit || 3)
 		.populate("author")
 		.populate("categories");
 

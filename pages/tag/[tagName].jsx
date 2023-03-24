@@ -128,7 +128,7 @@ export default function Category(props) {
 									const { data } = await axios.get(
 										`/api/tags?from=${
 											tagPosts.length + append.length
-										}&path=${tagName}`,
+										}&tagName=${tagName}`,
 									);
 
 									setIsLoading(false);
