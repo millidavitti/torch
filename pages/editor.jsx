@@ -1,8 +1,7 @@
-import React, { useReducer, useRef } from "react";
+import React, { useEffect, useReducer, useRef } from "react";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import axios from "axios";
-import useSWR from "swr";
 import postPage from "../components/Reuse/CSS/postPage.module.css";
 import postcss from "../components/Reuse/CSS/post.module.css";
 import readmore from "../components/Reuse/CSS/readmore.module.css";
@@ -13,25 +12,36 @@ import Grid from "../components/Reuse/Grid";
 import GridLeft from "../components/Reuse/GridLeft";
 import Sidebar from "../components/Reuse/Sidebar";
 
-export default function ContentManagement() {
+// Controller
+import postController from "../serverless/controllers/post.controller";
+import authorController from "../serverless/controllers/author.controller";
+import categoryController from "../serverless/controllers/category.controller";
+
+export default function ContentManagement(props) {
 	const [post, setPost] = useReducer(drafPostReducer, draftPost);
 	const [state, dispatch] = useReducer(reducer, componentState);
 	const thumbnailRef = useRef();
-	const updatePost = ({ target }) => setPost({ type: "update", target });
-	const { data: authors, isLoading: authorLoading } = useSWR(
-		"/api/authors",
-		fetcher,
-	);
-	const { data: categories, isLoading: categoriesLoading } = useSWR(
-		"/api/category",
-		fetcher,
-	);
+ const updatePost = ({ target }) => setPost({ type: "update", target });
+ 
+	const posts = JSON.parse(props.postsJSON);
+	const authors = JSON.parse(props.authorsJSON);
+	const categories = JSON.parse(props.categoriesJSON);
 
-	if (authorLoading) return;
-	if (categoriesLoading) return;
+	useEffect(() => {
+		setPost({
+			type: "update",
+			target: {
+				id: state.postID,
+				type: "post",
+				value: postUpdate,
+			},
+		});
+	}, [state.postID]);
 
+	/*Return a single post, category and author */
 	const postAuthor = authors.find((author) => author._id === state.authorID);
 	const postCategory = categories.find((cat) => cat._id === state.categoryID);
+	const postUpdate = posts.find((post) => post._id === state.postID);
 
 	console.log(post);
 
@@ -49,7 +59,9 @@ export default function ContentManagement() {
 						<div className={postPage.overlay}>
 							{/* Category */}
 							<h2 className={postPage.tag}>
-								{postCategory?.name || "Pick Category"}
+								{post.categories[0]?.name ||
+									postCategory?.name ||
+									"Pick Category"}
 							</h2>
 							{/* Title */}
 							<Margin>
@@ -60,25 +72,26 @@ export default function ContentManagement() {
 									id='title'
 									onChange={updatePost}
 									placeholder='Title'
+									value={post.title}
 								/>
 							</Margin>
 							{/* Author */}
 							<div className={postcss.wrapAuth}>
 								<img
-									src={postAuthor?.avatar}
+									src={post.author.avatar || postAuthor?.avatar}
 									alt={postAuthor?.name || "Author's Name"}
 									className={postcss.avatar}
 								/>
 
 								{/* <input author /> */}
 								<h3 className={postcss.name}>
-									{postAuthor?.name || "Author's Name"}
+									{post.author.name || postAuthor?.name || "Author's Name"}
 								</h3>
 							</div>
 						</div>
 					</div>
 
-					{/* Content Editor */}
+					{/* Content Editor, Auhtor, Categories and Posts*/}
 					<Grid>
 						<Editor setPost={setPost} content={post.content} />
 
@@ -96,7 +109,7 @@ export default function ContentManagement() {
 											}}
 											id={author._id}
 											onClick={(e) => {
-												dispatch({ type: "pick-author", value: e.target.id });
+												dispatch({ type: "pick-author", id: e.target.id });
 												setPost({
 													type: "update",
 													target: { id: e.target.id, type: "author" },
@@ -120,7 +133,7 @@ export default function ContentManagement() {
 											}}
 											id={category._id}
 											onClick={(e) => {
-												dispatch({ type: "pick-category", value: e.target.id });
+												dispatch({ type: "pick-category", id: e.target.id });
 												setPost({
 													type: "update",
 													target: { id: e.target.id, type: "categories" },
@@ -129,6 +142,27 @@ export default function ContentManagement() {
 											key={category.name}
 										>
 											{category.name}
+										</li>
+									))}
+								</ol>
+								<h2>Blog Posts</h2>
+								<ol>
+									{posts.map((post) => (
+										<li
+											style={{
+												padding: "5px",
+												cursor: "pointer",
+												background: "#ccced1",
+												margin: "5px 0",
+											}}
+											id={post._id}
+											onClick={(e) => {
+												dispatch({ type: "pick-post", id: e.target.id });
+												console.log("Post Update: ", postUpdate);
+											}}
+											key={post._id}
+										>
+											{post.title}
 										</li>
 									))}
 								</ol>
@@ -165,13 +199,23 @@ export default function ContentManagement() {
 					{/* Editor's Pick */}
 					<Margin>
 						<h2>Editors Pick</h2>
-						<input id='editorsPick' type='checkbox' onChange={updatePost} />
+						<input
+							id='editorsPick'
+							type='checkbox'
+							onChange={updatePost}
+							checked={post.editorsPick}
+						/>
 					</Margin>
 
 					{/* Featured */}
 					<Margin>
 						<h2>Featured</h2>
-						<input id='featured' type='checkbox' onChange={updatePost} />
+						<input
+							id='featured'
+							type='checkbox'
+							onChange={updatePost}
+							checked={post.featured}
+						/>
 					</Margin>
 
 					{/* Tags and Date */}
@@ -260,19 +304,21 @@ const URL_PATTERN =
 	/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
 
 const fetcher = (url) => axios.get(url).then((res) => res.data);
+
 const componentState = {
 	authorID: "",
 	categoryID: "",
-	isValidUrl: false,
+	postID: "",
 };
 
 function reducer(state, action) {
 	switch (action.type) {
 		case "pick-author":
-			return { ...state, authorID: action.value };
+			return { ...state, authorID: action.id };
 		case "pick-category":
-			return { ...state, categoryID: action.value };
-		case "invalid-url":
+			return { ...state, categoryID: action.id };
+		case "pick-post":
+			return { ...state, postID: action.id };
 	}
 }
 
@@ -302,6 +348,8 @@ function drafPostReducer(state, action) {
 				return { ...state, [action.target.type]: action.target.id };
 			else if (action.target.type === "categories")
 				return { ...state, [action.target.type]: [action.target.id] };
+			else if (action.target.type === "post")
+				return { ...state, ...action.target.value };
 			else return { ...state, [action.target.id]: action.target.value };
 		case "tags":
 			return { ...state, tags: [...state.tags, action.value], tag: "" };
@@ -314,9 +362,9 @@ const draftPost = {
 	published: new Date(Date.now()).toISOString(),
 	thumb: "",
 	author: {
-		name: "Donald Abua",
+		name: "Kratos War",
 		avatar:
-			"https://res.cloudinary.com/torch-cms-media/image/upload/v1673611182/avatar_vyu2q3.jpg",
+			"hhttps://res.cloudinary.com/torch-cms-media/image/upload/v1657611196/god_of_war_2018_video_game_wallpaper_1366x768_0ab2e9648c.jpg",
 	},
 	categories: [],
 	snippet: "",
@@ -332,3 +380,16 @@ const Editor = ({ setPost, content }) => {
 	const Comp = dynamic(() => import("../components/CKEditor"), { ssr: false });
 	return <Comp setPost={setPost} content={content} />;
 };
+
+export async function getServerSideProps() {
+	const postsJSON = await postController();
+	const authorsJSON = await authorController(false);
+	const categoriesJSON = await categoryController();
+	return {
+		props: {
+			postsJSON,
+			authorsJSON,
+			categoriesJSON,
+		},
+	};
+}
