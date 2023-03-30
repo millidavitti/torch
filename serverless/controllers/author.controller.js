@@ -2,11 +2,13 @@ import connectdb from "../db/connect";
 import authorModel from "../models/author.model";
 import postModel from "../models/post.model";
 
-export default async function authorController() {
+export default async function authorController(single = true) {
 	connectdb();
 
- await postModel.count()
-	const author = await authorModel.findOne({}, { _v: 0 }).populate("posts");
+	await postModel.count();
+	const author = single
+		? await authorModel.findOne({}, { _v: 0 }).populate("posts")
+		: await authorModel.find({}, { _v: 0 }).populate("posts");
 
 	return JSON.stringify(author);
 }
