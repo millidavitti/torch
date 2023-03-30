@@ -5,7 +5,7 @@ import axios from "axios";
 import useSWR from "swr";
 import postPage from "../components/Reuse/CSS/postPage.module.css";
 import postcss from "../components/Reuse/CSS/post.module.css";
-import readmore from "../components/Reuse/CSS/readMore.module.css";
+import readmore from "../components/Reuse/CSS/readmore.module.css";
 import Container from "../components/Reuse/Container";
 import Margin from "../components/Reuse/Margin";
 import { Plus } from "phosphor-react";
