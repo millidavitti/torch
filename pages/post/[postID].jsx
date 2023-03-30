@@ -124,12 +124,16 @@ export default function PostPage({ post, relatedPosts, trendingPosts }) {
 										</div>
 									</div>
 								</Margin>
+
+								{/* Related Posts */}
 								<PostWrap>
 									<SectionHeader text={"Related Posts"} />
 									<RelatedPost posts={relatedPostsParsed} />
 								</PostWrap>
 							</Margin>
 						</GridLeft>
+
+						{/* Top Trending Posts */}
 						<Sidebar>
 							<Sticky>
 								<TrendsWrap posts={trendingPosts} />
