@@ -1,10 +1,16 @@
 const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema({
-	title: String,
+	title: {
+		type: String,
+		unique: true,
+	},
 	content: String,
 	published: Date,
-	thumb: String,
+	thumb: {
+		type: String,
+		unique: true,
+	},
 	author: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Author",
@@ -18,6 +24,7 @@ const schema = new mongoose.Schema({
 	editorsPick: Boolean,
 	featured: Boolean,
 	tags: [String],
+	isPublished: Boolean,
 });
 
 module.exports = mongoose.models.Post || mongoose.model("Post", schema);

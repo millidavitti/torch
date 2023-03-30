@@ -13,12 +13,10 @@ export default api.get("/api/category", async (req, res) => {
 	await categoryModel.count();
 	await authorModel.count();
 
-	const posts = await postModel
-		.find({ categories: filters.path }, { _v: 0 })
-		.skip(+pag.from || 0)
-		.limit(+pag.limit || 2)
-		.populate("author")
-		.populate("categories");
+	const posts = await categoryModel.find(
+		filters.path ? { categories: filters.path } : {},
+		{ _v: 0 },
+	);
 
 	res.json(posts);
 });
