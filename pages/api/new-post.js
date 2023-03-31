@@ -1,13 +1,12 @@
 import express from "express";
 import connectdb from "../../serverless/db/connect";
 import postModel from "../../serverless/models/post.model";
-import categoryModel from "../../serverless/models/category.model";
-import authorModel from "../../serverless/models/author.model";
 
-import parseQuery from "../../serverless/utils/parseQuery";
 const api = express();
 
 export default api.post("/api/new-post", async (req, res) => {
+	connectdb();
+
 	const { post } = req.body;
 
 	post.isPublished = true;
@@ -16,14 +15,12 @@ export default api.post("/api/new-post", async (req, res) => {
 		categories: [post.categories[0]._id],
 		author: post.author._id,
 	};
-
-	const data = await postModel.findOneAndUpdate(
-		{ title: modPost.title },
-		modPost,
-		{
+	try {
+		await postModel.findOneAndUpdate({ title: modPost.title }, modPost, {
 			upsert: true,
-		},
-	);
-	if (!data) return res.json({ success: false });
-	res.json({ success: true });
+		});
+		res.json({ success: true });
+	} catch (error) {
+		res.json({ success: false });
+	}
 });

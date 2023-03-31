@@ -21,13 +21,15 @@ export default function ContentManagement(props) {
 	const [post, setPost] = useReducer(drafPostReducer, draftPost);
 	const [state, dispatch] = useReducer(reducer, componentState);
 	const thumbnailRef = useRef();
- const updatePost = ({ target }) => setPost({ type: "update", target });
- 
+	const updatePost = ({ target }) => setPost({ type: "update", target });
+
 	const posts = JSON.parse(props.postsJSON);
 	const authors = JSON.parse(props.authorsJSON);
 	const categories = JSON.parse(props.categoriesJSON);
 
 	useEffect(() => {
+		if (!state.postID) return;
+
 		setPost({
 			type: "update",
 			target: {
@@ -37,6 +39,31 @@ export default function ContentManagement(props) {
 			},
 		});
 	}, [state.postID]);
+
+	useEffect(() => {
+		if (!state.categoryID) return;
+		setPost({
+			type: "update",
+			target: {
+				id: state.categoryID,
+				type: "categories",
+				value: postCategory,
+			},
+		});
+	}, [state.categoryID]);
+
+	useEffect(() => {
+		if (!state.authorID) return;
+
+		setPost({
+			type: "update",
+			target: {
+				id: state.authorID,
+				type: "author",
+				value: postAuthor,
+			},
+		});
+	}, [state.authorID]);
 
 	/*Return a single post, category and author */
 	const postAuthor = authors.find((author) => author._id === state.authorID);
@@ -78,14 +105,14 @@ export default function ContentManagement(props) {
 							{/* Author */}
 							<div className={postcss.wrapAuth}>
 								<img
-									src={post.author.avatar || postAuthor?.avatar}
+									src={postAuthor?.avatar || post.author.avatar}
 									alt={postAuthor?.name || "Author's Name"}
 									className={postcss.avatar}
 								/>
 
 								{/* <input author /> */}
 								<h3 className={postcss.name}>
-									{post.author.name || postAuthor?.name || "Author's Name"}
+									{postAuthor?.name || post.author.name || "Author's Name"}
 								</h3>
 							</div>
 						</div>
@@ -94,9 +121,9 @@ export default function ContentManagement(props) {
 					{/* Content Editor, Auhtor, Categories and Posts*/}
 					<Grid>
 						<Editor setPost={setPost} content={post.content} />
-
 						<Sidebar>
 							<Margin>
+								{/* Authors */}
 								<h2>Authors</h2>
 								<ol>
 									{authors.map((author) => (
@@ -108,12 +135,8 @@ export default function ContentManagement(props) {
 												background: "#ccced1",
 											}}
 											id={author._id}
-											onClick={(e) => {
-												dispatch({ type: "pick-author", id: e.target.id });
-												setPost({
-													type: "update",
-													target: { id: e.target.id, type: "author" },
-												});
+											onClick={({ target }) => {
+												dispatch({ type: "pick-author", id: target.id });
 											}}
 											key={author.name}
 										>
@@ -121,6 +144,8 @@ export default function ContentManagement(props) {
 										</li>
 									))}
 								</ol>
+
+								{/* Categories */}
 								<h2>Categories</h2>
 								<ol>
 									{categories.map((category) => (
@@ -132,12 +157,8 @@ export default function ContentManagement(props) {
 												margin: "5px 0",
 											}}
 											id={category._id}
-											onClick={(e) => {
-												dispatch({ type: "pick-category", id: e.target.id });
-												setPost({
-													type: "update",
-													target: { id: e.target.id, type: "categories" },
-												});
+											onClick={({ target }) => {
+												dispatch({ type: "pick-category", id: target.id });
 											}}
 											key={category.name}
 										>
@@ -145,6 +166,8 @@ export default function ContentManagement(props) {
 										</li>
 									))}
 								</ol>
+
+								{/* Blog Posts */}
 								<h2>Blog Posts</h2>
 								<ol>
 									{posts.map((post) => (
@@ -154,11 +177,21 @@ export default function ContentManagement(props) {
 												cursor: "pointer",
 												background: "#ccced1",
 												margin: "5px 0",
+												outline: state.postID === post._id ? "auto" : "none",
 											}}
 											id={post._id}
-											onClick={(e) => {
-												dispatch({ type: "pick-post", id: e.target.id });
-												console.log("Post Update: ", postUpdate);
+											onClick={({ target }) =>
+												dispatch({ type: "pick-post", id: target.id })
+											}
+											onDoubleClick={async ({ target }) => {
+												if (
+													confirm("Are you sure you want to delete this post?")
+												) {
+													const { data } = await axios.delete(
+														`/api/delete-post?id=${target.id}`,
+													);
+													if (data.success) target.remove();
+												}
 											}}
 											key={post._id}
 										>
@@ -230,7 +263,6 @@ export default function ContentManagement(props) {
 											{new Date(post.published).toDateString()}
 										</p>
 
-										{/* <Tag tags={parsedPost?.tags} /> */}
 										<div className={postPage.tagTools}>
 											{/* Tags */}
 
@@ -246,11 +278,22 @@ export default function ContentManagement(props) {
 													}
 												/>
 											</div>
+
 											{/* Footer Tag */}
 											<div className={postPage.footerTag}>
 												{/* Optimistic Update */}
 												{post.tags.map((tag) => (
-													<p key={tag} className={postPage.tagEntity}>
+													<p
+														key={tag}
+														className={postPage.tagEntity}
+														onClick={({ target }) => {
+															// Get the tag value
+															const tag = target.textContent;
+															// Find the tag in the target the array
+															setPost({ type: "delete-tag", tag });
+															// Creat the state case in the reducer function
+														}}
+													>
 														{tag}
 													</p>
 												))}
@@ -284,17 +327,31 @@ export default function ContentManagement(props) {
 			<button
 				className={readmore.readMore}
 				style={{ textAlign: "center" }}
-				onClick={() => {
+				onClick={async ({ target }) => {
 					if (!URL_PATTERN.test(post.thumb)) {
 						thumbnailRef.current.focus();
 						return;
 					}
-					axios.post("/api/new-post", {
+					const { data } = await axios.post("/api/new-post", {
 						post,
 					});
+					if (data.success) target.textContent = "Published Successfully";
+					else target.textContent = "Error Publishing Post";
+
+					setTimeout(() => (target.textContent = "Publish"), 2500);
 				}}
 			>
 				Publish
+			</button>
+			<button
+				className={readmore.readMore}
+				style={{ textAlign: "center" }}
+				onClick={() => {
+					dispatch({ type: "unset", componentState });
+					setPost({ type: "new-post", draftPost });
+				}}
+			>
+				New Post
 			</button>
 		</Container>
 	);
@@ -302,8 +359,6 @@ export default function ContentManagement(props) {
 
 const URL_PATTERN =
 	/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
-
-const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 const componentState = {
 	authorID: "",
@@ -319,6 +374,8 @@ function reducer(state, action) {
 			return { ...state, categoryID: action.id };
 		case "pick-post":
 			return { ...state, postID: action.id };
+		case "unset":
+			return { ...state, ...action.componentState };
 	}
 }
 
@@ -353,6 +410,11 @@ function drafPostReducer(state, action) {
 			else return { ...state, [action.target.id]: action.target.value };
 		case "tags":
 			return { ...state, tags: [...state.tags, action.value], tag: "" };
+		case "delete-tag":
+			const tags = state.tags.filter((tag) => tag !== action.tag);
+			return { ...state, tags };
+		case "new-post":
+			return { ...state, ...action.draftPost };
 	}
 }
 
@@ -362,9 +424,9 @@ const draftPost = {
 	published: new Date(Date.now()).toISOString(),
 	thumb: "",
 	author: {
-		name: "Kratos War",
+		name: "Author's Name",
 		avatar:
-			"hhttps://res.cloudinary.com/torch-cms-media/image/upload/v1657611196/god_of_war_2018_video_game_wallpaper_1366x768_0ab2e9648c.jpg",
+			"https://res.cloudinary.com/torch-cms-media/image/upload/v1657611196/god_of_war_2018_video_game_wallpaper_1366x768_0ab2e9648c.jpg",
 	},
 	categories: [],
 	snippet: "",
