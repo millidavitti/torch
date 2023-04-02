@@ -5,7 +5,7 @@ import post from "../Reuse/CSS/post.module.css";
 import DropDown from "./DropDown";
 import DropMenu from "./DropMenu";
 
-export default function DeskMenuItem({ menu }) {
+export default function DeskMenuItem({ menu: parent }) {
 	const [showDrop, setShowDrop] = useState(false);
 
 	return (
@@ -15,15 +15,15 @@ export default function DeskMenuItem({ menu }) {
 				alignItem: "center",
 			}}
 		>
-			{menu.isdropDown ? (
+			{parent.isdropDown ? (
 				<div
 					className='desk-menu-item'
 					onMouseEnter={() => setShowDrop(true)}
 					onMouseLeave={() => setShowDrop(false)}
 				>
-					{menu.name}
+					{parent.name}
 
-					{/* For Dropdown Menus */}
+					{/* For Dropdown Menus  */}
 					<CSSTransition
 						in={showDrop}
 						unmountOnExit={true}
@@ -32,15 +32,15 @@ export default function DeskMenuItem({ menu }) {
 					>
 						{/* Replace categories with menu.dropItems */}
 						<DropDown>
-							{menu.dropItems.map((menu) => (
-								<DropMenu key={menu._id} menu={menu} />
+							{parent.dropItems.map((menu) => (
+								<DropMenu key={menu._id} menu={menu} parent={parent} />
 							))}
 						</DropDown>
 					</CSSTransition>
 				</div>
 			) : (
-				<Link href={`${menu.id}`}>
-					<a className='desk-menu-item'>{menu.name}</a>
+				<Link href={`${parent.id}`}>
+					<a className='desk-menu-item'>{parent.name}</a>
 				</Link>
 			)}
 		</li>
