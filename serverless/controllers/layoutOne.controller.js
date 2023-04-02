@@ -2,15 +2,15 @@ import connectdb from "../db/connect";
 import categoryModel from "../models/category.model";
 import postModel from "../models/post.model";
 
-export default async function travelController() {
+export default async function layoutOneController() {
 	connectdb();
 
 	await categoryModel.count();
 
-	const travelPosts = await postModel
+	const layoutOnePosts = await postModel
 		.find({ categories: "63fbc020acb6c62315bf0aaa" }, { _v: 0 })
 		.limit(3)
 		.populate("categories");
 
-	return JSON.stringify(travelPosts);
+	return JSON.stringify(layoutOnePosts);
 }
