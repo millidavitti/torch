@@ -7,20 +7,28 @@ import parseQuery from "../../serverless/utils/parseQuery";
 
 const api = express();
 
-export default api.get("/api/tags", async (req, res) => {
+export default api.get("/api/archive-posts", async (req, res) => {
 	connectdb();
 
 	const { filters, pag } = parseQuery(req.query);
+	console.log(filters, pag);
 
 	await authorModel.count();
 	await categoryModel.count();
 
+	const startDate = new Date(`${filters.archive || 2023}-01-01`).toISOString();
+	const endDate = new Date(`${filters.archive || 2023}-12-31`).toISOString();
+
 	const posts = await postModel
-		.find({ tags: { $elemMatch: { $eq: filters.tagName } } }, { _v: 0 })
+		.find({ published: { $gte: startDate, $lte: endDate } }, { _v: 0 })
 		.skip(+pag.from || 0)
-		.limit(+pag.limit || 3)
+		.limit(+pag.limit || 2)
 		.populate("author")
 		.populate("categories");
 
-	res.json(posts);
+	const count = await postModel
+		.find({ published: { $gte: startDate, $lte: endDate } }, { _v: 0 })
+		.count();
+
+	res.json({ posts, count });
 });
