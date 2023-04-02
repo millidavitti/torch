@@ -13,8 +13,8 @@ import Sticky from "../components/Reuse/Sticky";
 import GridLeft from "../components/Reuse/GridLeft";
 import Sidebar from "../components/Reuse/Sidebar";
 import Featured from "../components/Hero/Featured";
-import Travel from "../components/Travel";
-import Health from "../components/Health";
+import LayoutOne from "../components/LayoutOne";
+import LayoutTwo from "../components/LayoutTwo";
 import Latest from "../components/Latest";
 import TrendsWrap from "../components/Reuse/TrendsWrap";
 
@@ -28,8 +28,8 @@ import categoryController from "../serverless/controllers/category.controller";
 import slideController from "../serverless/controllers/slide.controller";
 import featuredController from "../serverless/controllers/featured.controller";
 import editorsPickController from "../serverless/controllers/editorsPick.controller";
-import travelController from "../serverless/controllers/travel.controller";
-import healthController from "../serverless/controllers/health.controller";
+import layoutOneController from "../serverless/controllers/layoutOne.controller";
+import layoutTwoController from "../serverless/controllers/layoutTwo.controller";
 import latestController from "../serverless/controllers/latest.controller";
 import trendingController from "../serverless/controllers/trending.controller";
 
@@ -56,17 +56,17 @@ export default function Home(props) {
 				<EditorsPick posts={props.editorsPickPosts} />
 			</section>
 
-			{/* Travel News */}
+			{/* Layout One */}
 			<PostWrap>
-				<Travel posts={props.travelPosts} />
+				<LayoutOne posts={props.layoutOnePosts} />
 			</PostWrap>
 
-			{/* Health News */}
+			{/* Layout Two */}
 			<PostWrap>
-				<Health posts={props.healthPosts} />
+				<LayoutTwo posts={props.layoutTwoPosts} />
 			</PostWrap>
 
-			{/* Latest News */}
+			{/* Latest News: Section Three */}
 			<PostWrap>
 				<SectionHeader
 					text={"Latest News"}
@@ -101,8 +101,8 @@ export async function getServerSideProps() {
 	const slidePosts = await slideController();
 	const featuredPosts = await featuredController();
 	const editorsPickPosts = await editorsPickController();
-	const travelPosts = await travelController();
-	const healthPosts = await healthController();
+	const layoutOnePosts = await layoutOneController();
+	const layoutTwoPosts = await layoutTwoController();
 	const latestPosts = await latestController();
 	const trendingPosts = await trendingController();
 
@@ -114,8 +114,8 @@ export async function getServerSideProps() {
 			slidePosts,
 			featuredPosts,
 			editorsPickPosts,
-			travelPosts,
-			healthPosts,
+			layoutOnePosts,
+			layoutTwoPosts,
 			latestPosts,
 			trendingPosts,
 		},

@@ -12,7 +12,7 @@ export default async function slideController() {
 	await authorModel.count();
 
 	const slidePosts = await postModel
-		.find({}, { _v: 0 })
+		.find({ editorsPick: false, featured: false }, { _v: 0 })
 		.skip(skip)
 		.limit(limit)
 		.populate("author");
