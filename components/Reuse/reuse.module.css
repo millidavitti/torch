@@ -15,7 +15,6 @@
 
 .max {
 	max-width: 900px;
-	min-width: 90vw;
 	margin: 0 auto;
 }
 
@@ -31,9 +30,10 @@
 
 @media screen and (min-width: 1024px) {
 	.max {
-		max-width: 1140px;
+		max-width: 1040px;
 		margin: 0 auto;
 	}
+
 	.grid {
 		display: grid;
 		grid-template-columns: repeat(12, 1fr);
