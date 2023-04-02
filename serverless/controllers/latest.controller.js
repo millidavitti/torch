@@ -10,7 +10,7 @@ export default async function latestController() {
 	await authorModel.count();
 
 	const latestPosts = await postModel
-		.find({}, { _v: 0 })
+		.find({ editorsPick: false, featured: false }, { _v: 0 })
 		.limit(3)
 		.sort("-_id")
 		.populate("categories")

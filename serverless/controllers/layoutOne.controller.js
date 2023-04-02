@@ -8,7 +8,14 @@ export default async function layoutOneController() {
 	await categoryModel.count();
 
 	const layoutOnePosts = await postModel
-		.find({ categories: "63fbc020acb6c62315bf0aaa" }, { _v: 0 })
+		.find(
+			{
+				categories: { $elemMatch: { $eq: "63fbc020acb6c62315bf0aaa" } },
+				featured: false,
+				editorsPick: false,
+			},
+			{ _v: 0 },
+		)
 		.limit(3)
 		.populate("categories");
 
