@@ -11,7 +11,7 @@ import health from "./Reuse/CSS/health.module.css";
 import Link from "next/link";
 import SectionHeader from "./Reuse/SectionHeader";
 
-export default function Health({ posts }) {
+export default function LayoutTwo({ posts }) {
 	const parsedPosts = JSON.parse(posts);
 
 	return (

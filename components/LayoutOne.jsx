@@ -8,7 +8,7 @@ import travel from "./Reuse/CSS/travel.module.css";
 import Link from "next/link";
 import SectionHeader from "./Reuse/SectionHeader";
 
-export default function Travel({ posts }) {
+export default function LayoutOne({ posts }) {
 	const parsedPosts = JSON.parse(posts);
 
 	return (
