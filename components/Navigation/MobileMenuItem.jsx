@@ -3,7 +3,7 @@ import Link from "next/link";
 import DropDown from "./DropDown";
 import DropMenu from "./DropMenu";
 
-export default function MobileMenuItem({ menu, toggleMenu }) {
+export default function MobileMenuItem({ menu: parent, toggleMenu }) {
 	const [showDrop, setShowDrop] = useState(false);
 
 	const paragraphStyle = {
@@ -14,22 +14,22 @@ export default function MobileMenuItem({ menu, toggleMenu }) {
 
 	return (
 		<li className='mobile-menu-item'>
-			{menu.isdropDown ? (
+			{parent.isdropDown ? (
 				/* For Dropdown Menus */
 				<div style={paragraphStyle} onClick={() => setShowDrop((pre) => !pre)}>
-					<p>{menu.name}</p>
+					<p>{parent.name}</p>
 
 					{showDrop && (
 						<DropDown toggleMenu={toggleMenu}>
-							{menu.dropItems.map((menu) => (
-								<DropMenu key={menu._id} menu={menu} />
+							{parent.dropItems.map((menu) => (
+								<DropMenu key={menu._id} menu={menu} parent={parent} />
 							))}
 						</DropDown>
 					)}
 				</div>
 			) : (
-				<Link href={`${menu.id}`}>
-					<a onClick={toggleMenu}>{menu.name}</a>
+				<Link href={`${parent.id}`}>
+					<a onClick={toggleMenu}>{parent.name}</a>
 				</Link>
 			)}
 		</li>
