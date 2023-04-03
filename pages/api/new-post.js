@@ -7,16 +7,20 @@ const api = express();
 export default api.post("/api/new-post", async (req, res) => {
 	connectdb();
 
-	const { post } = req.body;
+	let post = req.body.post;
 
 	post.isPublished = true;
-	const modPost = {
-		...post,
-		categories: [post.categories[0]._id],
-		author: post.author._id,
-	};
+
+	if (post.author._id) {
+		post = {
+			...post,
+			categories: [post.categories[0]._id],
+			author: post.author._id,
+		};
+	}
+
 	try {
-		await postModel.findOneAndUpdate({ title: modPost.title }, modPost, {
+		await postModel.findOneAndUpdate({ title: post.title }, post, {
 			upsert: true,
 		});
 		res.json({ success: true });
