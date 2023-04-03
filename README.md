@@ -8,21 +8,21 @@ To run this application, follow these steps:
 
 1.  Clone the repository:
 
-`git clone https://github.com/your-username/blogging-application.git`
+`git clone https://github.com/millidavitti/torch.git`
 
-1.  Install dependencies:
+2.  Install dependencies:
 
 `npm install`
 
-1.  Set up environment variables:
+3.  Set up environment variables:
 
 Copy the `.env.example` file to a new `.env` file, and replace the values with your own.
 
-1.  Start the development server:
+4.  Start the development server:
 
 `npm run dev`
 
-1.  Open your browser and navigate to `http://localhost:3000` to view the application.
+5.  Open your browser and navigate to `http://localhost:3000` to view the application.
 
 ## Dependencies
 
@@ -46,8 +46,6 @@ This application uses the following dependencies:
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
 
 ## License
 
