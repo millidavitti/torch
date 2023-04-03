@@ -27,6 +27,8 @@ export default function ContentManagement(props) {
 	const authors = JSON.parse(props.authorsJSON);
 	const categories = JSON.parse(props.categoriesJSON);
 
+	console.log(post);
+
 	useEffect(() => {
 		if (!state.postID) return;
 
@@ -69,8 +71,6 @@ export default function ContentManagement(props) {
 	const postAuthor = authors.find((author) => author._id === state.authorID);
 	const postCategory = categories.find((cat) => cat._id === state.categoryID);
 	const postUpdate = posts.find((post) => post._id === state.postID);
-
-	console.log(post);
 
 	return (
 		<Container>
@@ -331,10 +331,12 @@ export default function ContentManagement(props) {
 					if (!URL_PATTERN.test(post.thumb)) {
 						thumbnailRef.current.focus();
 						return;
-					}
+					} else if (post.author.name === "Author's Name") return;
+
 					const { data } = await axios.post("/api/new-post", {
 						post,
 					});
+
 					if (data.success) target.textContent = "Published Successfully";
 					else target.textContent = "Error Publishing Post";
 
@@ -443,7 +445,12 @@ const Editor = ({ setPost, content }) => {
 	return <Comp setPost={setPost} content={content} />;
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ res }) {
+	res.setHeader(
+		"Cache-Control",
+		"public, s-maxage=10, stale-while-revalidate=59",
+	);
+
 	const postsJSON = await postController();
 	const authorsJSON = await authorController(false);
 	const categoriesJSON = await categoryController();

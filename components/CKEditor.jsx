@@ -15,6 +15,13 @@ function Editor({ setPost, content }) {
 			style={{
 				gridColumn: "1/9",
 			}}
+			onMouseLeave={() => {
+				if (!data) return;
+				setPost({
+					type: "update",
+					target: { type: "editor", id: "content", value: data },
+				});
+			}}
 		>
 			<Margin>
 				<h2>Content Editor</h2>
@@ -25,20 +32,7 @@ function Editor({ setPost, content }) {
 					onKeyDown={handleEditorChange}
 				/>
 			</Margin>
-			<Margin>
-				<button
-					className={readmore.readMore}
-					style={{ textAlign: "center" }}
-					onClick={() =>
-						setPost({
-							type: "update",
-							target: { type: "editor", id: "content", value: data },
-						})
-					}
-				>
-					Save Content
-				</button>
-			</Margin>
+			<Margin></Margin>
 		</div>
 	);
 }
