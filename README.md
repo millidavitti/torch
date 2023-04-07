@@ -5,7 +5,14 @@ This is a blogging application built with Next.js, Express, and MongoDB. It allo
 ## CMS Login
 
 - Email: `vlad@yopmail.com`
-- Pass: donald
+- Pass: `donald`
+
+### CMS Operation
+
+- Create Post - Fill the form, pick Author and Category from the options
+- Update Post - Select the post of your from the list of published posts and amke your edits.
+- Delete Post - Double-click the post
+- Delete Tag - Click tag
 
 ## Installation
 
@@ -47,6 +54,8 @@ This application uses the following dependencies:
 - `react-transition-group` - Animations library for React
 - `swr` - React Hooks library for remote data fetching
 - `web-vitals` - Library for measuring web performance metrics
+- `next-auth` - an authentication library for Next.js web applications
+- `bcrypt` - password-hashing library that allows for secure storage of user passwords
 
 ## Contributing
 
