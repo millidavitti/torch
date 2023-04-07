@@ -2,6 +2,11 @@
 
 This is a blogging application built with Next.js, Express, and MongoDB. It allows users to view blog posts, filter them by category, view archived posts, and browse authors. Additionally, the application comes with a basic CMS for adding, editing, and deleting blog posts.
 
+## CMS Login
+
+- Email: `vlad@yopmail.com`
+- Pass: donald
+
 ## Installation
 
 To run this application, follow these steps:
