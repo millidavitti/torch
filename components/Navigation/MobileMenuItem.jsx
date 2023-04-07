@@ -30,16 +30,14 @@ export default function MobileMenuItem({ menu: parent, toggleMenu }) {
 					)}
 				</div>
 			) : parent.id === "author" ? (
-				<Link href={`/${parent.id}`}>
-					<a
-						className='desk-menu-item'
-						onClick={() => {
-							if (!session.data) signIn(null, { callbackUrl: "/author" });
-						}}
-					>
-						{parent.name}
-					</a>
-				</Link>
+				<a
+					className='desk-menu-item'
+					onClick={() => {
+						if (!session.data) signIn(null, { callbackUrl: "/author" });
+					}}
+				>
+					{parent.name}
+				</a>
 			) : (
 				<Link href={`/${parent.id}`}>
 					<a className='desk-menu-item'>{parent.name}</a>
