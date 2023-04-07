@@ -42,14 +42,20 @@ export default function DeskMenuItem({ menu: parent }) {
 				</div>
 			) : // Checks if the menu has an id of author
 			parent.id === "author" ? (
-				<p
-					className='desk-menu-item'
-					onClick={() => {
-						if (!session.data) signIn(null, { callbackUrl: "/author" });
-					}}
-				>
-					{parent.name}
-				</p>
+				!session.data ? (
+					<p
+						className='desk-menu-item'
+						onClick={() => {
+							if (!session.data) signIn(null, { callbackUrl: "/author" });
+						}}
+					>
+						{parent.name}
+					</p>
+				) : (
+					<Link href={`/${parent.id}`}>
+						<a className='desk-menu-item'>{parent.name}</a>
+					</Link>
+				)
 			) : (
 				<Link href={`/${parent.id}`}>
 					<a className='desk-menu-item'>{parent.name}</a>
