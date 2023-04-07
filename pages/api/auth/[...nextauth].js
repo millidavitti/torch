@@ -4,6 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import authorModel from "../../../serverless/models/author.model";
 
 const authOptions = {
+	secret: process.env.NEXTAUTH_SECRET,
 	session: {
 		strategy: "jwt",
 	},
