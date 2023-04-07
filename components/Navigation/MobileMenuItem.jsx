@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import Link from "next/link";
 import DropDown from "./DropDown";
 import DropMenu from "./DropMenu";
+import { signIn, useSession } from "next-auth/react";
 
 export default function MobileMenuItem({ menu: parent, toggleMenu }) {
 	const [showDrop, setShowDrop] = useState(false);
+	const session = useSession();
 
 	const paragraphStyle = {
 		color: "var(--secondary)",
@@ -27,9 +29,20 @@ export default function MobileMenuItem({ menu: parent, toggleMenu }) {
 						</DropDown>
 					)}
 				</div>
+			) : parent.id === "author" ? (
+				<Link href={`/${parent.id}`}>
+					<a
+						className='desk-menu-item'
+						onClick={() => {
+							if (!session.data) signIn(null, { callbackUrl: "/author" });
+						}}
+					>
+						{parent.name}
+					</a>
+				</Link>
 			) : (
-				<Link href={`${parent.id}`}>
-					<a onClick={toggleMenu}>{parent.name}</a>
+				<Link href={`/${parent.id}`}>
+					<a className='desk-menu-item'>{parent.name}</a>
 				</Link>
 			)}
 		</li>
