@@ -45,8 +45,8 @@ export default function DeskMenuItem({ menu: parent }) {
 				!session.data ? (
 					<p
 						className='desk-menu-item'
-						onClick={() => {
-							if (!session.data) signIn(null, { callbackUrl: "/author" });
+						onClick={async () => {
+							if (!session.data) await signIn(null, { callbackUrl: "/author" });
 						}}
 					>
 						{parent.name}
