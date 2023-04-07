@@ -12,6 +12,10 @@ const schema = new mongoose.Schema({
 		instagram: String,
 		twitter: String,
 	},
+	credentials: {
+		email: String,
+		pass: String,
+	},
 });
 
 module.exports = mongoose.models.Author || mongoose.model("Author", schema);
