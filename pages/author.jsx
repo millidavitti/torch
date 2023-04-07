@@ -16,6 +16,7 @@ import Sidebar from "../components/Reuse/Sidebar";
 import postController from "../serverless/controllers/post.controller";
 import authorController from "../serverless/controllers/author.controller";
 import categoryController from "../serverless/controllers/category.controller";
+import { signOut } from "next-auth/react";
 
 export default function ContentManagement(props) {
 	const [post, setPost] = useReducer(drafPostReducer, draftPost);
@@ -26,8 +27,6 @@ export default function ContentManagement(props) {
 	const posts = JSON.parse(props.postsJSON);
 	const authors = JSON.parse(props.authorsJSON);
 	const categories = JSON.parse(props.categoriesJSON);
-
-	console.log(post);
 
 	useEffect(() => {
 		if (!state.postID) return;
@@ -345,6 +344,8 @@ export default function ContentManagement(props) {
 			>
 				Publish
 			</button>
+
+			{/* New Post */}
 			<button
 				className={readmore.readMore}
 				style={{ textAlign: "center" }}
@@ -354,6 +355,13 @@ export default function ContentManagement(props) {
 				}}
 			>
 				New Post
+			</button>
+			<button
+				className={readmore.readMore}
+				style={{ textAlign: "center", background: "crimson", color: "white" }}
+				onClick={async () => await signOut({ callbackUrl: "/" })}
+			>
+				Sign Out
 			</button>
 		</Container>
 	);

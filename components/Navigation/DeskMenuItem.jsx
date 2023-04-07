@@ -4,9 +4,11 @@ import { CSSTransition } from "react-transition-group";
 import post from "../Reuse/CSS/post.module.css";
 import DropDown from "./DropDown";
 import DropMenu from "./DropMenu";
+import { signIn, useSession } from "next-auth/react";
 
 export default function DeskMenuItem({ menu: parent }) {
 	const [showDrop, setShowDrop] = useState(false);
+	const session = useSession();
 
 	return (
 		<li
@@ -38,8 +40,24 @@ export default function DeskMenuItem({ menu: parent }) {
 						</DropDown>
 					</CSSTransition>
 				</div>
+			) : // Checks if the menu has an id of author
+			parent.id === "author" ? (
+				!session.data ? (
+					<p
+						className='desk-menu-item'
+						onClick={() => {
+							if (!session.data) signIn(null, { callbackUrl: "/author" });
+						}}
+					>
+						{parent.name}
+					</p>
+				) : (
+					<Link href={`/${parent.id}`}>
+						<a className='desk-menu-item'>{parent.name}</a>
+					</Link>
+				)
 			) : (
-				<Link href={`${parent.id}`}>
+				<Link href={`/${parent.id}`}>
 					<a className='desk-menu-item'>{parent.name}</a>
 				</Link>
 			)}
