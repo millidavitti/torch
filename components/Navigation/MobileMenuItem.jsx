@@ -32,22 +32,26 @@ export default function MobileMenuItem({ menu: parent, toggleMenu }) {
 			) : parent.id === "author" ? (
 				!session.data ? (
 					<a
-						href=''
 						className='mobile-menu-item'
-						onClick={() => {
-							if (!session.data) signIn(null, { callbackUrl: "/author" });
+						onClick={async () => {
+							if (!session.data) await signIn(null, { callbackUrl: "/author" });
+							toggleMenu();
 						}}
 					>
 						{parent.name}
 					</a>
 				) : (
 					<Link href={`/${parent.id}`}>
-						<a className='mobile-menu-item'>{parent.name}</a>
+						<a className='mobile-menu-item' onClick={toggleMenu}>
+							{parent.name}
+						</a>
 					</Link>
 				)
 			) : (
 				<Link href={`/${parent.id}`}>
-					<a className='mobile-menu-item'>{parent.name}</a>
+					<a className='mobile-menu-item' onClick={toggleMenu}>
+						{parent.name}
+					</a>
 				</Link>
 			)}
 		</li>
