@@ -100,6 +100,7 @@ header {
 	transform: translateX(-150px);
 	opacity: 0;
 	pointer-events: none;
+	cursor: pointer;
 	transition: all 350ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
