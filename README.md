@@ -10,7 +10,7 @@ This is a blogging application built with Next.js, Express, and MongoDB. It allo
 ### CMS Operation
 
 - Create Post - Fill the form, pick Author and Category from the options
-- Update Post - Select the post of your from the list of published posts and amke your edits.
+- Update Post - Select the post of your from the list of published posts and make your edits.
 - Delete Post - Double-click the post
 - Delete Tag - Click tag
 
